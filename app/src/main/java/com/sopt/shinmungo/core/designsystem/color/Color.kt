@@ -1,7 +1,5 @@
 package com.sopt.shinmungo.core.designsystem.color
 
-import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 //Primary Colors
