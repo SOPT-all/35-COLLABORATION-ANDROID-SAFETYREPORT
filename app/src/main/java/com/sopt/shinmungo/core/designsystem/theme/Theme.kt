@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.sopt.shinmungo.core.designsystem.color.Gray1
+import com.sopt.shinmungo.core.designsystem.color.Gray13
 import com.sopt.shinmungo.core.designsystem.color.LocalColorProvider
 import com.sopt.shinmungo.core.designsystem.color.ShinMunGoColors
 import com.sopt.shinmungo.core.designsystem.color.defaultShinMunGoColors
@@ -19,7 +19,7 @@ import com.sopt.shinmungo.core.designsystem.type.defaultShinMunGoTypography
 
 @Composable
 fun ShinMunGoTheme(
-    backgroundColor: Color = Gray1,
+    customStatusBarColor: Color = Gray13,
     content: @Composable () -> Unit
 ) {
     ProvideShinMunGoColors(
@@ -30,8 +30,8 @@ fun ShinMunGoTheme(
         if (!view.isInEditMode) {
             SideEffect {
                 (view.context as Activity).window.run {
-                    statusBarColor = backgroundColor.toArgb()
-                    WindowCompat.getInsetsController(this, view).isAppearanceLightStatusBars = true
+                    statusBarColor = customStatusBarColor.toArgb()
+                    WindowCompat.getInsetsController(this, view).isAppearanceLightStatusBars = false
                 }
             }
         }
