@@ -4,6 +4,9 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
+val LocalColorProvider = staticCompositionLocalOf<ShinMunGoColors> {
+    error("No colors provided")
+}
 
 @Immutable
 data class ShinMunGoColors(
@@ -35,10 +38,6 @@ data class ShinMunGoColors(
     val opacityGray1Per30: Color,
     val opacityGray1Per10: Color,
 )
-
-val LocalColorProvider = staticCompositionLocalOf<ShinMunGoColors> {
-    error("No colors provided")
-}
 
 val defaultShinMunGoColors = ShinMunGoColors(
     primary = Orange,

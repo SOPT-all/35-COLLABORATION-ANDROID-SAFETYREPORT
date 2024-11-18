@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -14,19 +13,6 @@ import com.sopt.shinmungo.core.designsystem.color.Gray1
 import com.sopt.shinmungo.core.designsystem.color.LocalColorProvider
 import com.sopt.shinmungo.core.designsystem.color.ShinMunGoColors
 import com.sopt.shinmungo.core.designsystem.color.defaultShinMunGoColors
-
-
-
-@Composable
-fun ProvideShinMunGoColors(
-    colors: ShinMunGoColors,
-    content: @Composable () -> Unit
-) {
-    CompositionLocalProvider(
-        LocalColorProvider provides colors,
-        content = content
-    )
-}
 
 @Composable
 fun ShinMunGoTheme(
@@ -50,4 +36,15 @@ fun ShinMunGoTheme(
             content = content
         )
     }
+}
+
+@Composable
+fun ProvideShinMunGoColors(
+    colors: ShinMunGoColors,
+    content: @Composable () -> Unit
+) {
+    CompositionLocalProvider(
+        LocalColorProvider provides colors,
+        content = content
+    )
 }
