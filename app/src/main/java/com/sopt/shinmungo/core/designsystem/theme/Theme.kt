@@ -15,12 +15,7 @@ import com.sopt.shinmungo.core.designsystem.color.LocalColorProvider
 import com.sopt.shinmungo.core.designsystem.color.ShinMunGoColors
 import com.sopt.shinmungo.core.designsystem.color.defaultShinMunGoColors
 
-object ShinMunGoTheme {
-        val color: ShinMunGoColors
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalColorProvider.current
-}
+
 
 @Composable
 fun ProvideShinMunGoColors(
