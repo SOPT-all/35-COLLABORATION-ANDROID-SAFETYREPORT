@@ -13,6 +13,9 @@ import com.sopt.shinmungo.core.designsystem.color.Gray1
 import com.sopt.shinmungo.core.designsystem.color.LocalColorProvider
 import com.sopt.shinmungo.core.designsystem.color.ShinMunGoColors
 import com.sopt.shinmungo.core.designsystem.color.defaultShinMunGoColors
+import com.sopt.shinmungo.core.designsystem.type.LocalTypographyProvider
+import com.sopt.shinmungo.core.designsystem.type.ShinMunGoTypography
+import com.sopt.shinmungo.core.designsystem.type.defaultShinMunGoTypography
 
 @Composable
 fun ShinMunGoTheme(
@@ -20,7 +23,8 @@ fun ShinMunGoTheme(
     content: @Composable () -> Unit
 ) {
     ProvideShinMunGoColors(
-        colors = defaultShinMunGoColors
+        colors = defaultShinMunGoColors,
+        typography = defaultShinMunGoTypography
     ) {
         val view = LocalView.current
         if (!view.isInEditMode) {
@@ -41,10 +45,12 @@ fun ShinMunGoTheme(
 @Composable
 fun ProvideShinMunGoColors(
     colors: ShinMunGoColors,
+    typography: ShinMunGoTypography,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
         LocalColorProvider provides colors,
+        LocalTypographyProvider provides typography,
         content = content
     )
 }
