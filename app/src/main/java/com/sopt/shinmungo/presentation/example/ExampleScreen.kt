@@ -2,7 +2,6 @@ package com.sopt.shinmungo.presentation.example
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -43,7 +42,8 @@ fun ExampleScreen(
             val state = uiState.loadState as UiState.Success<Example>
             ExampleText(
                 text = state.data.id,
-                style = ShinMunGoTheme.typography.body3
+                style = ShinMunGoTheme.typography.body3,
+                modifier = modifier
             )
         }
     }
