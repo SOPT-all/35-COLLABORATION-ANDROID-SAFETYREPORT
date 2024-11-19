@@ -1,7 +1,16 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
+}
+
+val properties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -16,9 +25,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        /*buildConfigField(
+            "String",
+            "BASE_URL",
+            properties.getProperty("base.url")
+        )*/
     }
 
     buildTypes {
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -36,6 +52,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -56,4 +73,34 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //viewmodel
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
+
+    //hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.core)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.hilt.android.compiler)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.manager)
+
+    //navigation
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.compose.navigation)
+
+    //coil
+    implementation(libs.coil)
+
+    //retrofit
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.retrofit)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    
+    //timber
+    implementation(libs.timber)
 }
