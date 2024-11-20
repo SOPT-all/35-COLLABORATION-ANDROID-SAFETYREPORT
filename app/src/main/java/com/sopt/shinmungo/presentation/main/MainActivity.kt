@@ -1,4 +1,4 @@
-package com.sopt.shinmungo
+package com.sopt.shinmungo.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -36,7 +36,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hello $name!",
         modifier = modifier,
-        color = ShinMunGoTheme.color.primary
+        color = ShinMunGoTheme.color.primary,
+        style = ShinMunGoTheme.typography.body8
     )
 }
 
