@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -26,22 +25,17 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.sopt.shinmungo.R
+import androidx.compose.ui.window.Dialog
 
 @Composable
 fun CustomDialog(
     title: String,
     icon: ImageVector,
-    modifier: Modifier = Modifier,
+    onDismissRequest: () -> Unit,
     onIconClick: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black.copy(alpha = 0.5f)),
-        contentAlignment = Alignment.Center
-    ) {
+    Dialog(onDismissRequest = onDismissRequest) {
         Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
@@ -76,7 +70,7 @@ fun CustomDialog(
                         modifier = Modifier.size(24.dp)
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_close_24),
+                            imageVector = icon,
                             contentDescription = "Close Dialog",
                             tint = Color.White
                         )
@@ -97,11 +91,12 @@ fun CustomDialog(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewCustomDialogMessageAndButtons() {
+fun PreviewCustomDialog() {
     CustomDialog(
         title = "알림",
         icon = Icons.Default.Close,
-        onIconClick = { /* 닫기 버튼 동작 */ }
+        onDismissRequest = { /* 닫기 동작 */ },
+        onIconClick = { /* 아이콘 클릭 동작 */ }
     ) {
         Text(
             text = buildAnnotatedString {
@@ -113,47 +108,52 @@ fun PreviewCustomDialogMessageAndButtons() {
                 withStyle(style = SpanStyle(color = Color(0xFFFF6F00), fontWeight = FontWeight.Bold)) {
                     append("총 180MB")
                 }
-                append("까지만\n첨부 가능합니다")
+                append("까지만 첨부 가능합니다.")
             },
-            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 lineHeight = 22.sp
             ),
-            color = Color.Black
+            color = Color.Black,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            listOf(
-                "취소" to { /* 취소 동작 */ },
-                "확인" to { /* 확인 동작 */ }
-            ).forEach { (buttonText, onClick) ->
-                Button(
-                    onClick = onClick,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(50.dp),
-                    shape = RoundedCornerShape(50),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White,
-                        contentColor = Color.Gray
-                    ),
-                    border = BorderStroke(1.dp, Color.Gray)
-                ) {
-                    Text(
-                        text = buttonText,
-                        style = MaterialTheme.typography.labelLarge.copy(
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    )
-                }
+            Button(
+                onClick = { /* 취소 버튼 동작 */ },
+                modifier = Modifier.weight(1f),
+                shape = RoundedCornerShape(50),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.White,
+                    contentColor = Color.Gray
+                ),
+                border = BorderStroke(1.dp, Color.Gray)
+            ) {
+                Text(
+                    text = "취소",
+                    style = MaterialTheme.typography.labelLarge
+                )
+            }
+            Button(
+                onClick = { /* 확인 버튼 동작 */ },
+                modifier = Modifier.weight(1f),
+                shape = RoundedCornerShape(50),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFFF6F00),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "확인",
+                    style = MaterialTheme.typography.labelLarge
+                )
             }
         }
     }
