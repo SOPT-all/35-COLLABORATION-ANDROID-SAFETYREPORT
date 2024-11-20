@@ -2,6 +2,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -14,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -28,10 +31,10 @@ import com.sopt.shinmungo.R
 @Composable
 fun CustomDialog(
     title: String,
-    message: String,
-    buttons: List<Pair<String, () -> Unit>>,
+    icon: ImageVector,
+    modifier: Modifier = Modifier,
     onIconClick: () -> Unit = {},
-    modifier: Modifier = Modifier
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -80,65 +83,13 @@ fun CustomDialog(
                     }
                 }
 
-                // Message Section
+                // Custom Contetn Section
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = buildAnnotatedString {
-                            append("사진은 ")
-                            withStyle(style = SpanStyle(color = Color(0xFFFF6F00), fontWeight = FontWeight.Bold)) {
-                                append("각 30MB")
-                            }
-                            append(", ")
-                            withStyle(style = SpanStyle(color = Color(0xFFFF6F00), fontWeight = FontWeight.Bold)) {
-                                append("총 180MB")
-                            }
-                            append("까지만\n첨부 가능합니다")
-                        },
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.bodyMedium.copy(
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Medium,
-                            lineHeight = 22.sp
-                        ),
-                        color = Color.Black
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    // Confirm Button Section
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
-                    ) {
-                        buttons.forEach { (buttonText, onClick) ->
-                            Button(
-                                onClick = onClick,
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(50.dp),
-                                shape = RoundedCornerShape(50),
-                                colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color.White,
-                                    contentColor = Color.Gray
-                                ),
-                                border = BorderStroke(1.dp, Color.Gray)
-                            ) {
-                                Text(
-                                    text = buttonText,
-                                    style = MaterialTheme.typography.labelLarge.copy(
-                                        fontSize = 16.sp,
-                                        fontWeight = FontWeight.Medium
-                                    )
-                                )
-                            }
-                        }
-                    }
-                }
+                    content = content
+                )
             }
         }
     }
@@ -146,27 +97,64 @@ fun CustomDialog(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewCustomDialogSingleButton() {
+fun PreviewCustomDialogMessageAndButtons() {
     CustomDialog(
         title = "알림",
-        message = "사진은 각 30MB, 총 180MB까지만 첨부 가능합니다",
-        buttons = listOf(
-            "확인" to { /* 확인 버튼 동작 */ }
-        ),
-        onIconClick = { /* X 버튼 동작 */ }
-    )
-}
+        icon = Icons.Default.Close,
+        onIconClick = { /* 닫기 버튼 동작 */ }
+    ) {
+        Text(
+            text = buildAnnotatedString {
+                append("사진은 ")
+                withStyle(style = SpanStyle(color = Color(0xFFFF6F00), fontWeight = FontWeight.Bold)) {
+                    append("각 30MB")
+                }
+                append(", ")
+                withStyle(style = SpanStyle(color = Color(0xFFFF6F00), fontWeight = FontWeight.Bold)) {
+                    append("총 180MB")
+                }
+                append("까지만\n첨부 가능합니다")
+            },
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyMedium.copy(
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
+                lineHeight = 22.sp
+            ),
+            color = Color.Black
+        )
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewCustomDialogTwoButtons() {
-    CustomDialog(
-        title = "알림",
-        message = "사진은 각 30MB, 총 180MB까지만 첨부 가능합니다",
-        buttons = listOf(
-            "취소" to { /* 취소 버튼 동작 */ },
-            "확인" to { /* 확인 버튼 동작 */ }
-        ),
-        onIconClick = { /* X 버튼 동작 */ }
-    )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+        ) {
+            listOf(
+                "취소" to { /* 취소 동작 */ },
+                "확인" to { /* 확인 동작 */ }
+            ).forEach { (buttonText, onClick) ->
+                Button(
+                    onClick = onClick,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp),
+                    shape = RoundedCornerShape(50),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.White,
+                        contentColor = Color.Gray
+                    ),
+                    border = BorderStroke(1.dp, Color.Gray)
+                ) {
+                    Text(
+                        text = buttonText,
+                        style = MaterialTheme.typography.labelLarge.copy(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                    )
+                }
+            }
+        }
+    }
 }
