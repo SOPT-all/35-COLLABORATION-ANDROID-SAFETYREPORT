@@ -1,13 +1,20 @@
 package com.sopt.shinmungo.core.designsystem.component.button
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
@@ -37,16 +44,25 @@ fun RoundedCornerTextButton(
     modifier: Modifier = Modifier,
     buttonOnClick: () -> Unit,
 ) {
-    BaseRoundedCornerTextButton(
-        text = text,
-        textStyle = textStyle,
-        textColor = textColor,
-        isBorderApplied = false,
-        borderLineColor = borderLineColor,
-        backgroundColor = backgroundColor,
-        roundedCornerShape = roundedCornerShape,
-        modifier = modifier.noRippleClickable { buttonOnClick() }
-    )
+    //테두리 색을 테두리가 있는 경우 테두리 색 적용, 없는 경우 배경색을 적용
+    val lineColor = borderLineColor ?: backgroundColor
+
+    Box(
+        modifier = Modifier
+            .clip(roundedCornerShape)
+            .background(backgroundColor)
+            .border(width = 1.dp, color = lineColor, shape = roundedCornerShape)
+            .noRippleClickable { buttonOnClick() },
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            style = textStyle,
+            color = textColor,
+            modifier = modifier,
+            textAlign = TextAlign.Center
+        )
+    }
 }
 
 @Preview
@@ -120,6 +136,46 @@ fun RoundedCornerTextButton_Category_Preview(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp),
+            buttonOnClick = { }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun RoundedCornerTextButton_isActivated_Preview(modifier: Modifier = Modifier) {
+    val isActivated = true
+    ShinMunGoTheme {
+        RoundedCornerTextButton(
+            text = "확인",
+            textStyle = ShinMunGoTheme.typography.body4,
+            textColor = if (isActivated) ShinMunGoTheme.color.primary else ShinMunGoTheme.color.gray6,
+            borderLineColor = if (isActivated) ShinMunGoTheme.color.primaryLight else ShinMunGoTheme.color.gray6,
+            backgroundColor = if (isActivated) ShinMunGoTheme.color.gray1 else ShinMunGoTheme.color.gray4,
+            roundedCornerShape = RoundedCornerShape(10.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(vertical = 15.dp),
+            buttonOnClick = { }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun RoundedCornerTextButton_isNotActivated_Preview(modifier: Modifier = Modifier) {
+    val isActivated = false
+    ShinMunGoTheme {
+        RoundedCornerTextButton(
+            text = "확인",
+            textStyle = ShinMunGoTheme.typography.body4,
+            textColor = if (isActivated) ShinMunGoTheme.color.primary else ShinMunGoTheme.color.gray6,
+            borderLineColor = if (isActivated) ShinMunGoTheme.color.primaryLight else ShinMunGoTheme.color.gray6,
+            backgroundColor = if (isActivated) ShinMunGoTheme.color.gray1 else ShinMunGoTheme.color.gray4,
+            roundedCornerShape = RoundedCornerShape(10.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(vertical = 15.dp),
             buttonOnClick = { }
         )
     }
