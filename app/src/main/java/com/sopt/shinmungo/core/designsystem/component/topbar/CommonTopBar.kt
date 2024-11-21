@@ -1,16 +1,11 @@
 package com.sopt.shinmungo.core.designsystem.component.topbar
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,6 +37,8 @@ fun CommonTopBar(
     onRightContent: @Composable () -> Unit = {}
 ) {
     TopAppBar(
+        modifier = Modifier.fillMaxWidth(),
+        windowInsets = WindowInsets(left = 8.dp, right = 8.dp),
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = ShinMunGoTheme.color.primary,
             titleContentColor = Color.White,
@@ -57,7 +54,6 @@ fun CommonTopBar(
         },
         navigationIcon = {
             Row(
-                modifier = Modifier.padding(start = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 onLeftContent()
@@ -65,7 +61,6 @@ fun CommonTopBar(
         },
         actions = {
             Row(
-                modifier = Modifier.padding(end = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 onRightContent()
