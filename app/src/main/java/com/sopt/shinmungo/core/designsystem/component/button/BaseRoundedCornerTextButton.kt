@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 
 /**
- * 둥근테두리+text 버튼 컴포저블
+ * 둥근테두리+text 버튼 Base 컴포저블
  *
  * @param text 버튼에 들어갈 글자
  * @param textStyle 글자 스타일
