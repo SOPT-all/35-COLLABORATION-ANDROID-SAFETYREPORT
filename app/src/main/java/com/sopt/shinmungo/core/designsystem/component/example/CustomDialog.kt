@@ -6,8 +6,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.SpanStyle
@@ -36,17 +35,20 @@ fun CustomDialog(
     content: @Composable ColumnScope.() -> Unit
 ) {
     Dialog(onDismissRequest = onDismissRequest) {
-        Card(
-            shape = RoundedCornerShape(8.dp),
+        Column(
             modifier = Modifier
                 .width(335.dp)
                 .wrapContentHeight()
-                .padding(16.dp),
-            elevation = CardDefaults.cardElevation(12.dp),
-        ) {
-            Column(
-                modifier = Modifier.background(Color.White)
-            ) {
+                .padding(16.dp)
+                .background(
+                    color = Color.White,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .shadow(
+                    elevation = 12.dp,
+                    shape = RoundedCornerShape(8.dp)
+                )
+        ){
                 // Title Section
                 Row(
                     modifier = Modifier
@@ -87,7 +89,6 @@ fun CustomDialog(
             }
         }
     }
-}
 
 @Preview(showBackground = true)
 @Composable
