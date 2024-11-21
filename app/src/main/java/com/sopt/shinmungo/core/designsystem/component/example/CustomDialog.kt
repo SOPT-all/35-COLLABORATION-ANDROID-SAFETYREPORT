@@ -23,6 +23,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 
+/**
+ * 사용자가 특정 작업을 수행하거나 메시지를 확인하도록 요청하는 커스텀 다이얼로그입니다.
+ *
+ * @param title 다이얼로그 상단에 표시될 제목 텍스트입니다.
+ * @param icon 제목 오른쪽에 표시될 아이콘의 [ImageVector]입니다. 주로 닫기 버튼으로 사용됩니다.
+ * @param onDismissRequest 다이얼로그 외부를 클릭하거나 취소 요청 시 호출되는 콜백 함수입니다.
+ * @param onIconClick 아이콘 클릭 시 호출되는 콜백 함수입니다. 기본값은 빈 함수입니다.
+ * @param content 다이얼로그의 본문 내용으로 표시될 컴포저블을 제공합니다. [ColumnScope]로 감싸져 있습니다.
+ */
+
 @Composable
 fun CustomDialog(
     title: String,
