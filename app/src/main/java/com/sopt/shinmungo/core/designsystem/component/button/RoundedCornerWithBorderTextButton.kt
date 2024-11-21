@@ -16,9 +16,9 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
  *
  * @param text 버튼에 들어갈 글자
  * @param textStyle 글자 스타일
- * @param textColor 글자 색상
- * @param borderLineColor 테두리 색 (default 값 null)
- * @param backgroundColor 버튼 배경 색
+ * @param textColor 글자 색
+ * @param borderLineColor 테두리 색
+ * @param backgroundColor 버튼 배경색
  * @param roundedCornerShape 테두리 둥근 정도
  * @param modifier 수정자
  */
