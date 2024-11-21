@@ -27,7 +27,7 @@ import com.sopt.shinmungo.core.extension.noRippleClickable
  * @param icon 아이콘 이미지
  * @param isButtonActive 버튼의 활성화 여부
  * @param modifier 수정자
- * @param buttonOnClick 버튼 클릭 시 작동되는 함수
+ * @param onButtonClick 버튼 클릭 시 작동되는 함수
  */
 
 @Composable
@@ -35,7 +35,7 @@ fun RoundedCornerIconButton(
     @DrawableRes icon: Int,
     isButtonActive: Boolean,
     modifier: Modifier = Modifier,
-    buttonOnClick: () -> Unit,
+    onButtonClick: () -> Unit,
 ) {
     val borderLineColor =
         if (isButtonActive) ShinMunGoTheme.color.gray7 else ShinMunGoTheme.color.gray5
@@ -48,7 +48,7 @@ fun RoundedCornerIconButton(
             .background(ShinMunGoTheme.color.gray1)
             .border(width = 1.dp, color = borderLineColor, shape = RoundedCornerShape(size = 8.dp))
             .padding(horizontal = 14.dp, vertical = 7.dp)
-            .noRippleClickable { buttonOnClick() },
+            .noRippleClickable { onButtonClick() },
         contentAlignment = Alignment.Center
     ) {
         Icon(
@@ -68,7 +68,7 @@ fun RoundedCornerIconButtonPreview(modifier: Modifier = Modifier) {
             modifier = Modifier,
             icon = R.drawable.ic_report_camera_24px,
             isButtonActive = false,
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
@@ -81,7 +81,7 @@ fun RoundedCornerIconButtonActivePreview(modifier: Modifier = Modifier) {
             modifier = Modifier,
             icon = R.drawable.ic_report_camera_24px,
             isButtonActive = true,
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }

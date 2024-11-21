@@ -30,7 +30,7 @@ import com.sopt.shinmungo.core.extension.noRippleClickable
  * @param backgroundColor 버튼 배경색
  * @param roundedCornerShape 테두리 둥근 정도
  * @param modifier 수정자
- * @param buttonOnClick 버튼 클릭 시 작동되는 함수
+ * @param onButtonClick 버튼 클릭 시 작동되는 함수
  */
 
 @Composable
@@ -42,7 +42,7 @@ fun RoundedCornerTextButton(
     backgroundColor: Color,
     roundedCornerShape: RoundedCornerShape,
     modifier: Modifier = Modifier,
-    buttonOnClick: () -> Unit,
+    onButtonClick: () -> Unit,
 ) {
     //테두리 색을 테두리가 있는 경우 테두리 색 적용, 없는 경우 배경색을 적용
     val lineColor = borderLineColor ?: backgroundColor
@@ -52,7 +52,7 @@ fun RoundedCornerTextButton(
             .clip(roundedCornerShape)
             .background(backgroundColor)
             .border(width = 1.dp, color = lineColor, shape = roundedCornerShape)
-            .noRippleClickable { buttonOnClick() },
+            .noRippleClickable { onButtonClick() },
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -79,7 +79,7 @@ fun RoundedCornerTextButton_Gray_Preview(modifier: Modifier = Modifier) {
             modifier = modifier
                 .width(135.dp)
                 .padding(vertical = 15.dp),
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
@@ -98,7 +98,7 @@ fun RoundedCornerTextButton_Orange_Preview(modifier: Modifier = Modifier) {
             modifier = modifier
                 .width(135.dp)
                 .padding(vertical = 15.dp),
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
@@ -117,7 +117,7 @@ fun RoundedCornerTextButton_SelectButton_Preview(modifier: Modifier = Modifier) 
             modifier = Modifier
                 .width(92.dp)
                 .padding(vertical = 8.dp),
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
@@ -136,7 +136,7 @@ fun RoundedCornerTextButton_Category_Preview(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp),
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
@@ -156,7 +156,7 @@ fun RoundedCornerTextButton_isActivated_Preview(modifier: Modifier = Modifier) {
             modifier = modifier
                 .fillMaxWidth()
                 .padding(vertical = 15.dp),
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
@@ -176,7 +176,7 @@ fun RoundedCornerTextButton_isNotActivated_Preview(modifier: Modifier = Modifier
             modifier = modifier
                 .fillMaxWidth()
                 .padding(vertical = 15.dp),
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }

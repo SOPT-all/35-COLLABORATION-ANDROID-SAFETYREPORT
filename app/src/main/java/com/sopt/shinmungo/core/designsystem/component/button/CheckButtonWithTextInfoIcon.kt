@@ -28,7 +28,7 @@ import com.sopt.shinmungo.core.extension.noRippleClickable
  * @param isChecked 버튼이 체크 상태인지 표시하는 값
  * @param isIconApplied 아이콘이 우측에 붙는지 표시하는 값
  * @param modifier 수정자
- * @param buttonOnClick 버튼 클릭 시 작동되는 함수
+ * @param onButtonClick 버튼 클릭 시 작동되는 함수
  */
 
 @Composable
@@ -39,13 +39,13 @@ fun CheckButtonWithTextInfoIcon(
     isChecked: Boolean,
     isIconApplied: Boolean,
     modifier: Modifier = Modifier,
-    buttonOnClick: () -> Unit,
+    onButtonClick: () -> Unit,
 ) {
     val icon = if (isChecked) R.drawable.ic_checkbox_selected_16px else R.drawable.ic_checkbox_empty_16px
 
     Row(
         modifier = modifier
-            .noRippleClickable { buttonOnClick() },
+            .noRippleClickable { onButtonClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -82,7 +82,7 @@ fun CheckButtonWithTextInfoIconPreview(modifier: Modifier = Modifier) {
             isChecked = isChecked,
             isIconApplied = true,
             modifier = modifier,
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
@@ -97,7 +97,7 @@ fun CheckButtonWithTextInfoIcon_NoIcon_Preview(modifier: Modifier = Modifier) {
             isChecked = isChecked,
             isIconApplied = false,
             modifier = modifier,
-            buttonOnClick = { }
+            onButtonClick = { }
         )
     }
 }
