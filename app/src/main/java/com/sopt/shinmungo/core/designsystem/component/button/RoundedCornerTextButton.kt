@@ -26,11 +26,11 @@ import com.sopt.shinmungo.core.extension.noRippleClickable
  * @param text 버튼에 들어갈 글자
  * @param textStyle 글자 스타일
  * @param textColor 글자 색
- * @param borderLineColor 테두리 색 (default 값 null)
  * @param backgroundColor 버튼 배경색
  * @param roundedCornerShape 테두리 둥근 정도
- * @param modifier 수정자
  * @param onButtonClick 버튼 클릭 시 작동되는 함수
+ * @param modifier 수정자
+ * @param borderLineColor 테두리 색 (default 값 null)
  */
 
 @Composable
@@ -38,11 +38,11 @@ fun RoundedCornerTextButton(
     text: String,
     textStyle: TextStyle,
     textColor: Color,
-    borderLineColor: Color? = null,
     backgroundColor: Color,
     roundedCornerShape: RoundedCornerShape,
-    modifier: Modifier = Modifier,
     onButtonClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    borderLineColor: Color? = null,
 ) {
     //테두리 색을 테두리가 있는 경우 테두리 색 적용, 없는 경우 배경색을 적용
     val lineColor = borderLineColor ?: backgroundColor
@@ -76,10 +76,10 @@ fun RoundedCornerTextButton_Gray_Preview(modifier: Modifier = Modifier) {
             borderLineColor = null,
             backgroundColor = ShinMunGoTheme.color.gray9,
             roundedCornerShape = RoundedCornerShape(10.dp),
+            onButtonClick = { },
             modifier = modifier
                 .width(135.dp)
                 .padding(vertical = 15.dp),
-            onButtonClick = { }
         )
     }
 }
@@ -95,10 +95,10 @@ fun RoundedCornerTextButton_Orange_Preview(modifier: Modifier = Modifier) {
             borderLineColor = null,
             backgroundColor = ShinMunGoTheme.color.primary,
             roundedCornerShape = RoundedCornerShape(10.dp),
+            onButtonClick = { },
             modifier = modifier
                 .width(135.dp)
                 .padding(vertical = 15.dp),
-            onButtonClick = { }
         )
     }
 }
@@ -114,10 +114,10 @@ fun RoundedCornerTextButton_SelectButton_Preview(modifier: Modifier = Modifier) 
             borderLineColor = null,
             backgroundColor = ShinMunGoTheme.color.primary,
             roundedCornerShape = RoundedCornerShape(4.dp),
+            onButtonClick = { },
             modifier = Modifier
                 .width(92.dp)
                 .padding(vertical = 8.dp),
-            onButtonClick = { }
         )
     }
 }
@@ -133,10 +133,10 @@ fun RoundedCornerTextButton_Category_Preview(modifier: Modifier = Modifier) {
             borderLineColor = null,
             backgroundColor = ShinMunGoTheme.color.gray1,
             roundedCornerShape = RoundedCornerShape(10.dp),
+            onButtonClick = { },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp),
-            onButtonClick = { }
         )
     }
 }
@@ -153,10 +153,10 @@ fun RoundedCornerTextButton_isActivated_Preview(modifier: Modifier = Modifier) {
             borderLineColor = if (isActivated) ShinMunGoTheme.color.primaryLight else ShinMunGoTheme.color.gray6,
             backgroundColor = if (isActivated) ShinMunGoTheme.color.gray1 else ShinMunGoTheme.color.gray4,
             roundedCornerShape = RoundedCornerShape(10.dp),
+            onButtonClick = { },
             modifier = modifier
                 .fillMaxWidth()
                 .padding(vertical = 15.dp),
-            onButtonClick = { }
         )
     }
 }
@@ -173,10 +173,10 @@ fun RoundedCornerTextButton_isNotActivated_Preview(modifier: Modifier = Modifier
             borderLineColor = if (isActivated) ShinMunGoTheme.color.primaryLight else ShinMunGoTheme.color.gray6,
             backgroundColor = if (isActivated) ShinMunGoTheme.color.gray1 else ShinMunGoTheme.color.gray4,
             roundedCornerShape = RoundedCornerShape(10.dp),
+            onButtonClick = { },
             modifier = modifier
                 .fillMaxWidth()
                 .padding(vertical = 15.dp),
-            onButtonClick = { }
         )
     }
 }

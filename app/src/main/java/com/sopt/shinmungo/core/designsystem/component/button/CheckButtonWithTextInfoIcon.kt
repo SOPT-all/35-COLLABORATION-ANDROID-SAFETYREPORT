@@ -23,23 +23,23 @@ import com.sopt.shinmungo.core.extension.noRippleClickable
  * 체크 버튼 + 텍스트 + (선택사항)info 아이콘 컴포저블
  *
  * @param text 버튼에 들어갈 글자
- * @param textStyle 글자 스타일
- * @param textColor 글자 색
  * @param isChecked 버튼이 체크 상태인지 표시하는 값
  * @param isIconApplied 아이콘이 우측에 붙는지 표시하는 값
- * @param modifier 수정자
  * @param onButtonClick 버튼 클릭 시 작동되는 함수
+ * @param modifier 수정자
+ * @param textStyle 글자 스타일
+ * @param textColor 글자 색
  */
 
 @Composable
 fun CheckButtonWithTextInfoIcon(
     text: String,
-    textStyle: TextStyle = ShinMunGoTheme.typography.caption3,
-    textColor: Color = ShinMunGoTheme.color.gray13,
     isChecked: Boolean,
     isIconApplied: Boolean,
-    modifier: Modifier = Modifier,
     onButtonClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle = ShinMunGoTheme.typography.caption3,
+    textColor: Color = ShinMunGoTheme.color.gray13,
 ) {
     val icon = if (isChecked) R.drawable.ic_checkbox_selected_16px else R.drawable.ic_checkbox_empty_16px
 
@@ -81,8 +81,8 @@ fun CheckButtonWithTextInfoIconPreview(modifier: Modifier = Modifier) {
             text = "신고 내용 공유 동의",
             isChecked = isChecked,
             isIconApplied = true,
+            onButtonClick = { },
             modifier = modifier,
-            onButtonClick = { }
         )
     }
 }
@@ -96,8 +96,8 @@ fun CheckButtonWithTextInfoIcon_NoIcon_Preview(modifier: Modifier = Modifier) {
             text = "추천 단어",
             isChecked = isChecked,
             isIconApplied = false,
+            onButtonClick = { },
             modifier = modifier,
-            onButtonClick = { }
         )
     }
 }
