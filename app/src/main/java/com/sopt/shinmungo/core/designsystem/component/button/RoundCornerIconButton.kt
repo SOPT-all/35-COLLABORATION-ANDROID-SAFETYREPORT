@@ -19,6 +19,14 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 
+/**
+ * 둥근테두리+아이콘 버튼 컴포저블
+ *
+ * @param icon 아이콘 이미지
+ * @param isButtonActive 버튼의 활성화 여부
+ * @param modifier 수정자
+ */
+
 @Composable
 fun RoundedCornerIconButton(
     @DrawableRes icon: Int,
