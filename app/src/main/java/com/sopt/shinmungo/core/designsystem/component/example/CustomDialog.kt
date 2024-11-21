@@ -41,7 +41,7 @@ fun CustomDialog(
                 .wrapContentHeight()
                 .padding(16.dp)
                 .background(
-                    color = Color.White,
+                    color = ShinMunGoTheme.color.gray1,
                     shape = RoundedCornerShape(8.dp)
                 )
         ){
@@ -56,11 +56,8 @@ fun CustomDialog(
                 ) {
                     Text(
                         text = title,
-                        color = Color.White,
-                        style = MaterialTheme.typography.headlineSmall.copy(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 20.sp
-                        ),
+                        color = ShinMunGoTheme.color.gray1,
+                        style = ShinMunGoTheme.typography.heading1,
                         modifier = Modifier.weight(1f)
                     )
                     IconButton(
@@ -70,7 +67,7 @@ fun CustomDialog(
                         Icon(
                             imageVector = icon,
                             contentDescription = "Close Dialog",
-                            tint = Color.White
+                            tint = ShinMunGoTheme.color.gray1
                         )
                     }
                 }
