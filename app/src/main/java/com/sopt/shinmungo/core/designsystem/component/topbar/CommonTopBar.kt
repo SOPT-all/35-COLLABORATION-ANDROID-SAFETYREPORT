@@ -67,3 +67,60 @@ fun CommonTopBar(
     )
 }
 
+@Preview
+@Composable
+fun CommonTopBarPreview() {
+    ShinMunGoTheme {
+        CommonTopBar(
+            title = "Preview",
+            onLeftContent = {
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    onClick = { }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
+                        contentDescription = "Back",
+                        modifier = Modifier.size(24.dp),
+                        tint = ShinMunGoTheme.color.gray1
+                    )
+                }
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    onClick = { }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
+                        contentDescription = "Back",
+                        modifier = Modifier.size(24.dp),
+                        tint = ShinMunGoTheme.color.gray1
+                    )
+                }
+
+            },
+            onRightContent = {
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    onClick = { }
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_chat_line_white_24),
+                        contentDescription = "Back",
+                        modifier = Modifier.size(24.dp),
+                        tint = ShinMunGoTheme.color.gray1
+                    )
+                }
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    onClick = { }
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_hammenu_line_white_24),
+                        contentDescription = "Back",
+                        modifier = Modifier.size(24.dp),
+                        tint = ShinMunGoTheme.color.gray1
+                    )
+                }
+            }
+
+        )
+    }
+}
