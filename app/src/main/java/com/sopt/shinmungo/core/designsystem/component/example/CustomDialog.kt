@@ -44,10 +44,6 @@ fun CustomDialog(
                     color = Color.White,
                     shape = RoundedCornerShape(8.dp)
                 )
-                .shadow(
-                    elevation = 12.dp,
-                    shape = RoundedCornerShape(8.dp)
-                )
         ){
                 // Title Section
                 Row(
