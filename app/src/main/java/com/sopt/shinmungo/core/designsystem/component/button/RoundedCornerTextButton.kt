@@ -1,7 +1,7 @@
 package com.sopt.shinmungo.core.designsystem.component.button
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -62,7 +62,7 @@ fun RoundedCornerTextButton_Gray_Preview(modifier: Modifier = Modifier) {
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = modifier
                 .width(135.dp)
-                .height(48.dp),
+                .padding(vertical = 15.dp),
             buttonOnClick = { }
         )
     }
@@ -81,7 +81,7 @@ fun RoundedCornerTextButton_Orange_Preview(modifier: Modifier = Modifier) {
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = modifier
                 .width(135.dp)
-                .height(48.dp),
+                .padding(vertical = 15.dp),
             buttonOnClick = { }
         )
     }
@@ -100,7 +100,7 @@ fun RoundedCornerTextButton_SelectButton_Preview(modifier: Modifier = Modifier) 
             roundedCornerShape = RoundedCornerShape(4.dp),
             modifier = Modifier
                 .width(92.dp)
-                .height(34.dp),
+                .padding(vertical = 8.dp),
             buttonOnClick = { }
         )
     }
@@ -119,7 +119,7 @@ fun RoundedCornerTextButton_Category_Preview(modifier: Modifier = Modifier) {
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(49.dp),
+                .padding(vertical = 16.dp),
             buttonOnClick = { }
         )
     }

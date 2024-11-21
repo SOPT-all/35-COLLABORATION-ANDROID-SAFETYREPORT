@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
@@ -45,7 +46,7 @@ fun BaseRoundedCornerTextButton(
     val lineColor = if (isBorderApplied) borderLineColor else backgroundColor
 
     Box(
-        modifier = modifier
+        modifier = Modifier
             .clip(roundedCornerShape)
             .background(backgroundColor)
             .border(width = 1.dp, color = lineColor!!, shape = roundedCornerShape),
@@ -54,7 +55,9 @@ fun BaseRoundedCornerTextButton(
         Text(
             text = text,
             style = textStyle,
-            color = textColor
+            color = textColor,
+            modifier = modifier,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -73,7 +76,7 @@ fun BaseRoundedCornerTextButton_No_Border_Preview(modifier: Modifier = Modifier)
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(47.dp),
+                .padding(vertical = 15.dp),
         )
     }
 }
@@ -92,7 +95,7 @@ fun BaseRoundedCornerTextButton_With_Border_Preview(modifier: Modifier = Modifie
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(47.dp),
+                .padding(vertical = 15.dp),
         )
     }
 }
