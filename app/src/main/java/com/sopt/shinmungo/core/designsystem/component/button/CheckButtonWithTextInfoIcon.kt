@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,7 +50,7 @@ fun CheckButtonWithTextInfoIcon(
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(icon),
-            contentDescription = "체크아이콘",
+            contentDescription = stringResource(R.string.check_button_content_description),
             tint = Color.Unspecified
         )
         Spacer(modifier = Modifier.width(8.dp))
