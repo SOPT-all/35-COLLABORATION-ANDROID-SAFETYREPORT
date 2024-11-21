@@ -27,6 +27,13 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 
+/**
+ * 커스터마이징 가능한 상단 앱 바 컴포넌트입니다.
+ *
+ * @param title 상단 앱 바에 표시될 제목 텍스트입니다.
+ * @param onLeftContent 상단 앱 바의 왼쪽에 표시될 컴포저블 콘텐츠입니다. 기본값은 빈 컴포저블입니다.
+ * @param onRightContent 상단 앱 바의 오른쪽에 표시될 컴포저블 콘텐츠입니다. 기본값은 빈 컴포저블입니다.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommonTopBar(
