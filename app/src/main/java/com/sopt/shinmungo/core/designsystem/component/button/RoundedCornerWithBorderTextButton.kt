@@ -10,6 +10,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
+import com.sopt.shinmungo.core.extension.noRippleClickable
 
 /**
  * 테두리가 있는 둥근테두리+텍스트 버튼 컴포저블
@@ -21,6 +22,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
  * @param backgroundColor 버튼 배경색
  * @param roundedCornerShape 테두리 둥근 정도
  * @param modifier 수정자
+ * @param buttonOnClick 버튼 클릭 시 작동되는 함수
  */
 
 @Composable
@@ -31,7 +33,8 @@ fun RoundedCornerWithBorderTextButton(
     borderLineColor: Color,
     backgroundColor: Color,
     roundedCornerShape: RoundedCornerShape,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    buttonOnClick: () -> Unit,
 ) {
     BaseRoundedCornerTextButton(
         text = text,
@@ -41,7 +44,7 @@ fun RoundedCornerWithBorderTextButton(
         borderLineColor = borderLineColor,
         backgroundColor = backgroundColor,
         roundedCornerShape = roundedCornerShape,
-        modifier = modifier
+        modifier = modifier.noRippleClickable { buttonOnClick() }
     )
 }
 
@@ -60,7 +63,8 @@ fun RoundedCornerWithBorderTextButton_isActivated_Preview(modifier: Modifier = M
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = modifier
                 .fillMaxWidth()
-                .height(48.dp)
+                .height(48.dp),
+            buttonOnClick = { }
         )
     }
 }
@@ -79,7 +83,8 @@ fun RoundedCornerWithBorderTextButton_isNotActivated_Preview(modifier: Modifier 
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = modifier
                 .fillMaxWidth()
-                .height(48.dp)
+                .height(48.dp),
+            buttonOnClick = { }
         )
     }
 }

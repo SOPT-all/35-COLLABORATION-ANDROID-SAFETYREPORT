@@ -1,5 +1,6 @@
 package com.sopt.shinmungo.core.designsystem.component.button
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -11,6 +12,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
+import com.sopt.shinmungo.core.extension.noRippleClickable
 
 /**
  * 테두리가 없는 둥근+텍스트 버튼 컴포저블
@@ -22,6 +24,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
  * @param backgroundColor 버튼 배경색
  * @param roundedCornerShape 테두리 둥근 정도
  * @param modifier 수정자
+ * @param buttonOnClick 버튼 클릭 시 작동되는 함수
  */
 
 @Composable
@@ -32,7 +35,8 @@ fun RoundedCornerTextButton(
     borderLineColor: Color? = null,
     backgroundColor: Color,
     roundedCornerShape: RoundedCornerShape,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    buttonOnClick: () -> Unit,
 ) {
     BaseRoundedCornerTextButton(
         text = text,
@@ -42,7 +46,7 @@ fun RoundedCornerTextButton(
         borderLineColor = borderLineColor,
         backgroundColor = backgroundColor,
         roundedCornerShape = roundedCornerShape,
-        modifier = modifier
+        modifier = modifier.noRippleClickable { buttonOnClick() }
     )
 }
 
@@ -59,7 +63,8 @@ fun RoundedCornerTextButton_Gray_Preview(modifier: Modifier = Modifier) {
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = modifier
                 .width(135.dp)
-                .height(48.dp)
+                .height(48.dp),
+            buttonOnClick = { }
         )
     }
 }
@@ -77,7 +82,8 @@ fun RoundedCornerTextButton_Orange_Preview(modifier: Modifier = Modifier) {
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = modifier
                 .width(135.dp)
-                .height(48.dp)
+                .height(48.dp),
+            buttonOnClick = { }
         )
     }
 }
@@ -95,7 +101,8 @@ fun RoundedCornerTextButton_SelectButton_Preview(modifier: Modifier = Modifier) 
             roundedCornerShape = RoundedCornerShape(4.dp),
             modifier = Modifier
                 .width(92.dp)
-                .height(34.dp)
+                .height(34.dp),
+            buttonOnClick = { }
         )
     }
 }
@@ -113,7 +120,8 @@ fun RoundedCornerTextButton_Category_Preview(modifier: Modifier = Modifier) {
             roundedCornerShape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(49.dp)
+                .height(49.dp),
+            buttonOnClick = { }
         )
     }
 }

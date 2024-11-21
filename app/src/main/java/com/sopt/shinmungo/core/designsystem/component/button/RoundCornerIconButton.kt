@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
+import com.sopt.shinmungo.core.extension.noRippleClickable
 
 /**
  * 둥근테두리+아이콘 버튼 컴포저블
@@ -25,6 +26,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
  * @param icon 아이콘 이미지
  * @param isButtonActive 버튼의 활성화 여부
  * @param modifier 수정자
+ * @param buttonOnClick 버튼 클릭 시 작동되는 함수
  */
 
 @Composable
@@ -32,6 +34,7 @@ fun RoundedCornerIconButton(
     @DrawableRes icon: Int,
     isButtonActive: Boolean,
     modifier: Modifier = Modifier,
+    buttonOnClick: () -> Unit,
 ) {
     val borderLineColor =
         if (isButtonActive) ShinMunGoTheme.color.gray7 else ShinMunGoTheme.color.gray5
@@ -43,7 +46,8 @@ fun RoundedCornerIconButton(
             .clip(RoundedCornerShape(size = 8.dp))
             .background(ShinMunGoTheme.color.gray1)
             .border(width = 1.dp, color = borderLineColor, shape = RoundedCornerShape(size = 8.dp))
-            .padding(horizontal = 14.dp, vertical = 7.dp),
+            .padding(horizontal = 14.dp, vertical = 7.dp)
+            .noRippleClickable { buttonOnClick() },
         contentAlignment = Alignment.Center
     ) {
         Icon(
@@ -62,7 +66,8 @@ fun RoundedCornerIconButtonPreview(modifier: Modifier = Modifier) {
         RoundedCornerIconButton(
             modifier = Modifier,
             icon = R.drawable.ic_report_camera_24px,
-            isButtonActive = false
+            isButtonActive = false,
+            buttonOnClick = { }
         )
     }
 }
@@ -74,7 +79,8 @@ fun RoundedCornerIconButtonActivePreview(modifier: Modifier = Modifier) {
         RoundedCornerIconButton(
             modifier = Modifier,
             icon = R.drawable.ic_report_camera_24px,
-            isButtonActive = true
+            isButtonActive = true,
+            buttonOnClick = { }
         )
     }
 }
