@@ -1,3 +1,5 @@
+package com.sopt.shinmungo.core.designsystem.component.dialog
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -46,7 +48,6 @@ fun CustomDialog(
             modifier = Modifier
                 .width(335.dp)
                 .wrapContentHeight()
-                .padding(16.dp)
                 .background(
                     color = ShinMunGoTheme.color.gray1,
                     shape = RoundedCornerShape(8.dp)
@@ -57,7 +58,10 @@ fun CustomDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)
-                        .background(ShinMunGoTheme.color.primary)
+                        .background(
+                            color = ShinMunGoTheme.color.primary,
+                            shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)
+                        )
                         .padding(horizontal = 16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
