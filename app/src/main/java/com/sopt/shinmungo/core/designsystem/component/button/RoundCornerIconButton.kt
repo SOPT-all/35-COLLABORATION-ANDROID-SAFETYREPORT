@@ -47,8 +47,8 @@ fun RoundedCornerIconButton(
             .clip(RoundedCornerShape(size = 8.dp))
             .background(ShinMunGoTheme.color.gray1)
             .border(width = 1.dp, color = borderLineColor, shape = RoundedCornerShape(size = 8.dp))
-            .padding(horizontal = 14.dp, vertical = 7.dp)
-            .noRippleClickable { onButtonClick() },
+            .noRippleClickable { onButtonClick() }
+            .padding(horizontal = 14.dp, vertical = 7.dp),
         contentAlignment = Alignment.Center
     ) {
         Icon(
