@@ -2,11 +2,16 @@
     <string name="app_name">Shinmungo</string>
 
     <!--Main-->
+    <string name="main_top_bar_logo">안전신문고</string>
+    <string name="main_top_bar_button_chat">채팅</string>
+    <string name="main_top_bar_button_menu">메뉴</string>
+
     <string name="main_bottom_bar_home">홈</string>
     <string name="main_bottom_bar_report">안전신고</string>
     <string name="main_bottom_bar_prevent">범죄예방</string>
     <string name="main_bottom_bar_news">안전뉴스</string>
     <string name="main_bottom_bar_my_page">마이페이지</string>
+
 
     <!--Button Component-->
     <string name="check_button_content_description">체크 아이콘</string>
