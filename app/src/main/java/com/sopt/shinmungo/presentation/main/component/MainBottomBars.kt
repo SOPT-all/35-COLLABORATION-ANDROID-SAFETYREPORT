@@ -1,0 +1,92 @@
+package com.sopt.shinmungo.presentation.main.component
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
+import com.sopt.shinmungo.core.extension.noRippleClickable
+import com.sopt.shinmungo.core.extension.showIf
+import com.sopt.shinmungo.presentation.main.MainTab
+
+/**
+ * 안전신문고 전용 바텀바입니다.
+ *
+ * @param onTabSelect 바텀바의 탭을 선택했을 때 호출되는 콜백입니다.
+ * @param selectedTab 현재 선택된 탭입니다.
+ * @param tabs 탭 목록입니다.
+ * @param visibility 바텀바의 가시성을 결정합니다.
+ * @param modifier 수정자 객체입니다.
+ * @param containerColor 바텀바의 배경색입니다.
+ * @param selectedColor 선택된 탭의 색상입니다.
+ * @param unselectedColor 선택되지 않은 탭의 색상입니다.
+ */
+
+@Composable
+fun MainBottomBars(
+    onTabSelect: (MainTab) -> Unit,
+    selectedTab: MainTab?,
+    tabs: List<MainTab>,
+    visibility: Boolean,
+    modifier: Modifier = Modifier,
+    containerColor: Color = ShinMunGoTheme.color.gray1,
+    selectedColor: Color = ShinMunGoTheme.color.primary,
+    unselectedColor: Color = ShinMunGoTheme.color.gray6,
+) {
+    Row (
+        modifier = modifier
+            .fillMaxWidth()
+            .background(color = containerColor)
+            .padding(start = 37.dp, end = 37.dp, top = 8.dp, bottom = 31.dp)
+            .showIf(visibility),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        tabs.forEach { tab ->
+            val selected = tab == selectedTab
+            val color = if(selected) selectedColor else unselectedColor
+            Column(
+                modifier = Modifier.noRippleClickable { onTabSelect(tab) },
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = tab.iconRes),
+                    contentDescription = stringResource(id = tab.title),
+                    tint = color
+                )
+
+                Text(
+                    text = stringResource(id = tab.title),
+                    style = ShinMunGoTheme.typography.caption6,
+                    color = color
+                )
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun MainBottomBarsPreview() {
+    ShinMunGoTheme {
+        MainBottomBars(
+            onTabSelect = {},
+            selectedTab = MainTab.HOME,
+            tabs = MainTab.entries,
+            visibility = true
+        )
+    }
+}
+
