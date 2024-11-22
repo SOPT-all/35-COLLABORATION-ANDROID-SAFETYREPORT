@@ -7,4 +7,8 @@
     <string name="main_bottom_bar_prevent">범죄예방</string>
     <string name="main_bottom_bar_news">안전뉴스</string>
     <string name="main_bottom_bar_my_page">마이페이지</string>
+
+    <!--Button Component-->
+    <string name="check_button_content_description">체크 아이콘</string>
+    <string name="icon_button_content_description">아이콘 버튼</string>
 </resources>
