@@ -1,5 +1,6 @@
 package com.sopt.shinmungo.presentation.main
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -58,6 +59,14 @@ private fun MainNavHost(
 @Composable
 private fun MainScreenPreview() {
     ShinMunGoTheme {
-        MainScreen()
+        Column {
+            MainScreen()
+            MainBottomBars(
+                onTabSelect = {},
+                selectedTab = MainTab.HOME,
+                tabs = MainTab.entries,
+                visibility = true
+            )
+        }
     }
 }
