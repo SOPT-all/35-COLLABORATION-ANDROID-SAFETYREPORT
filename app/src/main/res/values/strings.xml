@@ -8,6 +8,10 @@
     <string name="main_bottom_bar_news">안전뉴스</string>
     <string name="main_bottom_bar_my_page">마이페이지</string>
 
+    <!--Report-->
+    <string name="report_orange_star_content_description">별표 아이콘</string>
+    <string name="report_info_icon_content_description">정보 아이콘</string>
+
     <!--Button Component-->
     <string name="check_button_content_description">체크 아이콘</string>
     <string name="icon_button_content_description">아이콘 버튼</string>
