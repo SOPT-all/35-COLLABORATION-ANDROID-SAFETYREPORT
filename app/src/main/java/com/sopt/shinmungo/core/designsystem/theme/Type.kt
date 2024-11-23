@@ -77,7 +77,7 @@ val defaultShinMunGoTypography = ShinMunGoTypography(
     body4 = TextStyle(
         fontFamily = PretendardBold,
         fontSize = 15.sp,
-        lineHeight = 28.sp
+        lineHeight = 18.sp
     ),
     body5 = TextStyle(
         fontFamily = PretendardRegular,
@@ -107,17 +107,17 @@ val defaultShinMunGoTypography = ShinMunGoTypography(
     caption1 = TextStyle(
         fontFamily = PretendardBold,
         fontSize = 12.sp,
-        lineHeight = 20.sp
+        lineHeight = 14.sp
     ),
     caption2 = TextStyle(
         fontFamily = PretendardSemiBold,
         fontSize = 12.sp,
-        lineHeight = 20.sp
+        lineHeight = 14.sp
     ),
     caption3 = TextStyle(
         fontFamily = PretendardMedium,
         fontSize = 12.sp,
-        lineHeight = 20.sp
+        lineHeight = 14.sp
     ),
     caption4 = TextStyle(
         fontFamily = PretendardRegular,
@@ -125,28 +125,28 @@ val defaultShinMunGoTypography = ShinMunGoTypography(
         lineHeight = 19.sp
     ),
     caption5 = TextStyle(
-        fontFamily = PretendardExtraBold,
+        fontFamily = PretendardBold,
         fontSize = 10.sp,
-        lineHeight = 16.sp
+        lineHeight = 12.sp
     ),
     caption6 = TextStyle(
-        fontFamily = PretendardExtraBold,
+        fontFamily = PretendardSemiBold,
         fontSize = 10.sp,
-        lineHeight = 16.sp
+        lineHeight = 12.sp
     ),
     caption7 = TextStyle(
-        fontFamily = PretendardExtraBold,
+        fontFamily = PretendardMedium,
         fontSize = 10.sp,
-        lineHeight = 16.sp
+        lineHeight = 12.sp
     ),
     caption8 = TextStyle(
-        fontFamily = PretendardExtraBold,
+        fontFamily = PretendardBold,
         fontSize = 8.sp,
-        lineHeight = 16.sp
+        lineHeight = 10.sp
     ),
     caption9 = TextStyle(
-        fontFamily = PretendardExtraBold,
+        fontFamily = PretendardMedium,
         fontSize = 8.sp,
-        lineHeight = 16.sp
+        lineHeight = 10.sp
     )
 )
