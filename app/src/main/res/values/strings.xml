@@ -11,6 +11,8 @@
     <!--Report-->
     <string name="report_orange_star_content_description">별표 아이콘</string>
     <string name="report_info_icon_content_description">정보 아이콘</string>
+    <string name="report_chevron_down_content_description">아래 화살표 아이콘</string>
+    <string name="report_select_report_type">신고 유형을 선택해주세요</string>
 
     <!--Button Component-->
     <string name="check_button_content_description">체크 아이콘</string>
