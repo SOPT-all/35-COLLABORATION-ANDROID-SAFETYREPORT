@@ -5,6 +5,20 @@
     <string name="main_top_bar_logo">안전신문고</string>
     <string name="main_top_bar_button_chat">채팅</string>
     <string name="main_top_bar_button_menu">메뉴</string>
+    <string name="main_title_my_report">올해 나의 신고</string>
+    <string name="main_mileage_title">마일리지:</string>
+    <string name="main_mileage_point">P</string>
+    <string name="main_year_report_title">나의 올해 신고</string>
+    <string name="main_year_report_report_text_1">총 </string>
+    <string name="main_year_report_report_text_2">건</string>
+    <string name="main_year_report_report_description_1">생활안전 신고</string>
+    <string name="main_year_report_report_description_2">를 가장 많이 했어요</string>
+    <string name="main_year_report_progress_reply">답변완료</string>">
+    <string name="main_year_report_progress_total">진행</string>">
+    <string name="main_month_report_description_graph">그래프</string>
+    <string name="main_month_report_title">2024년 10월</string>
+    <string name="main_month_report_report_count">건</string>
+    <string name="main_month_report_username">%s 님의\n신고이력</string>
 
     <string name="main_bottom_bar_home">홈</string>
     <string name="main_bottom_bar_report">안전신고</string>
