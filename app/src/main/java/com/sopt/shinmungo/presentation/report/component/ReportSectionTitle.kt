@@ -17,11 +17,13 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
+import com.sopt.shinmungo.presentation.report.ReportSectionType
+import com.sopt.shinmungo.presentation.report.ReportSectionType.Companion.toContentTypeOrThrow
 
 @Composable
 fun ReportSectionTitle(
     text: String,
-    onInfoIconClick: () -> Unit = { },
+    onInfoIconClick: (ReportSectionType) -> Unit = { },
     modifier: Modifier = Modifier
 ) {
     Row {
@@ -42,7 +44,10 @@ fun ReportSectionTitle(
             imageVector = ImageVector.vectorResource(R.drawable.ic_info_circle_16px),
             contentDescription = stringResource(R.string.report_info_icon_content_description),
             tint = Color.Unspecified,
-            modifier = Modifier.noRippleClickable { onInfoIconClick() }
+            modifier = Modifier.noRippleClickable {
+                val type = text.toContentTypeOrThrow()
+                onInfoIconClick(type)
+            }
         )
     }
 }
