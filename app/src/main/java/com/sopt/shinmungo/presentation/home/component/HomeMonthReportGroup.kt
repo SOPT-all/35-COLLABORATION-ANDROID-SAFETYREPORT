@@ -28,6 +28,8 @@ fun HomeMonthReportGroup(
     userName: String,
     reportCount: String,
     modifier: Modifier = Modifier,
+    onClickPrevious: () -> Unit = {},
+    onClickNext: () -> Unit = {},
 ) {
     val reportTextList = listOf(
         Pair(
@@ -40,6 +42,8 @@ fun HomeMonthReportGroup(
     CommonReportGroup(
         title = title,
         modifier = modifier,
+        onClickLeft = onClickPrevious,
+        onClickRight = onClickNext
     ) {
         Box(
             modifier = Modifier

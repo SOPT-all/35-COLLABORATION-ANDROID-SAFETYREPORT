@@ -23,18 +23,22 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.Gray1
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
+import com.sopt.shinmungo.core.extension.noRippleClickable
+import com.sopt.shinmungo.core.extension.showIf
 
 @Composable
 fun CommonReportGroup(
     title: String,
     modifier: Modifier = Modifier,
-    content: @Composable ColumnScope.() -> Unit = {}
+    onClickRight: (() -> Unit)? = null,
+    onClickLeft: (() -> Unit)? = null,
+    content: @Composable () -> Unit = {},
 ) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = Gray1
         ),
-        elevation = CardDefaults.cardElevation(3.dp),
+        elevation = CardDefaults.cardElevation(1.dp),
         shape = RoundedCornerShape(15.dp),
         modifier = modifier.wrapContentSize()
     ) {
@@ -47,7 +51,9 @@ fun CommonReportGroup(
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_previous_home_10),
                     contentDescription = title,
-                    tint = ShinMunGoTheme.color.gray8
+                    tint = ShinMunGoTheme.color.gray8,
+                    modifier = Modifier.showIf(onClickLeft != null)
+                        .noRippleClickable(onClick = onClickLeft ?: {})
                 )
 
                 Text(
@@ -59,9 +65,12 @@ fun CommonReportGroup(
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_next_home_10),
                     contentDescription = "",
-                    tint = ShinMunGoTheme.color.gray8
+                    tint = ShinMunGoTheme.color.gray8,
+                    modifier = Modifier.showIf(onClickRight != null)
+                        .noRippleClickable(onClick = onClickRight ?: {})
                 )
             }
+
             content()
         }
     }

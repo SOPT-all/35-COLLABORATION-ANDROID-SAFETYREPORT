@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -38,105 +39,108 @@ fun HomeScreen(
     val scrollState = rememberScrollState()
     Column(
         modifier = modifier
-            .fillMaxSize()
-            .background(ShinMunGoTheme.color.gray1)
-            .verticalScroll(scrollState)
     ) {
         HomeTopBar()
-
-        Row(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp, top = 23.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxSize()
+                .background(ShinMunGoTheme.color.gray1)
+                .verticalScroll(scrollState)
         ) {
-            Text(
-                text = stringResource(R.string.main_title_my_report),
-                color = ShinMunGoTheme.color.gray13,
-                style = ShinMunGoTheme.typography.body2
-            )
-
-            Text(
-                text = stringResource(R.string.main_title_mileage, mileage),
-                style = ShinMunGoTheme.typography.caption7,
-                color = ShinMunGoTheme.color.gray13
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp, top = 15.dp),
-            horizontalArrangement = Arrangement.spacedBy(9.dp)
-        ) {
-            HomeYearReportGroup(
-                title = stringResource(R.string.main_year_report_title),
-                reportCount = yearReportCount,
-                reportProgress = 0.7f,
-                replyProgress = 1f,
-                totalProgress = 0f,
+            Row(
                 modifier = Modifier
-                    .weight(1f)
-                    .aspectRatio(1f)
-            )
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, top = 23.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.main_title_my_report),
+                    color = ShinMunGoTheme.color.gray13,
+                    style = ShinMunGoTheme.typography.body2
+                )
 
-            HomeMonthReportGroup(
-                title = stringResource(R.string.main_month_report_title),
-                userName = userName,
-                reportCount = monthReportCount,
+                Text(
+                    text = stringResource(R.string.main_title_mileage, mileage),
+                    style = ShinMunGoTheme.typography.caption7,
+                    color = ShinMunGoTheme.color.gray13
+                )
+            }
+
+            Row(
                 modifier = Modifier
-                    .weight(1f)
-                    .aspectRatio(1f)
-            )
-        }
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, top = 15.dp),
+                horizontalArrangement = Arrangement.spacedBy(9.dp)
+            ) {
+                HomeYearReportGroup(
+                    title = stringResource(R.string.main_year_report_title),
+                    reportCount = yearReportCount,
+                    reportProgress = 0.7f,
+                    replyProgress = 1f,
+                    totalProgress = 0f,
+                    modifier = Modifier
+                        .weight(1f)
+                        .aspectRatio(160 / 156f)
+                )
 
-        HomeImageBannerPager(
-            imageUrls = listOf(
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
-            ),
-            modifier = Modifier.padding(top = 24.dp)
-        )
+                HomeMonthReportGroup(
+                    title = stringResource(R.string.main_month_report_title),
+                    userName = userName,
+                    reportCount = monthReportCount,
+                    modifier = Modifier
+                        .weight(1f)
+                        .aspectRatio(160 / 156f)
+                )
+            }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp, top = 25.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(R.string.main_example_title),
-                color = ShinMunGoTheme.color.gray13,
-                style = ShinMunGoTheme.typography.body2
-            )
-
-            RoundedCornerTextButton(
-                text = stringResource(R.string.main_example_btn_more),
-                textStyle = ShinMunGoTheme.typography.caption7,
-                textColor = ShinMunGoTheme.color.gray13,
-                backgroundColor = ShinMunGoTheme.color.gray3,
-                roundedCornerShape = RoundedCornerShape(15.dp),
-                onButtonClick = {},
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
-            )
-        }
-
-        HomeIssueExamplePager(
-            imagePairUrls = listOf(
-                Pair(
+            HomeImageBannerPager(
+                imageUrls = listOf(
                     "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
-                    "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp"
-                ),
-                Pair(
                     "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
                     "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
                 ),
-            ),
-            modifier = Modifier.fillMaxWidth().padding(top = 16.dp, bottom = 18.dp)
-        )
+                modifier = Modifier.padding(top = 24.dp)
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, top = 25.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.main_example_title),
+                    color = ShinMunGoTheme.color.gray13,
+                    style = ShinMunGoTheme.typography.body2
+                )
+
+                RoundedCornerTextButton(
+                    text = stringResource(R.string.main_example_btn_more),
+                    textStyle = ShinMunGoTheme.typography.caption7,
+                    textColor = ShinMunGoTheme.color.gray13,
+                    backgroundColor = ShinMunGoTheme.color.gray3,
+                    roundedCornerShape = RoundedCornerShape(15.dp),
+                    onButtonClick = {},
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                )
+            }
+
+            HomeIssueExamplePager(
+                imagePairUrls = listOf(
+                    Pair(
+                        "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
+                        "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp"
+                    ),
+                    Pair(
+                        "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
+                        "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
+                    ),
+                ),
+                modifier = Modifier.fillMaxWidth().padding(top = 16.dp, bottom = 18.dp)
+            )
+        }
     }
 }
 

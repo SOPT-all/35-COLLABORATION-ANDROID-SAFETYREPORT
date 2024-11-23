@@ -1,7 +1,9 @@
 package com.sopt.shinmungo.presentation.home.component
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,6 +31,7 @@ fun HomeYearReportGroup(
     replyProgress: Float,
     totalProgress: Float,
     modifier: Modifier = Modifier,
+    onClickBack: () -> Unit = {},
 ) {
     val reportTextList = listOf(
         Pair(
@@ -57,46 +60,55 @@ fun HomeYearReportGroup(
     CommonReportGroup(
         title = title,
         modifier = modifier,
+        onClickLeft = onClickBack
     ) {
-        ColorAnnotatedText(
-            pairList = reportTextList,
-            style = ShinMunGoTheme.typography.body2.copy(textAlign = TextAlign.Center),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 13.dp)
-        )
-        ColorAnnotatedText(
-            pairList = reportDescriptionTextList,
-            style = ShinMunGoTheme.typography.caption9.copy(textAlign = TextAlign.Center),
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+        Column(
+            modifier = Modifier.fillMaxSize().padding(vertical = 12.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                ColorAnnotatedText(
+                    pairList = reportTextList,
+                    style = ShinMunGoTheme.typography.body2.copy(textAlign = TextAlign.Center),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
 
-        CommonProgressIndicator(
-            progress = reportProgress,
-            modifier = Modifier
-                .padding(top = 12.dp, start = 5.dp, end = 5.dp)
-                .fillMaxWidth()
-                .height(20.dp)
-        )
+                ColorAnnotatedText(
+                    pairList = reportDescriptionTextList,
+                    style = ShinMunGoTheme.typography.caption9.copy(textAlign = TextAlign.Center),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
 
-        HomeReportGroupTextWithProgress(
-            progress = replyProgress,
-            style = ShinMunGoTheme.typography.caption7,
-            text = stringResource(R.string.main_year_report_progress_reply),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 12.dp)
-        )
 
-        HomeReportGroupTextWithProgress(
-            progress = totalProgress,
-            style = ShinMunGoTheme.typography.caption9,
-            text = stringResource(R.string.main_year_report_progress_total),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 5.dp)
-        )
+            CommonProgressIndicator(
+                progress = reportProgress,
+                modifier = Modifier
+                    .padding(start = 5.dp, end = 5.dp)
+                    .fillMaxWidth()
+                    .height(20.dp)
+            )
+
+            Column {
+                HomeReportGroupTextWithProgress(
+                    progress = replyProgress,
+                    style = ShinMunGoTheme.typography.caption7,
+                    text = stringResource(R.string.main_year_report_progress_reply),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+
+                HomeReportGroupTextWithProgress(
+                    progress = totalProgress,
+                    style = ShinMunGoTheme.typography.caption9,
+                    text = stringResource(R.string.main_year_report_progress_total),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
+        }
     }
 }
 
