@@ -21,6 +21,15 @@
     <string name="main_example_title">주요 처리 사례</string>
     <string name="main_example_btn_more">더보기</string>
 
+    <string name="main_fab_report">신고하기</string>
+    <string name="main_fab_report_close">닫기</string>
+    <string name="main_fab_type_safety">안전</string>
+    <string name="main_fab_type_parking">불법주정차</string>
+    <string name="main_fab_type_traffic">자동차/교통위반</string>
+    <string name="main_fab_type_life">생활불편</string>
+    <string name="main_fab_type_menu">전체 메뉴 보기</string>
+    <string name="main_fab_type_camera">촬영하기</string>
+
     <string name="main_bottom_bar_home">홈</string>
     <string name="main_bottom_bar_report">안전신고</string>
     <string name="main_bottom_bar_prevent">범죄예방</string>
