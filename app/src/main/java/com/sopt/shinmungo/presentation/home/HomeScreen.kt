@@ -2,6 +2,7 @@ package com.sopt.shinmungo.presentation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -21,11 +22,26 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
-import com.sopt.shinmungo.presentation.home.component.HomeImageBannerPager
-import com.sopt.shinmungo.presentation.home.component.HomeIssueExamplePager
-import com.sopt.shinmungo.presentation.home.component.HomeMonthReportGroup
-import com.sopt.shinmungo.presentation.home.component.HomeYearReportGroup
+import com.sopt.shinmungo.presentation.home.component.pager.HomeImageBannerPager
+import com.sopt.shinmungo.presentation.home.component.pager.HomeIssueExamplePager
+import com.sopt.shinmungo.presentation.home.component.group.HomeMonthReportGroup
+import com.sopt.shinmungo.presentation.home.component.group.HomeYearReportGroup
+import com.sopt.shinmungo.presentation.home.component.fab.HomeFloatingActionButton
 import com.sopt.shinmungo.presentation.home.component.topbar.HomeTopBar
+
+@Composable
+fun HomeRoute(
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+    ) {
+        HomeScreen()
+        HomeFloatingActionButton(
+            modifier = Modifier.padding(bottom = 12.dp, end = 16.dp).align(Alignment.BottomEnd)
+        )
+    }
+}
 
 @Composable
 fun HomeScreen(

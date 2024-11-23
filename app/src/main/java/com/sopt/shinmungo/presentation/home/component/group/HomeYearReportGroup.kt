@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.home.component
+package com.sopt.shinmungo.presentation.home.component.group
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,6 @@ import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.progress.CommonProgressIndicator
 import com.sopt.shinmungo.core.designsystem.component.text.ColorAnnotatedText
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
-import com.sopt.shinmungo.presentation.home.component.group.CommonReportGroup
 
 @Composable
 fun HomeYearReportGroup(

@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.home.component
+package com.sopt.shinmungo.presentation.home.component.pager
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

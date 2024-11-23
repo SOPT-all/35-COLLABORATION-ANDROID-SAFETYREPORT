@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.sopt.shinmungo.core.navigation.MainTabRoute
+import com.sopt.shinmungo.presentation.home.HomeRoute
 import com.sopt.shinmungo.presentation.home.HomeScreen
 import kotlinx.serialization.Serializable
 
@@ -16,7 +17,7 @@ fun NavGraphBuilder.homeScreen(
     modifier: Modifier = Modifier
 ) {
     composable<Home> {
-        HomeScreen(
+        HomeRoute(
             modifier = modifier
         )
     }
