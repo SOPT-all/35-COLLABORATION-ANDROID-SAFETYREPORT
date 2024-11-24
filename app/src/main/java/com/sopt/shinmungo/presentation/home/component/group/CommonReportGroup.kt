@@ -1,8 +1,7 @@
 package com.sopt.shinmungo.presentation.home.component.group
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -41,10 +40,8 @@ fun CommonReportGroup(
         modifier = modifier.wrapContentSize()
     ) {
         Column(modifier = Modifier.fillMaxSize().padding(10.dp)) {
-            Row(
+            Box(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_previous_home_10),
@@ -52,12 +49,14 @@ fun CommonReportGroup(
                     tint = ShinMunGoTheme.color.gray8,
                     modifier = Modifier.showIf(onClickLeft != null)
                         .noRippleClickable(onClick = onClickLeft ?: {})
+                        .align(Alignment.CenterStart)
                 )
 
                 Text(
                     text = title,
                     style = ShinMunGoTheme.typography.caption5,
-                    color = ShinMunGoTheme.color.gray13
+                    color = ShinMunGoTheme.color.gray13,
+                    modifier = Modifier.align(Alignment.Center)
                 )
 
                 Icon(
@@ -66,6 +65,7 @@ fun CommonReportGroup(
                     tint = ShinMunGoTheme.color.gray8,
                     modifier = Modifier.showIf(onClickRight != null)
                         .noRippleClickable(onClick = onClickRight ?: {})
+                        .align(Alignment.CenterEnd)
                 )
             }
 

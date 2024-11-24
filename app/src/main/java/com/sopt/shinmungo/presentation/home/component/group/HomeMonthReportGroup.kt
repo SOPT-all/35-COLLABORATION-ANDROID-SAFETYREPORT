@@ -35,6 +35,10 @@ fun HomeMonthReportGroup(
             reportCount,
             ShinMunGoTheme.color.primary
         ),
+        Pair(
+            " ",
+            ShinMunGoTheme.color.gray13
+        ),
         Pair(stringResource(R.string.main_month_report_report_count), ShinMunGoTheme.color.gray13),
     )
 

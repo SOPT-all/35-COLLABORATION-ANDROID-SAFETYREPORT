@@ -37,6 +37,10 @@ fun HomeYearReportGroup(
             stringResource(R.string.main_year_report_report_text_1),
             ShinMunGoTheme.color.gray13
         ),
+        Pair(
+            " ",
+            ShinMunGoTheme.color.gray13
+        ),
         Pair(reportCount, ShinMunGoTheme.color.primary),
         Pair(
             stringResource(R.string.main_year_report_report_text_2),
@@ -59,7 +63,7 @@ fun HomeYearReportGroup(
     CommonReportGroup(
         title = title,
         modifier = modifier,
-        onClickLeft = onClickBack
+        onClickLeft = onClickBack,
     ) {
         Column(
             modifier = Modifier.fillMaxSize().padding(vertical = 12.dp),
@@ -119,7 +123,7 @@ private fun HomeReportGroupTextWithProgress(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.padding(top = 5.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.End)
     ) {
@@ -141,9 +145,7 @@ private fun HomeReportGroupTextWithProgress(
 
 @Preview(showBackground = true)
 @Composable
-private fun HomeYearReportItemPreview(
-    modifier: Modifier = Modifier
-) {
+private fun HomeYearReportItemPreview() {
     ShinMunGoTheme {
         HomeYearReportGroup(
             title = "나의 올해 신고",
