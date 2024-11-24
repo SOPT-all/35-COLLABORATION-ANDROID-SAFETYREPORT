@@ -28,11 +28,11 @@ import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextBu
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.state.UiState
 import com.sopt.shinmungo.presentation.home.component.HomeFloatingActionButton
-import com.sopt.shinmungo.presentation.home.component.group.HomeMonthReportGroup
-import com.sopt.shinmungo.presentation.home.component.group.HomeYearReportGroup
 import com.sopt.shinmungo.presentation.home.component.HomeImageBannerPager
 import com.sopt.shinmungo.presentation.home.component.HomeIssueExamplePager
 import com.sopt.shinmungo.presentation.home.component.HomeTopBar
+import com.sopt.shinmungo.presentation.home.component.group.HomeMonthReportGroup
+import com.sopt.shinmungo.presentation.home.component.group.HomeYearReportGroup
 import com.sopt.shinmungo.presentation.home.state.HomeUiState
 
 @Composable
@@ -52,7 +52,16 @@ fun HomeRoute(
         navigateToCategory = navigateToCategory,
         navigateToParkingReport = navigateToParkingReport,
         uiState = uiState,
-        reportExamplePairs = viewModel.getReportExamplePairList(),
+        reportExamplePairs = listOf(
+            Pair(
+                R.drawable.img_cases_1_before,
+                R.drawable.img_cases_1_after
+            ),
+            Pair(
+                R.drawable.img_cases_2_before,
+                R.drawable.img_cases_2_after
+            ),
+        ),
         modifier = modifier
     )
 }
@@ -61,7 +70,7 @@ fun HomeRoute(
 private fun HomeScreen(
     navigateToCategory: () -> Unit,
     navigateToParkingReport: () -> Unit,
-    reportExamplePairs: List<Pair<String, String>>,
+    reportExamplePairs: List<Pair<Int, Int>>,
     uiState: HomeUiState,
     modifier: Modifier = Modifier,
 ) {
@@ -91,16 +100,7 @@ private fun HomeScreen(
                         userName = name,
                         yearReportCount = yearReportCount.toString(),
                         bannerUrls = bannerUrls,
-                        reportExamplePairs = listOf(
-                            Pair(
-                                R.drawable.img_cases_1_before,
-                                R.drawable.img_cases_1_after
-                            ),
-                            Pair(
-                                R.drawable.img_cases_2_before,
-                                R.drawable.img_cases_2_after
-                            ),
-                        ),
+                        reportExamplePairs = reportExamplePairs,
                         navigateToCategory = navigateToCategory,
                         navigateToParkingReport = navigateToParkingReport,
                     )
