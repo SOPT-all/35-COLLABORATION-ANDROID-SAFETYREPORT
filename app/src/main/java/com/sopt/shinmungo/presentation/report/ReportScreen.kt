@@ -17,6 +17,7 @@ import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.report.component.DropdownCategory
+import com.sopt.shinmungo.presentation.report.component.ReportContentSection
 import com.sopt.shinmungo.presentation.report.component.ReportLocationSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhotoSection
 
@@ -59,6 +60,8 @@ fun ReportScreen(
             ReportPhotoSection(viewModel = viewModel)
 
             ReportLocationSection(viewModel = viewModel)
+
+            ReportContentSection(viewModel = viewModel)
             
         }
     }

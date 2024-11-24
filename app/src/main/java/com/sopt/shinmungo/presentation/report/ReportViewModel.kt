@@ -16,6 +16,11 @@ class ReportViewModel : ViewModel() {
     private val _location = MutableStateFlow<String>("")
     val location: StateFlow<String> get() = _location
 
+    private val _content = MutableStateFlow<String>("")
+    val content: StateFlow<String> get() = _content
+    private val _isRecommendWord = MutableStateFlow<Boolean>(false)
+    val isRecommendWord: StateFlow<Boolean> get() = _isRecommendWord
+
     fun updatePhotoList(newPhotoList: ArrayList<PhotoItem>) {
         _photoList.value = newPhotoList
     }
@@ -35,5 +40,18 @@ class ReportViewModel : ViewModel() {
 
     fun updateLocation(newLocation: String) {
         _location.value = newLocation
+    }
+
+    fun updateContent(newContent: String) {
+        _content.value = newContent
+    }
+
+    fun updateIsRecommendWord() {
+        _isRecommendWord.value = !_isRecommendWord.value
+        if (_isRecommendWord.value) {
+            _content.value = _content.value + "소방차 전용구역 불법주차 신고입니다."
+        } else {
+            _content.value = _content.value.replace("소방차 전용구역 불법주차 신고입니다.", "")
+        }
     }
 }
