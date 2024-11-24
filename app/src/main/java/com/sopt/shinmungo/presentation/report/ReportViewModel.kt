@@ -1,18 +1,33 @@
 package com.sopt.shinmungo.presentation.report
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class ReportViewModel : ViewModel() {
-    val photoList: StateFlow<ArrayList<PhotoItem>>
-        field = MutableStateFlow(arrayListOf())
+    private val _photoList = MutableStateFlow<List<PhotoItem>>(emptyList())
+    val photoList: StateFlow<List<PhotoItem>> get() = _photoList
+
+    private val _showDeleteIcons = MutableStateFlow<Map<Int, Boolean>>(emptyMap())
+    val showDeleteIcons: StateFlow<Map<Int, Boolean>> = _showDeleteIcons
 
     fun updatePhotoList(newPhotoList: ArrayList<PhotoItem>) {
-        photoList.value.addAll(newPhotoList)
+        _photoList.value = newPhotoList
     }
 
     fun deletePhotoFromList(deletePhoto: PhotoItem) {
-        photoList.value.remove(deletePhoto)
+        _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.photoId }
+    }
+
+    fun showDeleteIconForPhoto(photoId: Int) {
+        _showDeleteIcons.value = _showDeleteIcons.value + (photoId to true)
+
+        viewModelScope.launch {
+            delay(3000)
+            _showDeleteIcons.value = _showDeleteIcons.value - photoId
+        }
     }
 }
