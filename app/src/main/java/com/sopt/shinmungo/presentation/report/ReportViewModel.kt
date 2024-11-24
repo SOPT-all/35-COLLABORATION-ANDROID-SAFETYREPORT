@@ -10,9 +10,11 @@ import kotlinx.coroutines.launch
 class ReportViewModel : ViewModel() {
     private val _photoList = MutableStateFlow<List<PhotoItem>>(emptyList())
     val photoList: StateFlow<List<PhotoItem>> get() = _photoList
-
     private val _showDeleteIcons = MutableStateFlow<Map<Int, Boolean>>(emptyMap())
     val showDeleteIcons: StateFlow<Map<Int, Boolean>> = _showDeleteIcons
+
+    private val _location = MutableStateFlow<String>("")
+    val location: StateFlow<String> get() = _location
 
     fun updatePhotoList(newPhotoList: ArrayList<PhotoItem>) {
         _photoList.value = newPhotoList
@@ -29,5 +31,9 @@ class ReportViewModel : ViewModel() {
             delay(3000)
             _showDeleteIcons.value = _showDeleteIcons.value - photoId
         }
+    }
+
+    fun updateLocation(newLocation: String) {
+        _location.value = newLocation
     }
 }
