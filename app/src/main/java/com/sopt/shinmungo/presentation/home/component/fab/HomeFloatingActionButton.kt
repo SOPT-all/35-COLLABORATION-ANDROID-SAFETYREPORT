@@ -21,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -35,6 +34,12 @@ import com.sopt.shinmungo.core.extension.showIf
 @Composable
 fun HomeFloatingActionButton(
     modifier: Modifier = Modifier,
+    onSafetyClick: () -> Unit = {},
+    onParkingClick: () -> Unit = {},
+    onTrafficClick: () -> Unit = {},
+    onLifeStyleClick: () -> Unit = {},
+    onMenuClick: () -> Unit = {},
+    onCameraClick: () -> Unit = {},
 ) {
     var isFabActive by remember { mutableStateOf(false) }
     val fabSize by animateSizeAsState(
@@ -54,6 +59,12 @@ fun HomeFloatingActionButton(
         HomeFloatingActionGroup(
             modifier = Modifier,
             isFabActive = isFabActive,
+            onSafetyClick = onSafetyClick,
+            onParkingClick = onParkingClick,
+            onTrafficClick = onTrafficClick,
+            onLifeStyleClick = onLifeStyleClick,
+            onMenuClick = onMenuClick,
+            onCameraClick = onCameraClick
         )
 
         Box(
