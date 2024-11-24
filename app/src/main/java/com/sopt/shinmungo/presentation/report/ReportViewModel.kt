@@ -21,6 +21,11 @@ class ReportViewModel : ViewModel() {
     private val _isRecommendWord = MutableStateFlow<Boolean>(false)
     val isRecommendWord: StateFlow<Boolean> get() = _isRecommendWord
 
+    private val _phoneNumber = MutableStateFlow<String>("전화번호를 입력해주세요")
+    val phoneNumber: StateFlow<String> get() = _phoneNumber
+    private val _showPhoneNumber = MutableStateFlow<Boolean>(false)
+    val showPhoneNumber: StateFlow<Boolean> get() = _showPhoneNumber
+
     fun updatePhotoList(newPhotoList: ArrayList<PhotoItem>) {
         _photoList.value = newPhotoList
     }
@@ -52,6 +57,15 @@ class ReportViewModel : ViewModel() {
             _content.value = _content.value + "소방차 전용구역 불법주차 신고입니다."
         } else {
             _content.value = _content.value.replace("소방차 전용구역 불법주차 신고입니다.", "")
+        }
+    }
+
+    fun updateShowPhoneNumber() {
+        _showPhoneNumber.value = !_showPhoneNumber.value
+        if (_showPhoneNumber.value) {
+            _phoneNumber.value = "010-1234-5678"
+        } else {
+            _phoneNumber.value = "전화번호를 입력해주세요"
         }
     }
 }

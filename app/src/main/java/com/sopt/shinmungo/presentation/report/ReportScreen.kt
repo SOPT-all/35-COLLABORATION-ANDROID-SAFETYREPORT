@@ -19,6 +19,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.report.component.DropdownCategory
 import com.sopt.shinmungo.presentation.report.component.ReportContentSection
 import com.sopt.shinmungo.presentation.report.component.ReportLocationSection
+import com.sopt.shinmungo.presentation.report.component.ReportPhoneNumberSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhotoSection
 
 @Composable
@@ -62,7 +63,9 @@ fun ReportScreen(
             ReportLocationSection(viewModel = viewModel)
 
             ReportContentSection(viewModel = viewModel)
-            
+
+            ReportPhoneNumberSection(viewModel = viewModel)
+
         }
     }
 }
