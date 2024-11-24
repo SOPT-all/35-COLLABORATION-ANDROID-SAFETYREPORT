@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.report.ReportSectionType
 import com.sopt.shinmungo.presentation.report.ReportViewModel
@@ -26,6 +27,8 @@ fun ReportPhoneNumberSection(
 ) {
     val showPhoneNumber = viewModel.showPhoneNumber.collectAsStateWithLifecycle()
     val phoneNumber = viewModel.phoneNumber.collectAsStateWithLifecycle()
+    val isReportSharingAgreed = viewModel.isReportSharingAgreed.collectAsStateWithLifecycle()
+
     Column {
         ReportSectionTitle(
             text = ReportSectionType.PHONE_NUMBER.type,
@@ -49,5 +52,14 @@ fun ReportPhoneNumberSection(
                 color = if (showPhoneNumber.value) ShinMunGoTheme.color.gray13 else Color(0x66121212)
             )
         }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        CheckButtonWithTextInfoIcon(
+            text = "신고 내용 공유 동의",
+            isChecked = isReportSharingAgreed.value,
+            isIconApplied = true,
+            onButtonClick = { viewModel.updateIsReportSharingAgreed() }
+        )
     }
 }

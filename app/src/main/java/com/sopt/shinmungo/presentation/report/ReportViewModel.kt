@@ -26,6 +26,9 @@ class ReportViewModel : ViewModel() {
     private val _showPhoneNumber = MutableStateFlow<Boolean>(false)
     val showPhoneNumber: StateFlow<Boolean> get() = _showPhoneNumber
 
+    private val _isReportSharingAgreed = MutableStateFlow(false)
+    val isReportSharingAgreed: StateFlow<Boolean> get() = _isReportSharingAgreed
+
     fun updatePhotoList(newPhotoList: ArrayList<PhotoItem>) {
         _photoList.value = newPhotoList
     }
@@ -67,5 +70,9 @@ class ReportViewModel : ViewModel() {
         } else {
             _phoneNumber.value = "전화번호를 입력해주세요"
         }
+    }
+
+    fun updateIsReportSharingAgreed() {
+        _isReportSharingAgreed.value = !_isReportSharingAgreed.value
     }
 }
