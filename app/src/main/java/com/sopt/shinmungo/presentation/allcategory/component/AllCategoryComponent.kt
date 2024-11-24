@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,20 +20,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
-import com.sopt.shinmungo.presentation.allcategory.screen.ReportCategory
+import com.sopt.shinmungo.domain.entity.AllCategoryEntity
 
 /**
  * 카테고리 항목 컴포넌트
  */
 @Composable
-fun ReportCategoryItem(
-    category: ReportCategory,
+fun AllCategoryComponent(
+    category: AllCategoryEntity,
     isExpanded: Boolean,
+    reportableItems: List<String>,
     onClick: () -> Unit
 ) {
     Column(
@@ -67,7 +71,7 @@ fun ReportCategoryItem(
 
             if (isExpanded) {
                 RoundedCornerTextButton(
-                    text = "선택하기",
+                    text = stringResource(id = R.string.all_category_select_button),
                     textStyle = ShinMunGoTheme.typography.body4,
                     textColor = ShinMunGoTheme.color.gray1,
                     backgroundColor = ShinMunGoTheme.color.primary,
@@ -93,20 +97,12 @@ fun ReportCategoryItem(
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
-                        text = "아래의 경우 신고할 수 있는 유형입니다.",
+                        text = stringResource(id = R.string.all_category_reportable_hint),
                         style = ShinMunGoTheme.typography.body3.copy(lineHeight = 20.sp),
                         color = ShinMunGoTheme.color.gray10
                     )
-                    // 다이나믹 리스트 항목
                     Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                        listOf(
-                            "교통위반(고속도로 포함)",
-                            "이륜차 위반",
-                            "버스전용차로 위반 (고속도로 제외)",
-                            "불법등화, 반사판(지) 기름, 손상",
-                            "불법 튜닝, 해체, 조작",
-                            "기타 자동차 안전기준 위반"
-                        ).forEach { item ->
+                        reportableItems.forEach { item ->
                             Text(
                                 text = "• $item",
                                 style = ShinMunGoTheme.typography.body4,
@@ -116,6 +112,40 @@ fun ReportCategoryItem(
                     }
                 }
             }
+        }
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun PreviewAllCategoryComponent() {
+    ShinMunGoTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(ShinMunGoTheme.color.gray2)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            AllCategoryComponent(
+                category = AllCategoryEntity(
+                    title = "안전",
+                    description = "가로등 점검사항, 도로/시설물 파손 및 고장 등.",
+                    reportableItems = listOf("가로등 고장", "도로 표지판 손상", "건물 외벽 위험 요소")
+                ),
+                isExpanded = false,
+                reportableItems = listOf("가로등 고장", "도로 표지판 손상", "건물 외벽 위험 요소"),
+                onClick = {}
+            )
+            AllCategoryComponent(
+                category = AllCategoryEntity(
+                    title = "생활불편",
+                    description = "쓰레기 무단투기, 불법 광고물 등.",
+                    reportableItems = listOf("무단 투기 쓰레기", "불법 광고물 게시", "공공장소 방치물")
+                ),
+                isExpanded = true,
+                reportableItems = listOf("무단 투기 쓰레기", "불법 광고물 게시", "공공장소 방치물"),
+                onClick = {}
+            )
         }
     }
 }
