@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.home.component.fab
+package com.sopt.shinmungo.presentation.home.component
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateSizeAsState
@@ -30,6 +30,7 @@ import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
 import com.sopt.shinmungo.core.extension.showIf
+import com.sopt.shinmungo.presentation.home.component.group.HomeFloatingActionGroup
 
 @Composable
 fun HomeFloatingActionButton(

@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.home.component.pager
+package com.sopt.shinmungo.presentation.home.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues

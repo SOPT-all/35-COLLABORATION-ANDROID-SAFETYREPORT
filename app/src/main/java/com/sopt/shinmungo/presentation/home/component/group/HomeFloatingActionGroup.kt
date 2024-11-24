@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.home.component.fab
+package com.sopt.shinmungo.presentation.home.component.group
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState

@@ -16,7 +16,7 @@
     <string name="main_year_report_progress_total">진행</string>">
     <string name="main_month_report_description_graph">그래프</string>
     <string name="main_month_report_title">2024년 10월</string>
-    <string name="main_month_report_report_count">건</string>
+    <string name="main_month_report_report_count"> 건</string>
     <string name="main_month_report_username">%s 님의\n신고이력</string>
     <string name="main_example_title">주요 처리 사례</string>
     <string name="main_example_btn_more">더보기</string>

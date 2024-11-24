@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.home.component.topbar
+package com.sopt.shinmungo.presentation.home.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
