@@ -20,6 +20,8 @@
     <string name="main_month_report_username">%s 님의\n신고이력</string>
     <string name="main_example_title">주요 처리 사례</string>
     <string name="main_example_btn_more">더보기</string>
+    <string name="main_example_chip_before">전</string>
+    <string name="main_example_chip_after">후</string>
 
     <string name="main_fab_report">신고하기</string>
     <string name="main_fab_report_close">닫기</string>

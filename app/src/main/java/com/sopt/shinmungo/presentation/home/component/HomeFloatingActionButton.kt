@@ -125,7 +125,7 @@ private fun CloseFabContent(
 }
 
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun HomeFloatingActionButtonPreview() {
     ShinMunGoTheme {
@@ -133,7 +133,7 @@ private fun HomeFloatingActionButtonPreview() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ReportFabContentPreview() {
     ShinMunGoTheme {
@@ -144,7 +144,7 @@ private fun ReportFabContentPreview() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun CloseFabContentPreview() {
     ShinMunGoTheme {

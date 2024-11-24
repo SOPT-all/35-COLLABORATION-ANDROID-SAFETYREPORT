@@ -91,7 +91,16 @@ private fun HomeScreen(
                         userName = name,
                         yearReportCount = yearReportCount.toString(),
                         bannerUrls = bannerUrls,
-                        reportExamplePairs = reportExamplePairs,
+                        reportExamplePairs = listOf(
+                            Pair(
+                                R.drawable.img_cases_1_before,
+                                R.drawable.img_cases_1_after
+                            ),
+                            Pair(
+                                R.drawable.img_cases_2_before,
+                                R.drawable.img_cases_2_after
+                            ),
+                        ),
                         navigateToCategory = navigateToCategory,
                         navigateToParkingReport = navigateToParkingReport,
                     )
@@ -108,7 +117,7 @@ private fun SuccessScreen(
     userName: String,
     yearReportCount: String,
     bannerUrls: List<String>,
-    reportExamplePairs: List<Pair<String, String>>,
+    reportExamplePairs: List<Pair<Int, Int>>,
     navigateToParkingReport: () -> Unit,
     navigateToCategory: () -> Unit,
     modifier: Modifier = Modifier
@@ -199,7 +208,7 @@ private fun SuccessScreen(
             }
 
             HomeIssueExamplePager(
-                imagePairUrls = reportExamplePairs,
+                imagePairs = reportExamplePairs,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp, bottom = 18.dp)
@@ -218,27 +227,29 @@ private fun SuccessScreen(
 @Preview(showBackground = true)
 @Composable
 private fun HomeSuccessScreenPreview() {
-    SuccessScreen(
-        mileage = "5000000",
-        monthReportCount = "25",
-        userName = "수민",
-        yearReportCount = "7",
-        bannerUrls = listOf(
-            "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
-            "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
-            "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
-        ),
-        reportExamplePairs = listOf(
-            Pair(
+    ShinMunGoTheme {
+        SuccessScreen(
+            mileage = "5000000",
+            monthReportCount = "25",
+            userName = "수민",
+            yearReportCount = "7",
+            bannerUrls = listOf(
                 "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp"
-            ),
-            Pair(
                 "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
                 "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
             ),
-        ),
-        navigateToParkingReport = {},
-        navigateToCategory = {}
-    )
+            reportExamplePairs = listOf(
+                Pair(
+                    R.drawable.img_cases_1_before,
+                    R.drawable.img_cases_1_after
+                ),
+                Pair(
+                    R.drawable.img_cases_2_before,
+                    R.drawable.img_cases_2_after
+                ),
+            ),
+            navigateToParkingReport = {},
+            navigateToCategory = {}
+        )
+    }
 }
