@@ -52,6 +52,8 @@ class ReportViewModel : ViewModel() {
 
     fun updateContent(newContent: String) {
         _content.value = newContent
+        val value = _content.value.length >= 5
+        updateShowPhoneNumber(value)
     }
 
     fun updateIsRecommendWord() {
@@ -63,8 +65,8 @@ class ReportViewModel : ViewModel() {
         }
     }
 
-    fun updateShowPhoneNumber() {
-        _showPhoneNumber.value = !_showPhoneNumber.value
+    fun updateShowPhoneNumber(value: Boolean) {
+        _showPhoneNumber.value = value
         if (_showPhoneNumber.value) {
             _phoneNumber.value = "010-1234-5678"
         } else {
