@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -26,9 +27,12 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 fun MediaSelectionDialog(
     onDismissRequest: () -> Unit
 ) {
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+    val dialogWidth = screenWidth * 0.8f
+
     CustomDialog(
         title = stringResource(id = R.string.media_selection_title),
-        modifier = Modifier.width(321.dp),
+        modifier = Modifier.width(dialogWidth),
         icon = ImageVector.vectorResource(id = R.drawable.icn_sound_white_24px),
         onDismissRequest = onDismissRequest
     ) {
@@ -118,7 +122,7 @@ fun MediaSelectionDialog(
                 roundedCornerShape = RoundedCornerShape(10.dp),
                 onButtonClick = onDismissRequest,
                 modifier = Modifier
-                    .width(281.dp)
+                    .fillMaxWidth()
                     .height(48.dp)
                     .padding(top = 16.dp)
             )

@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -68,7 +67,7 @@ fun PhotoSizeLimitDialog(
             borderLineColor = ShinMunGoTheme.color.gray5,
             onButtonClick = onDismissRequest,
             modifier = Modifier
-                .width(281.dp)
+                .fillMaxWidth()
                 .height(48.dp)
                 .padding(top = 16.dp)
         )

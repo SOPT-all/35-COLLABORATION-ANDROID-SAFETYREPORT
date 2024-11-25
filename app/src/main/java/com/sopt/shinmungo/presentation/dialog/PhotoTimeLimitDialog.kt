@@ -64,7 +64,7 @@ fun PhotoTimeLimitDialog(
             borderLineColor = ShinMunGoTheme.color.gray5,
             onButtonClick = onDismissRequest,
             modifier = Modifier
-                .width(281.dp)
+                .fillMaxWidth()
                 .height(48.dp)
                 .padding(top = 16.dp)
         )
