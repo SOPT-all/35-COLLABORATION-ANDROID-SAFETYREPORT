@@ -97,7 +97,7 @@ fun ReportContentTextField(viewModel: ReportViewModel) {
                 Text(
                     text = stringResource(R.string.report_content_placeholder),
                     style = ShinMunGoTheme.typography.body9,
-                    color = Color(0x66121212),
+                    color = ShinMunGoTheme.color.opacityGray13Per40,
                     modifier = Modifier.align(Alignment.TopStart)
                 )
             }

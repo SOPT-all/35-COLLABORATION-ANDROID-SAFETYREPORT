@@ -51,7 +51,7 @@ fun ReportPhoneNumberSection(
             Text(
                 text = phoneNumber.value,
                 style = ShinMunGoTheme.typography.body9,
-                color = if (showPhoneNumber.value) ShinMunGoTheme.color.gray13 else Color(0x66121212)
+                color = if (showPhoneNumber.value) ShinMunGoTheme.color.gray13 else ShinMunGoTheme.color.opacityGray13Per40
             )
         }
 

@@ -41,7 +41,7 @@ fun CategoryGrid(viewModel: ReportViewModel, modifier: Modifier = Modifier) {
 
                 item(span = { GridItemSpan(2) }) {
                     HorizontalDivider(
-                        color = Color(0x1A121212),
+                        color = ShinMunGoTheme.color.opacityGray13Per10,
                         thickness = 1.dp,
                         modifier = Modifier
                             .fillMaxWidth()
