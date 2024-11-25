@@ -120,22 +120,26 @@ class ReportViewModel : ViewModel() {
     fun updateIsRecommendWord() {
         _isRecommendWord.value = !_isRecommendWord.value
         if (_isRecommendWord.value) {
-            _content.value = _content.value + "소방차 전용구역 불법주차 신고입니다."
-        } else {
-            _content.value = _content.value.replace("소방차 전용구역 불법주차 신고입니다.", "")
+            _content.value += RECOMMEND_WORD_CONTEXT
         }
     }
 
     fun updateShowPhoneNumber(value: Boolean) {
         _showPhoneNumber.value = value
-        if (_showPhoneNumber.value) {
-            _phoneNumber.value = "010-1234-5678"
+        _phoneNumber.value = if (_showPhoneNumber.value) {
+            USER_PHONE_NUMBER
         } else {
-            _phoneNumber.value = "전화번호를 입력해주세요"
+            DEFAULT_PHONE_NUMBER_MESSAGE
         }
     }
 
     fun updateIsReportSharingAgreed() {
         _isReportSharingAgreed.value = !_isReportSharingAgreed.value
+    }
+
+    companion object {
+        const val RECOMMEND_WORD_CONTEXT = "소방차 전용구역 불법주차 신고입니다."
+        const val USER_PHONE_NUMBER = "010-1234-5678"
+        const val DEFAULT_PHONE_NUMBER_MESSAGE = "전화번호를 입력해주세요"
     }
 }
