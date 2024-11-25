@@ -16,7 +16,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerIconButton
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.R
-import com.sopt.shinmungo.presentation.report.PhotoItem
+import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.presentation.report.ReportViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
@@ -70,15 +70,15 @@ fun ReportPhotoSection(
                 onButtonClick = {
                     /* 갤러리 화면으로 이동 */
                     val newPhotoList = arrayListOf( /* 임시로 값 연결 */
-                        PhotoItem(1, "https://via.placeholder.com/70"),
-                        PhotoItem(2, "https://via.placeholder.com/70"),
-                        PhotoItem(3, "https://via.placeholder.com/70"),
-                        PhotoItem(4, "https://via.placeholder.com/70"),
-                        PhotoItem(5, "https://via.placeholder.com/70"),
-                        PhotoItem(6, "https://via.placeholder.com/70"),
-                        PhotoItem(7, "https://via.placeholder.com/70"),
-                        PhotoItem(8, "https://via.placeholder.com/70"),
-                        PhotoItem(9, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(1, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(2, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(3, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(4, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(5, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(6, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(7, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(8, "https://via.placeholder.com/70"),
+                        ReportPhotoItem(9, "https://via.placeholder.com/70"),
                     )
                     viewModel.updatePhotoList(newPhotoList)
                 }

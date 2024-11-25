@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.sopt.shinmungo.presentation.report.PhotoItem
+import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
@@ -60,9 +60,9 @@ fun ShowPhotoList(
 
 @Composable
 fun PhotoItem(
-    photoItem: PhotoItem,
+    photoItem: ReportPhotoItem,
     showDeleteIcon: Boolean,
-    onDelete: (PhotoItem) -> Unit,
+    onDelete: (ReportPhotoItem) -> Unit,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

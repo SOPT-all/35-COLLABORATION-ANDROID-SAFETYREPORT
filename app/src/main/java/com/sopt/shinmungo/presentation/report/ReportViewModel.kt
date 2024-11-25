@@ -2,14 +2,15 @@ package com.sopt.shinmungo.presentation.report
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class ReportViewModel : ViewModel() {
-    private val _photoList = MutableStateFlow<List<PhotoItem>>(emptyList())
-    val photoList: StateFlow<List<PhotoItem>> get() = _photoList
+    private val _photoList = MutableStateFlow<List<ReportPhotoItem>>(emptyList())
+    val photoList: StateFlow<List<ReportPhotoItem>> get() = _photoList
     private val _showDeleteIcons = MutableStateFlow<Map<Int, Boolean>>(emptyMap())
     val showDeleteIcons: StateFlow<Map<Int, Boolean>> = _showDeleteIcons
 
@@ -29,11 +30,11 @@ class ReportViewModel : ViewModel() {
     private val _isReportSharingAgreed = MutableStateFlow(false)
     val isReportSharingAgreed: StateFlow<Boolean> get() = _isReportSharingAgreed
 
-    fun updatePhotoList(newPhotoList: ArrayList<PhotoItem>) {
+    fun updatePhotoList(newPhotoList: ArrayList<ReportPhotoItem>) {
         _photoList.value = newPhotoList
     }
 
-    fun deletePhotoFromList(deletePhoto: PhotoItem) {
+    fun deletePhotoFromList(deletePhoto: ReportPhotoItem) {
         _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.photoId }
     }
 
