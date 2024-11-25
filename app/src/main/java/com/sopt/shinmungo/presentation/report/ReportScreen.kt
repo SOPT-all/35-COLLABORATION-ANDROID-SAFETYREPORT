@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
@@ -40,8 +41,9 @@ import com.sopt.shinmungo.presentation.report.component.ReportPhotoSection
 
 @Composable
 fun ReportScreen(
+    viewModel: ReportViewModel,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: ReportViewModel
 ) {
     val isCategorySelected = viewModel.isCategorySelected.collectAsStateWithLifecycle()
 
@@ -54,7 +56,7 @@ fun ReportScreen(
             onLeftContent = {
                 IconButton(
                     modifier = Modifier.size(24.dp),
-                    onClick = { /* 뒤로가기 */ }
+                    onClick = onBackClick
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
@@ -144,8 +146,9 @@ fun ReportScreenPreview(modifier: Modifier = Modifier) {
     val viewModel = ReportViewModel()
     ShinMunGoTheme {
         ReportScreen(
+            viewModel = viewModel,
+            onBackClick = { },
             modifier,
-            viewModel = viewModel
         )
     }
 }
