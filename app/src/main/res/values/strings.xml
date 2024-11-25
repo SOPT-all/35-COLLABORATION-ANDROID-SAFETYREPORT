@@ -15,6 +15,10 @@
     <!--Dialog Titles-->
     <string name="fire_truck_illegal_parking_title">소방차 전용구역 불법주차</string>
     <string name="media_selection_title">미디어 선택</string>
+    <string name="alert_title">알림</string>
+
+    <!-- Dialog Messages -->
+    <string name="photo_delete_confirmation_message">사진을 삭제하시겠습니까?</string>
 
     <!--Icon Descriptions-->
     <string name="alert_icon_description">경고 아이콘</string>

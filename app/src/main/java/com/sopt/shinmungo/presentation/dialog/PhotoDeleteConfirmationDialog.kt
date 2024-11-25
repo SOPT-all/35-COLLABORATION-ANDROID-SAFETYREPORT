@@ -10,9 +10,11 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.dialog.CustomDialog
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
@@ -23,13 +25,13 @@ fun PhotoDeleteConfirmationDialog(
     onConfirmClick: () -> Unit
 ) {
     CustomDialog(
-        title = "알림",
+        title = stringResource(id = R.string.alert_title),
         icon = Icons.Default.Close,
         onDismissRequest = onDismissRequest,
         onIconClick = onDismissRequest
     ) {
         Text(
-            text = "사진을 삭제하시겠습니까?",
+            text = stringResource(id = R.string.photo_delete_confirmation_message),
             style = ShinMunGoTheme.typography.body3,
             color = ShinMunGoTheme.color.gray13,
             textAlign = TextAlign.Center,
@@ -39,7 +41,7 @@ fun PhotoDeleteConfirmationDialog(
         )
 
         RoundedCornerTextButton(
-            text = "확인",
+            text = stringResource(id = R.string.ok),
             textStyle = ShinMunGoTheme.typography.body4,
             textColor = ShinMunGoTheme.color.gray8,
             backgroundColor = ShinMunGoTheme.color.gray1,
