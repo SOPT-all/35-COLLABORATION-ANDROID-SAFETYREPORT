@@ -8,7 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.allcategory.component.AllCategoryComponent
 import com.sopt.shinmungo.presentation.allcategory.component.AllCategoryTopBar
@@ -23,7 +23,7 @@ import com.sopt.shinmungo.presentation.allcategory.viewmodel.AllCategoryViewMode
 @Composable
 fun AllCategoryScreen(
     onNavigateBack: () -> Unit,
-    viewModel: AllCategoryViewModel = hiltViewModel()
+    viewModel: AllCategoryViewModel = viewModel()
 ) {
     val categories = viewModel.categories.collectAsState()
     val expandedStates = viewModel.expandedStates.collectAsState()
