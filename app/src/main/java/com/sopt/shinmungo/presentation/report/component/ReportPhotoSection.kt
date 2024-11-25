@@ -26,6 +26,8 @@ fun ReportPhotoSection(
     modifier: Modifier = Modifier
 ) {
     val photoItems = viewModel.photoList.collectAsStateWithLifecycle(initialValue = emptyList())
+    val cameraCooldownTime = viewModel.cameraCooldownTime.collectAsStateWithLifecycle(0)
+    val isCameraButtonActive = viewModel.isCameraButtonActive.collectAsStateWithLifecycle(true)
 
     Column {
         Row(
@@ -39,18 +41,20 @@ fun ReportPhotoSection(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                Row() {
-                    Text(
-                        text = "다음 사진 첨부까지 :",
-                        style = ShinMunGoTheme.typography.caption3,
-                        color = ShinMunGoTheme.color.primary
-                    )
-                    Spacer(modifier = Modifier.width(6.dp))
-                    Text(
-                        text = "4분 59초",
-                        style = ShinMunGoTheme.typography.caption3,
-                        color = ShinMunGoTheme.color.primary
-                    )
+                if (!isCameraButtonActive.value) {
+                    Row() {
+                        Text(
+                            text = "다음 사진 첨부까지 :",
+                            style = ShinMunGoTheme.typography.caption3,
+                            color = ShinMunGoTheme.color.primary
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(
+                            text = formatTime(cameraCooldownTime.value),
+                            style = ShinMunGoTheme.typography.caption3,
+                            color = ShinMunGoTheme.color.primary
+                        )
+                    }
                 }
             }
 
@@ -58,8 +62,10 @@ fun ReportPhotoSection(
 
             RoundedCornerIconButton(
                 icon = R.drawable.ic_report_camera_24px,
-                isButtonActive = true,
-                onButtonClick = { /* 초 카운트 다운 시작 */ }
+                isButtonActive = isCameraButtonActive.value,
+                onButtonClick = {
+                    viewModel.startCameraCooldown(300)
+                }
             )
 
             Spacer(modifier = modifier.width(10.dp))
@@ -69,16 +75,11 @@ fun ReportPhotoSection(
                 isButtonActive = true,
                 onButtonClick = {
                     /* 갤러리 화면으로 이동 */
-                    val newPhotoList = arrayListOf( /* 임시로 값 연결 */
+                    val newPhotoList = arrayListOf( // 임시로 값 연결
                         ReportPhotoItem(1, "https://via.placeholder.com/70"),
                         ReportPhotoItem(2, "https://via.placeholder.com/70"),
                         ReportPhotoItem(3, "https://via.placeholder.com/70"),
                         ReportPhotoItem(4, "https://via.placeholder.com/70"),
-                        ReportPhotoItem(5, "https://via.placeholder.com/70"),
-                        ReportPhotoItem(6, "https://via.placeholder.com/70"),
-                        ReportPhotoItem(7, "https://via.placeholder.com/70"),
-                        ReportPhotoItem(8, "https://via.placeholder.com/70"),
-                        ReportPhotoItem(9, "https://via.placeholder.com/70"),
                     )
                     viewModel.updatePhotoList(newPhotoList)
                 }
@@ -93,6 +94,13 @@ fun ReportPhotoSection(
             ShowPhotoList(viewModel)
         }
     }
+}
+
+@SuppressLint("DefaultLocale")
+fun formatTime(seconds: Int): String {
+    val minutes = seconds / 60
+    val remainingSeconds = seconds % 60
+    return String.format("%d분 %02d초", minutes, remainingSeconds)
 }
 
 @Preview(showBackground = true)

@@ -3,6 +3,7 @@ package com.sopt.shinmungo.presentation.report
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -50,6 +51,29 @@ class ReportViewModel : ViewModel() {
     private val _isReportSharingAgreed = MutableStateFlow(false)
     val isReportSharingAgreed: StateFlow<Boolean> get() = _isReportSharingAgreed
 
+
+    private val _cameraCooldownTime = MutableStateFlow(0)
+    val cameraCooldownTime: StateFlow<Int> get() = _cameraCooldownTime
+    private val _isCameraButtonActive = MutableStateFlow(true)
+    val isCameraButtonActive: StateFlow<Boolean> get() = _isCameraButtonActive
+    private var countdownJob: Job? = null
+
+    fun startCameraCooldown(durationInSeconds: Int) {
+        if (!_isCameraButtonActive.value) return
+
+        _cameraCooldownTime.value = durationInSeconds
+        _isCameraButtonActive.value = false
+
+        countdownJob?.cancel()
+        countdownJob = viewModelScope.launch {
+            while (_cameraCooldownTime.value > 0) {
+                delay(1000)
+                _cameraCooldownTime.value -= 1
+            }
+            _isCameraButtonActive.value = true
+        }
+    }
+
     fun updateIsCategorySelected() {
         _isCategorySelected.value = true
     }
@@ -61,6 +85,9 @@ class ReportViewModel : ViewModel() {
 
     fun updateIsDropdownOpen() {
         _isDropdownOpen.value = !_isDropdownOpen.value
+        if (_isDropdownOpen.value) {
+            _selectedCategory.value = "불법 주정차 신고"
+        }
     }
 
     fun updatePhotoList(newPhotoList: ArrayList<ReportPhotoItem>) {
