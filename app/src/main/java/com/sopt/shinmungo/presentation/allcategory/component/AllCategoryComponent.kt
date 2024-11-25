@@ -63,7 +63,7 @@ fun AllCategoryComponent(
                 )
                 Icon(
                     painter = painterResource(id = R.drawable.ic_info_circle_16px),
-                    contentDescription = "Info Icon",
+                    contentDescription = stringResource(id = R.string.info_icon_description),
                     tint = ShinMunGoTheme.color.gray13,
                     modifier = Modifier.size(16.dp)
                 )
