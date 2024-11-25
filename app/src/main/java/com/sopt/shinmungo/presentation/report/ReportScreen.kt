@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -52,7 +53,7 @@ fun ReportScreen(
             .fillMaxSize()
     ) {
         CommonTopBar(
-            title = "불법주정차",
+            title = stringResource(R.string.report_illegal_parking),
             onLeftContent = {
                 IconButton(
                     modifier = Modifier.size(24.dp),

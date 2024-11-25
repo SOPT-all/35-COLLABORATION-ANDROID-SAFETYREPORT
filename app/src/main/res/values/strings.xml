@@ -9,6 +9,7 @@
     <string name="main_bottom_bar_my_page">마이페이지</string>
 
     <!--Report-->
+    <string name="report_illegal_parking">불법주정차</string>
     <string name="report_orange_star_content_description">별표 아이콘</string>
     <string name="report_info_icon_content_description">정보 아이콘</string>
     <string name="report_chevron_down_content_description">아래 화살표 아이콘</string>
