@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -18,6 +19,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.presentation.report.ReportViewModel
+import com.sopt.shinmungo.presentation.report.type.ReportSectionType
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -35,7 +37,7 @@ fun ReportPhotoSection(
         ) {
             Column {
                 ReportSectionTitle(
-                    text = "사진",
+                    text = ReportSectionType.PHOTO.type,
                     onInfoIconClick = { /* 관련 다이얼로그 연결 */ }
                 )
 
@@ -44,7 +46,7 @@ fun ReportPhotoSection(
                 if (!isCameraButtonActive.value) {
                     Row() {
                         Text(
-                            text = "다음 사진 첨부까지 :",
+                            text = stringResource(R.string.report_to_next_photo_apply),
                             style = ShinMunGoTheme.typography.caption3,
                             color = ShinMunGoTheme.color.primary
                         )

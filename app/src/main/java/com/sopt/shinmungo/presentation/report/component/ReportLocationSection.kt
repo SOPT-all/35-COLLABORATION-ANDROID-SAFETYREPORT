@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -59,7 +60,7 @@ fun ReportLocationSection(
 @Composable
 fun LocationText(location: String) {
     val locationText = if (location.isEmpty()) {
-        "지역을 입력해주세요"
+        stringResource(R.string.report_location_placeholder)
     } else {
         location
     }
@@ -73,7 +74,7 @@ fun LocationText(location: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_report_location_24px),
-            contentDescription = "위치 아이콘",
+            contentDescription = stringResource(R.string.report_location_icon_content_description),
             tint = locationColor,
             modifier = Modifier.size(16.dp)
         )

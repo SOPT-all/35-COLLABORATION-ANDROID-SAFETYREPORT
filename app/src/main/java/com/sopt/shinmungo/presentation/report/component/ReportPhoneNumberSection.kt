@@ -13,9 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
+import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.report.type.ReportSectionType
 import com.sopt.shinmungo.presentation.report.ReportViewModel
@@ -56,7 +58,7 @@ fun ReportPhoneNumberSection(
         Spacer(modifier = Modifier.height(12.dp))
 
         CheckButtonWithTextInfoIcon(
-            text = "신고 내용 공유 동의",
+            text = stringResource(R.string.report_sharing_agreed),
             isChecked = isReportSharingAgreed.value,
             isIconApplied = true,
             onButtonClick = { viewModel.updateIsReportSharingAgreed() }

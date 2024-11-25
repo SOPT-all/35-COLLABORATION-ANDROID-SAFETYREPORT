@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -84,7 +85,7 @@ fun PhotoItem(
     ) {
         AsyncImage(
             model = photoItem.photoUrl,
-            contentDescription = "사진이미지",
+            contentDescription = stringResource(R.string.report_photo_image_content_description),
             contentScale = ContentScale.Crop,
             modifier = Modifier.size(70.dp)
         )
@@ -99,7 +100,7 @@ fun PhotoItem(
             ) {
                 Image(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_report_trashcan_24px),
-                    contentDescription = "삭제",
+                    contentDescription = stringResource(R.string.report_delete_icon_content_description),
                     modifier = Modifier
                         .size(24.dp)
                         .noRippleClickable { onDelete(photoItem) }
@@ -122,7 +123,7 @@ fun BoxWhenPhotoListEmpty() {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "사진을 추가해주세요",
+            text = stringResource(R.string.report_add_photo_placeholder),
             style = ShinMunGoTheme.typography.body9,
             color = Color(0x66121212)
         )

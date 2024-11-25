@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,7 +49,7 @@ fun ReportContentSection(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "추가/수정가능, 5~900자",
+                    text = stringResource(R.string.report_content_hint),
                     style = ShinMunGoTheme.typography.caption3,
                     color = ShinMunGoTheme.color.primary
                 )
@@ -94,7 +95,7 @@ fun ReportContentTextField(viewModel: ReportViewModel) {
 
             if (content.value.isEmpty()) {
                 Text(
-                    text = "내용을 입력해주세요",
+                    text = stringResource(R.string.report_content_placeholder),
                     style = ShinMunGoTheme.typography.body9,
                     color = Color(0x66121212),
                     modifier = Modifier.align(Alignment.TopStart)
@@ -108,7 +109,7 @@ fun ReportContentTextField(viewModel: ReportViewModel) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             CheckButtonWithTextInfoIcon(
-                text = "추천 단어",
+                text = stringResource(R.string.report_recommend_word),
                 isChecked = isRecommendWord.value,
                 isIconApplied = false,
                 onButtonClick = { viewModel.updateIsRecommendWord() }
@@ -122,14 +123,14 @@ fun ReportContentTextField(viewModel: ReportViewModel) {
             ) {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_report_copy_16px),
-                    contentDescription = "복사 아이콘",
+                    contentDescription = stringResource(R.string.report_copy_icon_content_description),
                     tint = Color.Unspecified
                 )
 
                 Spacer(modifier = Modifier.width(4.dp))
 
                 Text(
-                    text = "내용 복사",
+                    text = stringResource(R.string.report_content_copy),
                     style = ShinMunGoTheme.typography.caption3,
                     color = ShinMunGoTheme.color.gray13
                 )
