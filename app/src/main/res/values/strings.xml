@@ -11,4 +11,28 @@
     <!--Button Component-->
     <string name="check_button_content_description">체크 아이콘</string>
     <string name="icon_button_content_description">아이콘 버튼</string>
+
+    <!--Dialog Titles-->
+    <string name="fire_truck_illegal_parking_title">소방차 전용구역 불법주차</string>
+
+    <!--Icon Descriptions-->
+    <string name="alert_icon_description">경고 아이콘</string>
+
+    <!--Warnings-->
+    <string name="illegal_parking_warning">불법주차 5분 이상인 사진 2장 이상 첨부</string>
+
+    <!--Image Descriptions-->
+    <string name="illegal_parking_example_1">불법주차 예시 1</string>
+    <string name="illegal_parking_example_2">불법주차 예시 2</string>
+
+    <!--Text Content-->
+    <string name="illegal_parking_description">
+        공동주택 소방차 전용구역에 주차한 차량 전용구역 진입로에 물건들을 쌓는 행위(상시 신고 가능)
+    </string>
+    <string name="illegal_parking_details">
+        동일한 위치 및 방향 (전면 2장 또는 후면 2장)에서 안전신문고 앱으로 시차가 5분 이상인 사진을 2장 이상 첨부해야 하며 (4장까지 가능), 모든 신고 사진에 소방차 전용구역(노면 표시), 전용구역 위치(동수 표시, 특정적인 구조물 표시), 차량번호가 식별 가능해야 합니다.
+    </string>
+
+    <!--Buttons-->
+    <string name="ok">확인</string>
 </resources>

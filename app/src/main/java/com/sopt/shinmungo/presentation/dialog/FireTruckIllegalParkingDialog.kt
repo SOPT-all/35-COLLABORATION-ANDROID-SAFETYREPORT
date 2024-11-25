@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +27,7 @@ fun FireTruckIllegalParkingDialog(
     onDismissRequest: () -> Unit
 ) {
     CustomDialog(
-        title = "소방차 전용구역 불법주차",
+        title = stringResource(id = R.string.fire_truck_illegal_parking_title),
         modifier = Modifier.width(321.dp),
         icon = ImageVector.vectorResource(id = R.drawable.icn_sound_white_24px),
         onDismissRequest = onDismissRequest
@@ -44,13 +45,13 @@ fun FireTruckIllegalParkingDialog(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.icon_alert_line_red_16px),
-                        contentDescription = "경고 아이콘",
+                        contentDescription = stringResource(id = R.string.alert_icon_description),
                         tint = ShinMunGoTheme.color.primaryRed,
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "불법주차 5분 이상인 사진 2장 이상 첨부",
+                        text = stringResource(id = R.string.illegal_parking_warning),
                         style = ShinMunGoTheme.typography.caption2,
                         color = ShinMunGoTheme.color.primaryRed
                     )
@@ -65,47 +66,42 @@ fun FireTruckIllegalParkingDialog(
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.parking4),
-                    contentDescription = "Illegal Parking Example 1",
+                    contentDescription = stringResource(id = R.string.illegal_parking_example_1),
                     contentScale = ContentScale.FillBounds,
                     modifier = Modifier
-                        .width(143.dp) // 폭 143px
-                        .height(109.dp) // 높이 109px
+                        .width(143.dp)
+                        .height(109.dp)
                         .padding(end = 4.dp)
                 )
                 Image(
                     painter = painterResource(id = R.drawable.parking3),
-                    contentDescription = "Illegal Parking Example 2",
+                    contentDescription = stringResource(id = R.string.illegal_parking_example_2),
                     contentScale = ContentScale.FillBounds,
                     modifier = Modifier
-                        .width(143.dp) // 폭 143px
-                        .height(109.dp) // 높이 109px
+                        .width(143.dp)
+                        .height(109.dp)
                         .padding(start = 4.dp)
                 )
             }
 
 
             Text(
-                text = "공동주택 소방차 전용구역에 주차한 차량 전용구역 진입로에 물건들을 쌓는 행위(상시 신고 가능)",
-                style = ShinMunGoTheme.typography.body9.copy(
-                ),
+                text = stringResource(id = R.string.illegal_parking_description),
+                style = ShinMunGoTheme.typography.body9,
                 color = ShinMunGoTheme.color.gray13,
                 textAlign = TextAlign.Start,
                 modifier = Modifier.padding(top = 12.dp)
             )
             Text(
-                text = "동일한 위치 및 방향 (전면 2장 또는 후면 2장)에서 " +
-                        "안전신문고 앱으로 시차가 5분 이상인 사진을 2장 이상 첨부해야 하며 (4장까지 가능), " +
-                        "모든 신고 사진에 소방차 전용구역(노면 표시), 전용구역 위치(동수 표시, 특정적인 구조물 표시), " +
-                        "차량번호가 식별 가능해야 합니다.",
-                style = ShinMunGoTheme.typography.body9.copy(
-                ),
+                text = stringResource(id = R.string.illegal_parking_details),
+                style = ShinMunGoTheme.typography.body9,
                 color = ShinMunGoTheme.color.gray13,
                 textAlign = TextAlign.Start,
                 modifier = Modifier.padding(top = 19.dp, bottom = 30.dp)
             )
 
             RoundedCornerTextButton(
-                text = "확인",
+                text = stringResource(id = R.string.ok),
                 textStyle = ShinMunGoTheme.typography.body4,
                 textColor = ShinMunGoTheme.color.gray8,
                 borderLineColor = ShinMunGoTheme.color.gray5,
