@@ -35,6 +35,14 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.map.component.AddressCard
 import kotlinx.coroutines.flow.update
 
+/**
+ * 주소 입력 화면을 표시하는 Composable
+ *
+ * @param modifier 화면에 적용될 modifier
+ * @param onBackClick 뒤로가기 버튼 클릭 시 실행될 콜백
+ * @param onConfirmClick 주소 선택 확인 시 실행될 콜백. 선택된 주소 문자열을 파라미터로 전달
+ * @param viewModel 화면에서 사용할 ViewModel
+ */
 @Composable
 fun AddressInputScreen(
     modifier : Modifier = Modifier,
