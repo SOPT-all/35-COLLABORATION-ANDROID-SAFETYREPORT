@@ -11,9 +11,11 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.dialog.CustomDialog
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
@@ -24,13 +26,13 @@ fun ResetConfirmationDialog(
     onConfirmClick: () -> Unit
 ) {
     CustomDialog(
-        title = "알림",
+        title = stringResource(id = R.string.alert_title),
         icon = Icons.Default.Close,
         onDismissRequest = onDismissRequest,
         onIconClick = onDismissRequest
     ) {
         Text(
-            text = "신고 내용을 모두 초기화하고\n뒤로 가시겠습니까?",
+            text = stringResource(id = R.string.reset_confirmation_message),
             style = ShinMunGoTheme.typography.body3,
             color = ShinMunGoTheme.color.gray13,
             textAlign = TextAlign.Center,
@@ -50,7 +52,7 @@ fun ResetConfirmationDialog(
             ) {
 
                 RoundedCornerTextButton(
-                    text = "취소",
+                    text = stringResource(id = R.string.cancel),
                     textStyle = ShinMunGoTheme.typography.body4,
                     textColor = ShinMunGoTheme.color.gray8,
                     backgroundColor = ShinMunGoTheme.color.gray1,
@@ -67,7 +69,7 @@ fun ResetConfirmationDialog(
                     .weight(1f)
             ) {
                 RoundedCornerTextButton(
-                    text = "확인",
+                    text = stringResource(id = R.string.ok),
                     textStyle = ShinMunGoTheme.typography.body4,
                     textColor = ShinMunGoTheme.color.primary,
                     backgroundColor = ShinMunGoTheme.color.gray1,
