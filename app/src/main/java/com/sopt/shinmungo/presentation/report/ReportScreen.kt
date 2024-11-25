@@ -67,73 +67,75 @@ fun ReportScreen(
             },
         )
 
-        DropdownCategory(
-            viewModel = viewModel,
-            modifier = Modifier.noRippleClickable {
-                viewModel.updateIsDropdownOpen()
-            }
-        )
-
-        Box(
-            modifier = modifier
-                .fillMaxSize()
-                .background(color = ShinMunGoTheme.color.gray1)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(28.dp),
-                modifier = Modifier
-                    .padding(top = 18.dp)
-                    .padding(horizontal = 18.dp)
-                    .verticalScroll(rememberScrollState()),
+        Box() {
+            Box(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(top = 50.dp)
             ) {
-                ReportPhotoSection(viewModel = viewModel)
-
-                ReportLocationSection(viewModel = viewModel)
-
-                ReportContentSection(viewModel = viewModel)
-
-                ReportPhoneNumberSection(viewModel = viewModel)
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Surface(
-                shadowElevation = 8.dp,
-                color = ShinMunGoTheme.color.gray1,
-                modifier = Modifier.align(Alignment.BottomCenter)
-            ) {
-                Box(
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(28.dp),
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                        .padding(top = 8.dp, bottom = 32.dp)
+                        .padding(top = 18.dp)
+                        .padding(horizontal = 18.dp)
+                        .verticalScroll(rememberScrollState()),
                 ) {
-                    RoundedCornerTextButton(
-                        text = "제출",
-                        textStyle = ShinMunGoTheme.typography.heading1,
-                        textColor = ShinMunGoTheme.color.gray1,
-                        backgroundColor = ShinMunGoTheme.color.primary,
-                        roundedCornerShape = RoundedCornerShape(10.dp),
-                        onButtonClick = { /* POST API */ },
+                    ReportPhotoSection(viewModel = viewModel)
+
+                    ReportLocationSection(viewModel = viewModel)
+
+                    ReportContentSection(viewModel = viewModel)
+
+                    ReportPhoneNumberSection(viewModel = viewModel)
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Surface(
+                    shadowElevation = 8.dp,
+                    color = ShinMunGoTheme.color.gray1,
+                    modifier = Modifier.align(Alignment.BottomCenter)
+                ) {
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(10.dp)
+                            .padding(horizontal = 24.dp)
+                            .padding(top = 8.dp, bottom = 32.dp)
+                    ) {
+                        RoundedCornerTextButton(
+                            text = "제출",
+                            textStyle = ShinMunGoTheme.typography.heading1,
+                            textColor = ShinMunGoTheme.color.gray1,
+                            backgroundColor = ShinMunGoTheme.color.primary,
+                            roundedCornerShape = RoundedCornerShape(10.dp),
+                            onButtonClick = { /* POST API */ },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                        )
+                    }
+                }
+
+                if (!isCategorySelected.value) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.White.copy(alpha = 0.5f))
+                            .clickable(
+                                onClick = { /* 클릭 방지 */ },
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            )
                     )
                 }
             }
 
-            if (!isCategorySelected.value) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.White.copy(alpha = 0.5f))
-                        .clickable(
-                            onClick = { /* 클릭 방지 */ },
-                            indication = null,
-                            interactionSource = remember { MutableInteractionSource() }
-                        )
-                )
-            }
+            DropdownCategory(
+                viewModel = viewModel,
+                modifier = Modifier.noRippleClickable {
+                    viewModel.updateIsDropdownOpen()
+                }
+            )
         }
     }
 }
