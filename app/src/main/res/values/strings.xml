@@ -14,16 +14,20 @@
 
     <!--Dialog Titles-->
     <string name="fire_truck_illegal_parking_title">소방차 전용구역 불법주차</string>
+    <string name="media_selection_title">미디어 선택</string>
 
     <!--Icon Descriptions-->
     <string name="alert_icon_description">경고 아이콘</string>
 
     <!--Warnings-->
     <string name="illegal_parking_warning">불법주차 5분 이상인 사진 2장 이상 첨부</string>
+    <string name="media_selection_file_size_limit">사진 각 30MB, 총 180MB까지 첨부 가능</string>
 
     <!--Image Descriptions-->
     <string name="illegal_parking_example_1">불법주차 예시 1</string>
     <string name="illegal_parking_example_2">불법주차 예시 2</string>
+    <string name="report_method_image_description">신고 방법 이미지</string>
+
 
     <!--Text Content-->
     <string name="illegal_parking_description">

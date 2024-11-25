@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +27,7 @@ fun MediaSelectionDialog(
     onDismissRequest: () -> Unit
 ) {
     CustomDialog(
-        title = "미디어 선택",
+        title = stringResource(id = R.string.media_selection_title),
         modifier = Modifier.width(321.dp),
         icon = ImageVector.vectorResource(id = R.drawable.icn_sound_white_24px),
         onDismissRequest = onDismissRequest
@@ -44,13 +45,13 @@ fun MediaSelectionDialog(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.icon_alert_line_red_16px),
-                        contentDescription = "경고 아이콘",
+                        contentDescription = stringResource(id = R.string.alert_icon_description),
                         tint = ShinMunGoTheme.color.primaryRed,
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "불법주차 5분 이상인 사진 2장 이상 첨부",
+                        text = stringResource(id = R.string.illegal_parking_warning),
                         style = ShinMunGoTheme.typography.caption2,
                         color = ShinMunGoTheme.color.primaryRed
                     )
@@ -66,18 +67,18 @@ fun MediaSelectionDialog(
                         color = ShinMunGoTheme.color.opacityGray13Per5,
                         shape = RoundedCornerShape(5.dp)
                     )
-                    .padding(horizontal = 16.dp, vertical = 8.dp)// 위 박스와 간격
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.icon_alert_line_red_16px),
-                        contentDescription = "경고 아이콘",
+                        contentDescription = stringResource(id = R.string.alert_icon_description),
                         tint = ShinMunGoTheme.color.gray10,
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "사진 각 30MB, 총 180MB까지 첨부 가능",
+                        text = stringResource(id = R.string.media_selection_file_size_limit),
                         style = ShinMunGoTheme.typography.body6.copy(
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
@@ -95,11 +96,11 @@ fun MediaSelectionDialog(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.mediaselection2), // 신고 방법 이미지
-                    contentDescription = "신고 방법 이미지",
+                    painter = painterResource(id = R.drawable.mediaselection2),
+                    contentDescription = stringResource(id = R.string.report_method_image_description),
                     modifier = Modifier
-                        .width(291.dp) // 사진의 정확한 너비 설정
-                        .height(252.dp) // 사진의 정확한 높이 설정
+                        .width(291.dp)
+                        .height(252.dp)
                         .background(
                             color = ShinMunGoTheme.color.gray1,
                             shape = RoundedCornerShape(5.dp)
@@ -109,7 +110,7 @@ fun MediaSelectionDialog(
 
             // 확인 버튼
             RoundedCornerTextButton(
-                text = "확인",
+                text = stringResource(id = R.string.ok),
                 textStyle = ShinMunGoTheme.typography.body4,
                 textColor = ShinMunGoTheme.color.gray8,
                 borderLineColor = ShinMunGoTheme.color.gray5,
