@@ -11,9 +11,11 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.dialog.CustomDialog
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
@@ -25,13 +27,13 @@ fun SubmitCompleteDialog(
     onHomeClick: () -> Unit
 ) {
     CustomDialog(
-        title = "알림",
+        title = stringResource(id = R.string.alert_title),
         icon = Icons.Default.Close,
         onDismissRequest = onDismissRequest,
         onIconClick = onCloseClick
     ) {
         Text(
-            text = "신고 내용이 정상적으로 접수되었습니다.",
+            text = stringResource(id = R.string.submit_complete_message),
             style = ShinMunGoTheme.typography.body3,
             color = ShinMunGoTheme.color.gray13,
             textAlign = TextAlign.Center,
@@ -51,7 +53,7 @@ fun SubmitCompleteDialog(
             ) {
 
                 RoundedCornerTextButton(
-                    text = "닫기",
+                    text = stringResource(id = R.string.close),
                     textStyle = ShinMunGoTheme.typography.body4,
                     textColor = ShinMunGoTheme.color.gray8,
                     backgroundColor = ShinMunGoTheme.color.gray1,
@@ -68,7 +70,7 @@ fun SubmitCompleteDialog(
                     .weight(1f)
             ) {
                 RoundedCornerTextButton(
-                    text = "홈으로",
+                    text = stringResource(id = R.string.go_to_home),
                     textStyle = ShinMunGoTheme.typography.body4,
                     textColor = ShinMunGoTheme.color.primary,
                     backgroundColor = ShinMunGoTheme.color.gray1,
