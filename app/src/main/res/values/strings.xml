@@ -23,6 +23,8 @@
     <string name="photo_size_limit_each">각 30MB, </string>
     <string name="photo_size_limit_total">총 180MB </string>
     <string name="photo_size_limit_suffix">까지만 첨부 가능합니다.</string>
+    <string name="photo_time_limit_highlight">당일 촬영된 시차가 5분 이상</string>
+    <string name="photo_time_limit_suffix">인 사진만 첨부할 수 있습니다.</string>
 
     <!--Icon Descriptions-->
     <string name="alert_icon_description">경고 아이콘</string>
