@@ -40,12 +40,13 @@ fun CustomDialog(
     title: String,
     icon: ImageVector,
     onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier,
     onIconClick: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
 ) {
     Dialog(onDismissRequest = onDismissRequest) {
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .width(335.dp)
                 .wrapContentHeight()
                 .background(
@@ -68,7 +69,7 @@ fun CustomDialog(
                     Text(
                         text = title,
                         color = ShinMunGoTheme.color.gray1,
-                        style = ShinMunGoTheme.typography.heading1,
+                        style = ShinMunGoTheme.typography.body2,
                         modifier = Modifier.weight(1f)
                     )
                     IconButton(
