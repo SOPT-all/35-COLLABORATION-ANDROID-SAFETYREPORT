@@ -20,4 +20,15 @@
     <string name="address_keyword_search_text">키워드 검색</string>
     <string name="address_search_text">주소 검색</string>
     <string name="address_location_selection_text">위치 선택</string>
+
+    <!--Gallery Screen-->
+    <string name="gallery_use_button_text">사용</string>
+    <string name="gallery_alert_caption_text">촬영시간이 5분 이상인 사진을 2장 이상 첨부해주세요</string>
+    <string name="gallery_alert_text">경고</string>
+    <string name="gallery_topbar_title">안전신문고 갤러리</string>
+    <string name="gallery_img_tab">사진</string>
+    <string name="gallery_video_tab">동영상</string>
+    <string name="gallery_detail_topbar_title">상세보기</string>
+    <string name="gallery_detail_timestamp_prefix_text">"촬영일시:       "</string>
+    <string name="gallery_detail_shinmungo">안전신문고</string>
 </resources>
