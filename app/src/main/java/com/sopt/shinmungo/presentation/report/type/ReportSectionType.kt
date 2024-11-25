@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.report
+package com.sopt.shinmungo.presentation.report.type
 
 enum class ReportSectionType(val type: String) {
     PHOTO("사진"),

@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
-import com.sopt.shinmungo.presentation.report.ReportSectionType
+import com.sopt.shinmungo.presentation.report.type.ReportSectionType
 import com.sopt.shinmungo.presentation.report.ReportViewModel
 
 @Composable

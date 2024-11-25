@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
-import com.sopt.shinmungo.presentation.report.ReportSectionType
-import com.sopt.shinmungo.presentation.report.ReportSectionType.Companion.toContentTypeOrThrow
+import com.sopt.shinmungo.presentation.report.type.ReportSectionType
+import com.sopt.shinmungo.presentation.report.type.ReportSectionType.Companion.toContentTypeOrThrow
 
 @Composable
 fun ReportSectionTitle(

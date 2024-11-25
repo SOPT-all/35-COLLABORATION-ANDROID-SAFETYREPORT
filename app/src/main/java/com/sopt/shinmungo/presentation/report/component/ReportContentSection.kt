@@ -28,7 +28,7 @@ import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
-import com.sopt.shinmungo.presentation.report.ReportSectionType
+import com.sopt.shinmungo.presentation.report.type.ReportSectionType
 import com.sopt.shinmungo.presentation.report.ReportViewModel
 
 @Composable
