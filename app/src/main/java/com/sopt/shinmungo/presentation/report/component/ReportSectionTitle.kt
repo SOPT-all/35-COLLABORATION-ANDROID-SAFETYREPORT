@@ -23,9 +23,9 @@ import com.sopt.shinmungo.presentation.report.type.ReportSectionType.Companion.t
 @Composable
 fun ReportSectionTitle(
     text: String,
+    modifier: Modifier = Modifier,
     isIconApplied: Boolean = true,
     onInfoIconClick: (ReportSectionType) -> Unit = { },
-    modifier: Modifier = Modifier
 ) {
     Row {
         Text(
