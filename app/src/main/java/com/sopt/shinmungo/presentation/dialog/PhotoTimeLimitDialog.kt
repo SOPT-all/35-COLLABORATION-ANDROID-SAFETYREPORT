@@ -1,15 +1,16 @@
 package com.sopt.shinmungo.presentation.dialog
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.dialog.CustomDialog
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 
@@ -31,37 +33,39 @@ fun PhotoTimeLimitDialog(
         onDismissRequest = onDismissRequest,
         onIconClick = onDismissRequest
     ) {
-        Text(
-            text = buildAnnotatedString {
-                append("당일 촬영된 시차가 ")
-                withStyle(style = SpanStyle(color = ShinMunGoTheme.color.primary, fontWeight = FontWeight.Bold)) {
-                    append("5분 이상")
-                }
-                append("인 사진만 첨부할 수 있습니다.")
-            },
-            style = ShinMunGoTheme.typography.body2,
-            color = ShinMunGoTheme.color.gray13,
-            textAlign = TextAlign.Center,
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp)
-        )
-
-        Button(
-            onClick = { onDismissRequest() },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(50),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = ShinMunGoTheme.color.gray1,
-                contentColor = ShinMunGoTheme.color.gray9
-            ),
-            border = BorderStroke(1.dp, ShinMunGoTheme.color.gray9)
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 16.dp),
+            contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "확인",
-                style = ShinMunGoTheme.typography.body6
+                text = buildAnnotatedString {
+                    withStyle(style = SpanStyle(color = ShinMunGoTheme.color.primary, fontWeight = FontWeight.Bold)) {
+                        append("당일 촬영된 시차가 5분 이상")
+                    }
+                    append("인 사진만 첨부할 수 있습니다.")
+                },
+                style = ShinMunGoTheme.typography.body3,
+                color = ShinMunGoTheme.color.gray13,
+                textAlign = TextAlign.Center
             )
         }
+
+        RoundedCornerTextButton(
+            text = "확인",
+            textStyle = ShinMunGoTheme.typography.body4,
+            textColor = ShinMunGoTheme.color.gray8,
+            backgroundColor = ShinMunGoTheme.color.gray1,
+            roundedCornerShape = RoundedCornerShape(10.dp),
+            borderLineColor = ShinMunGoTheme.color.gray5,
+            onButtonClick = onDismissRequest,
+            modifier = Modifier
+                .width(281.dp)
+                .height(48.dp)
+                .padding(top = 16.dp)
+        )
     }
 }
 
