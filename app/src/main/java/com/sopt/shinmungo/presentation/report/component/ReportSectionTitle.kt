@@ -23,6 +23,7 @@ import com.sopt.shinmungo.presentation.report.ReportSectionType.Companion.toCont
 @Composable
 fun ReportSectionTitle(
     text: String,
+    isIconApplied: Boolean = true,
     onInfoIconClick: (ReportSectionType) -> Unit = { },
     modifier: Modifier = Modifier
 ) {
@@ -39,16 +40,18 @@ fun ReportSectionTitle(
             tint = Color.Unspecified,
             modifier = Modifier.padding(vertical = 1.dp)
         )
-        Spacer(modifier = Modifier.width(5.dp))
-        Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.ic_info_circle_16px),
-            contentDescription = stringResource(R.string.report_info_icon_content_description),
-            tint = Color.Unspecified,
-            modifier = Modifier.noRippleClickable {
-                val type = text.toContentTypeOrThrow()
-                onInfoIconClick(type)
-            }
-        )
+        if (isIconApplied) {
+            Spacer(modifier = Modifier.width(5.dp))
+            Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.ic_info_circle_16px),
+                contentDescription = stringResource(R.string.report_info_icon_content_description),
+                tint = Color.Unspecified,
+                modifier = Modifier.noRippleClickable {
+                    val type = text.toContentTypeOrThrow()
+                    onInfoIconClick(type)
+                }
+            )
+        }
     }
 }
 
