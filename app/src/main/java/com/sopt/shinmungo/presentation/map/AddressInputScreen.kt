@@ -176,45 +176,6 @@ fun AddressInputScreen(
     }
 }
 
-@Composable
-fun AddressCard(
-    modifier: Modifier = Modifier,
-    address: String,
-) {
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(5.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        ),
-        border = BorderStroke(
-            width = 1.dp,
-            color = ShinMunGoTheme.color.gray5
-        )
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.ic_location_line_black_16px),
-                contentDescription = "위치",
-                tint = ShinMunGoTheme.color.primary,
-                modifier = Modifier.size(16.dp)
-            )
-
-            Text(
-                text = address,
-                style = ShinMunGoTheme.typography.body8,
-                color = ShinMunGoTheme.color.primary
-            )
-        }
-    }
-}
-
 // AddressInputScreen.kt의 Preview 부분
 class PreviewAddressInputViewModel : AddressInputViewModel() {
     init {
