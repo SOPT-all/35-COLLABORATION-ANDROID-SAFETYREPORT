@@ -1,25 +1,21 @@
 package com.sopt.shinmungo.presentation.dialog
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.dialog.CustomDialog
@@ -40,14 +36,12 @@ fun FireTruckIllegalParkingDialog(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        color = ShinMunGoTheme.color.gray13.copy(alpha = 0.05f),
+                        color = ShinMunGoTheme.color.opacityGray13Per5,
                         shape = RoundedCornerShape(5.dp)
                     )
                     .padding(horizontal = 16.dp, vertical = 8.dp)
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.icon_alert_line_red_16px),
                         contentDescription = "경고 아이콘",
@@ -56,12 +50,8 @@ fun FireTruckIllegalParkingDialog(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "법규 위반 사실 당일 촬영한 사진으로만 신고 가능",
-                        style = ShinMunGoTheme.typography.body6.copy(
-                            fontSize = 11.5.sp,
-                            fontWeight = FontWeight.Bold,
-                            lineHeight = 14.sp
-                        ),
+                        text = "불법주차 5분 이상인 사진 2장 이상 첨부",
+                        style = ShinMunGoTheme.typography.caption2,
                         color = ShinMunGoTheme.color.primaryRed
                     )
                 }
@@ -74,22 +64,26 @@ fun FireTruckIllegalParkingDialog(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.illegalparking1),
-                    contentDescription = "Illegal Parking Example",
+                    painter = painterResource(id = R.drawable.parking4),
+                    contentDescription = "Illegal Parking Example 1",
+                    contentScale = ContentScale.FillBounds,
                     modifier = Modifier
-                        .weight(1f)
-                        .padding(end = 2.dp)
-                        .aspectRatio(1.3f)
+                        .width(143.dp) // 폭 143px
+                        .height(109.dp) // 높이 109px
+                        .padding(end = 4.dp)
                 )
                 Image(
-                    painter = painterResource(id = R.drawable.illegalparking2),
-                    contentDescription = "Illegal Parking Example",
+                    painter = painterResource(id = R.drawable.parking3),
+                    contentDescription = "Illegal Parking Example 2",
+                    contentScale = ContentScale.FillBounds,
                     modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 2.dp)
-                        .aspectRatio(1.3f)
+                        .width(143.dp) // 폭 143px
+                        .height(109.dp) // 높이 109px
+                        .padding(start = 4.dp)
                 )
             }
+
+
             Text(
                 text = "공동주택 소방차 전용구역에 주차한 차량 전용구역 진입로에 물건들을 쌓는 행위(상시 신고 가능)",
                 style = ShinMunGoTheme.typography.body9.copy(
