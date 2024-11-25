@@ -1,10 +1,7 @@
 package com.sopt.shinmungo.presentation.map
 
-import android.graphics.Paint.Align
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,23 +10,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,20 +22,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.map.component.AddressCard
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 @Composable
@@ -62,6 +43,7 @@ fun AddressInputScreen(
     viewModel: AddressInputViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val selectedLocation = stringResource(R.string.address_example_text)
 
     Column(
         modifier = modifier
@@ -70,12 +52,12 @@ fun AddressInputScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         CommonTopBar(
-            title = "주소 입력",
+            title = stringResource(R.string.address_topbar_text),
             onLeftContent = {
                 IconButton(onClick = onBackClick) {
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left_line_white_24),
-                        contentDescription = "뒤로 가기",
+                        contentDescription = stringResource(R.string.back_screen_text),
                         tint = Color.White
                     )
                 }
@@ -90,7 +72,7 @@ fun AddressInputScreen(
         ){
             Image(
                 painter = painterResource(id = R.drawable.img_map_placeholder),
-                contentDescription = "지도 사진",
+                contentDescription = stringResource(R.string.address_map_img_description),
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f)
@@ -98,7 +80,7 @@ fun AddressInputScreen(
             )
 
             AddressCard(
-                address = "서울특별시 마포구 땡땡로12로 3"
+                address = stringResource(R.string.address_example_text)
             )
 
             Row(
@@ -109,7 +91,7 @@ fun AddressInputScreen(
                     modifier = Modifier.weight(1f)
                 ){
                     RoundedCornerTextButton(
-                        text = "키워드 검색",
+                        text = stringResource(R.string.address_keyword_search_text),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 16.dp),
@@ -132,7 +114,7 @@ fun AddressInputScreen(
                     modifier = Modifier.weight(1f)
                 ){
                     RoundedCornerTextButton(
-                        text = "주소 검색",
+                        text = stringResource(R.string.address_search_text),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 16.dp),
@@ -161,14 +143,13 @@ fun AddressInputScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
-                    text = "위치 선택",
+                    text = stringResource(R.string.address_location_selection_text),
                     textStyle = ShinMunGoTheme.typography.body4,
                     textColor = ShinMunGoTheme.color.gray1,
                     borderLineColor = null,
                     backgroundColor = ShinMunGoTheme.color.primary,
                     roundedCornerShape = RoundedCornerShape(10.dp),
                     onButtonClick = {
-                        val selectedLocation = "서울특별시 마포구 땡땡로12로 3"
                         onConfirmClick(selectedLocation)
                     }
                 )
