@@ -29,7 +29,7 @@ fun ReportLocationSection(
     viewModel: ReportViewModel,
     modifier: Modifier = Modifier
 ) {
-    val location = viewModel.location.collectAsStateWithLifecycle("")
+    val location = viewModel.location.collectAsStateWithLifecycle()
 
     Row(
         modifier = modifier.fillMaxWidth(),
