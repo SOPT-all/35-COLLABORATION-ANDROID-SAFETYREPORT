@@ -23,7 +23,7 @@ fun AllCategoryTopBar(
 ) {
     Box(modifier = Modifier.fillMaxWidth()) {
         CommonTopBar(
-            title = "",
+            title = stringResource(id = R.string.all_category_title),
             onLeftContent = {
                 IconButton(onClick = onNavigateBack, modifier = Modifier.padding(start = 8.dp)) {
                     Icon(
@@ -35,12 +35,12 @@ fun AllCategoryTopBar(
             }
         )
 
-        Text(
-            text = stringResource(id = R.string.all_category_title),
-            style = ShinMunGoTheme.typography.heading2,
-            color = ShinMunGoTheme.color.gray1,
-            modifier = Modifier.align(Alignment.Center)
-        )
+//        Text(
+//            text = stringResource(id = R.string.all_category_title),
+//            style = ShinMunGoTheme.typography.heading2,
+//            color = ShinMunGoTheme.color.gray1,
+//            modifier = Modifier.align(Alignment.Center)
+//        )
     }
 }
 
