@@ -9,6 +9,26 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class ReportViewModel : ViewModel() {
+    val illegalParkingCategory = listOf(
+        "소화전",
+        "교차로 모퉁이",
+        "버스 정류소",
+        "횡단보도",
+        "어린이 보호구역",
+        "인도",
+        "기타",
+        "장애인 전용구역",
+        "소방차 전용구역",
+        "친환경차 전용구역"
+    )
+
+    private val _isCategorySelected = MutableStateFlow<Boolean>(false)
+    val isCategorySelected: StateFlow<Boolean> get() = _isCategorySelected
+    private val _selectedCategory = MutableStateFlow<String>("")
+    val selectedCategory: StateFlow<String> get() = _selectedCategory
+    private val _isDropdownOpen = MutableStateFlow<Boolean>(false)
+    val isDropdownOpen: StateFlow<Boolean> get() = _isDropdownOpen
+
     private val _photoList = MutableStateFlow<List<ReportPhotoItem>>(emptyList())
     val photoList: StateFlow<List<ReportPhotoItem>> get() = _photoList
     private val _showDeleteIcons = MutableStateFlow<Map<Int, Boolean>>(emptyMap())
@@ -29,6 +49,19 @@ class ReportViewModel : ViewModel() {
 
     private val _isReportSharingAgreed = MutableStateFlow(false)
     val isReportSharingAgreed: StateFlow<Boolean> get() = _isReportSharingAgreed
+
+    fun updateIsCategorySelected() {
+        _isCategorySelected.value = true
+    }
+
+    fun updateSelectedCategory(newCategory: String) {
+        _selectedCategory.value = newCategory
+        updateIsCategorySelected()
+    }
+
+    fun updateIsDropdownOpen() {
+        _isDropdownOpen.value = !_isDropdownOpen.value
+    }
 
     fun updatePhotoList(newPhotoList: ArrayList<ReportPhotoItem>) {
         _photoList.value = newPhotoList
