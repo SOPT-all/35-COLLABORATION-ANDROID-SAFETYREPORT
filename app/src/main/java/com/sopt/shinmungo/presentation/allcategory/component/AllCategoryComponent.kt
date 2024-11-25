@@ -30,8 +30,14 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.domain.entity.AllCategoryEntity
 
 /**
- * 카테고리 항목 컴포넌트
+ * 카테고리 항목을 표시하는 컴포넌트입니다.
+ *
+ * @param category 카테고리 정보를 포함한 데이터 엔티티입니다.
+ * @param isExpanded 카테고리가 확장된 상태인지 여부를 나타냅니다.
+ * @param reportableItems 신고 가능한 항목들의 리스트입니다.
+ * @param onClick 카테고리를 클릭했을 때 호출되는 콜백 함수입니다.
  */
+
 @Composable
 fun AllCategoryComponent(
     category: AllCategoryEntity,

@@ -14,6 +14,12 @@ import com.sopt.shinmungo.presentation.allcategory.component.AllCategoryComponen
 import com.sopt.shinmungo.presentation.allcategory.component.AllCategoryTopBar
 import com.sopt.shinmungo.presentation.allcategory.viewmodel.AllCategoryViewModel
 
+/**
+ * 전체 카테고리 화면을 표시하는 컴포저블 함수입니다.
+ *
+ * @param onNavigateBack 뒤로가기 버튼 클릭 시 호출되는 콜백 함수입니다.
+ * @param viewModel 화면에 데이터를 제공하고 비즈니스 로직을 처리하는 ViewModel입니다.
+ */
 @Composable
 fun AllCategoryScreen(
     onNavigateBack: () -> Unit,
