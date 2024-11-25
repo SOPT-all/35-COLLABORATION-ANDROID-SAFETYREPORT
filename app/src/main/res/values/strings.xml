@@ -19,6 +19,10 @@
 
     <!-- Dialog Messages -->
     <string name="photo_delete_confirmation_message">사진을 삭제하시겠습니까?</string>
+    <string name="photo_size_limit_prefix">사진은 </string>
+    <string name="photo_size_limit_each">각 30MB, </string>
+    <string name="photo_size_limit_total">총 180MB </string>
+    <string name="photo_size_limit_suffix">까지만 첨부 가능합니다.</string>
 
     <!--Icon Descriptions-->
     <string name="alert_icon_description">경고 아이콘</string>

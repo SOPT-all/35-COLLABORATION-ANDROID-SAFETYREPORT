@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.dialog.CustomDialog
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
@@ -27,7 +29,7 @@ fun PhotoSizeLimitDialog(
     onDismissRequest: () -> Unit
 ) {
     CustomDialog(
-        title = "알림",
+        title = stringResource(id = R.string.alert_title),
         icon = Icons.Default.Close,
         onDismissRequest = onDismissRequest,
         onIconClick = onDismissRequest
@@ -39,14 +41,14 @@ fun PhotoSizeLimitDialog(
         ) {
             Text(
                 text = buildAnnotatedString {
-                    append("사진은 ")
+                    append(stringResource(id = R.string.photo_size_limit_prefix))
                     withStyle(style = SpanStyle(color = ShinMunGoTheme.color.primary, fontWeight = FontWeight.Bold)) {
-                        append("각 30MB, ")
+                        append(stringResource(id = R.string.photo_size_limit_each))
                     }
                     withStyle(style = SpanStyle(color = ShinMunGoTheme.color.primary, fontWeight = FontWeight.Bold)) {
-                        append("총 180MB ")
+                        append(stringResource(id = R.string.photo_size_limit_total))
                     }
-                    append("까지만 첨부 가능합니다.")
+                    append(stringResource(id = R.string.photo_size_limit_suffix))
                 },
                 style = ShinMunGoTheme.typography.body3,
                 color = ShinMunGoTheme.color.gray13,
@@ -58,7 +60,7 @@ fun PhotoSizeLimitDialog(
         }
 
         RoundedCornerTextButton(
-            text = "확인",
+            text = stringResource(id = R.string.ok),
             textStyle = ShinMunGoTheme.typography.body4,
             textColor = ShinMunGoTheme.color.gray8,
             backgroundColor = ShinMunGoTheme.color.gray1,
