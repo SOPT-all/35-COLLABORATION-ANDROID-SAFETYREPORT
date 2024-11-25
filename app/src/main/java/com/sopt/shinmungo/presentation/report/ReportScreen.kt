@@ -48,14 +48,13 @@ fun ReportScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 50.dp)
     ) {
         CommonTopBar(
             title = "불법주정차",
             onLeftContent = {
                 IconButton(
                     modifier = Modifier.size(24.dp),
-                    onClick = { }
+                    onClick = { /* 뒤로가기 */ }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
@@ -67,7 +66,7 @@ fun ReportScreen(
             },
         )
 
-        Box() {
+        Box {
             Box(
                 modifier = modifier
                     .fillMaxSize()
@@ -76,9 +75,8 @@ fun ReportScreen(
                 Column(
                     verticalArrangement = Arrangement.spacedBy(28.dp),
                     modifier = Modifier
-                        .padding(top = 18.dp)
-                        .padding(horizontal = 18.dp)
-                        .verticalScroll(rememberScrollState()),
+                        .verticalScroll(rememberScrollState())
+                        .padding(horizontal = 18.dp, vertical = 16.dp),
                 ) {
                     ReportPhotoSection(viewModel = viewModel)
 
@@ -87,9 +85,9 @@ fun ReportScreen(
                     ReportContentSection(viewModel = viewModel)
 
                     ReportPhoneNumberSection(viewModel = viewModel)
-                }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(50.dp))
+                }
 
                 Surface(
                     shadowElevation = 8.dp,
