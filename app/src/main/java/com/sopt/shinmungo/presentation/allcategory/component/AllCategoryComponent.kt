@@ -63,7 +63,7 @@ fun AllCategoryComponent(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = category.title,
-                    style = ShinMunGoTheme.typography.heading2.copy(fontSize = 15.sp),
+                    style = ShinMunGoTheme.typography.body4,
                     color = ShinMunGoTheme.color.gray13,
                     modifier = Modifier.padding(end = 4.dp)
                 )
@@ -104,7 +104,7 @@ fun AllCategoryComponent(
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
                         text = stringResource(id = R.string.all_category_reportable_hint),
-                        style = ShinMunGoTheme.typography.body3.copy(lineHeight = 20.sp),
+                        style = ShinMunGoTheme.typography.body3,
                         color = ShinMunGoTheme.color.gray10
                     )
                     Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
