@@ -115,6 +115,7 @@ fun AllCategoryComponent(
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewAllCategoryComponent() {

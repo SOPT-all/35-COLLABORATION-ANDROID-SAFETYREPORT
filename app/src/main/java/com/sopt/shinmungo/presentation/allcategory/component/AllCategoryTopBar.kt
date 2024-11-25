@@ -1,7 +1,6 @@
 package com.sopt.shinmungo.presentation.allcategory.component
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -12,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
@@ -25,17 +25,12 @@ fun AllCategoryTopBar(
         CommonTopBar(
             title = "",
             onLeftContent = {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(start = 8.dp)
-                ) {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
-                            contentDescription = stringResource(id = R.string.back_button_description),
-                            tint = ShinMunGoTheme.color.gray1
-                        )
-                    }
+                IconButton(onClick = onNavigateBack, modifier = Modifier.padding(start = 8.dp)) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
+                        contentDescription = stringResource(id = R.string.back_button_description),
+                        tint = ShinMunGoTheme.color.gray1
+                    )
                 }
             }
         )
@@ -45,6 +40,16 @@ fun AllCategoryTopBar(
             style = ShinMunGoTheme.typography.heading2,
             color = ShinMunGoTheme.color.gray1,
             modifier = Modifier.align(Alignment.Center)
+        )
+    }
+}
+
+@Preview(showBackground = true, name = "All Category Top Bar")
+@Composable
+fun PreviewAllCategoryTopBar() {
+    ShinMunGoTheme {
+        AllCategoryTopBar(
+            onNavigateBack = { /* 뒤로가기 버튼 클릭 시 동작 */ }
         )
     }
 }
