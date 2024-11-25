@@ -12,6 +12,8 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.navigation.Route
 import com.sopt.shinmungo.presentation.home.navigation.homeScreen
 import com.sopt.shinmungo.presentation.main.component.MainBottomBars
+import com.sopt.shinmungo.presentation.map.AddressInputScreen
+import com.sopt.shinmungo.presentation.map.navigation.addressInputScreen
 
 @Composable
 fun MainScreen(
@@ -48,6 +50,10 @@ private fun MainNavHost(
         startDestination = startDestination,
     ) {
         homeScreen(
+            navController = navController,
+            modifier = modifier
+        )
+        addressInputScreen(
             navController = navController,
             modifier = modifier
         )

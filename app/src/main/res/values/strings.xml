@@ -56,4 +56,12 @@
     <string name="close">닫기</string>
     <string name="go_to_home">홈으로</string>
 
+    <!--Address Input Screen-->
+    <string name="address_topbar_text">주소 입력</string>
+    <string name="back_screen_text">뒤로 가기</string>
+    <string name="address_map_img_description">지도 사진</string>
+    <string name="address_example_text">서울특별시 마포구 땡땡로12로 3</string>
+    <string name="address_keyword_search_text">키워드 검색</string>
+    <string name="address_search_text">주소 검색</string>
+    <string name="address_location_selection_text">위치 선택</string>
 </resources>
