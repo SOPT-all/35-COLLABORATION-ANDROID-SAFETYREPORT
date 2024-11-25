@@ -95,7 +95,7 @@ fun PhotoItem(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(color = Color(0x99121212))
+                    .background(color = ShinMunGoTheme.color.opacityGray13Per60)
 
             ) {
                 Image(
