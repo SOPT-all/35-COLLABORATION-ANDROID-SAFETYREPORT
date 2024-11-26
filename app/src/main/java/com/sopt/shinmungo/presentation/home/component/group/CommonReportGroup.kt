@@ -61,7 +61,7 @@ fun CommonReportGroup(
 
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_next_home_10),
-                    contentDescription = "",
+                    contentDescription = title,
                     tint = ShinMunGoTheme.color.gray8,
                     modifier = Modifier.showIf(onClickRight != null)
                         .noRippleClickable(onClick = onClickRight ?: {})

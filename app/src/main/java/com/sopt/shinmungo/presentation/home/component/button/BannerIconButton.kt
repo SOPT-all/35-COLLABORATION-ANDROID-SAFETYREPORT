@@ -21,7 +21,7 @@ fun BannerIconButton(
 ) {
     Icon(
         imageVector = imageVector,
-        contentDescription = "",
+        contentDescription = EMPTY_DESCRIPTION,
         tint = ShinMunGoTheme.color.gray1,
         modifier = modifier
             .background(
@@ -31,6 +31,8 @@ fun BannerIconButton(
             .noRippleClickable(onClick),
     )
 }
+
+private const val EMPTY_DESCRIPTION = ""
 
 @Preview(showBackground = true)
 @Composable
