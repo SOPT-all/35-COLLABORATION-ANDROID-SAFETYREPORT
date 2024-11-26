@@ -9,6 +9,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.sopt.shinmungo.core.navigation.Route
+import com.sopt.shinmungo.presentation.allcategory.navigation.navigateToAllCategory
 import com.sopt.shinmungo.presentation.home.navigation.Home
 import com.sopt.shinmungo.presentation.home.navigation.navigateToHome
 
@@ -42,10 +43,9 @@ class MainNavigator(
         }
 
         when (tab) {
-            MainTab.HOME -> navController.navigateToHome()
+            MainTab.HOME -> navController.navigateToHome(navOptions = mainNavOption)
 
-            // TODO: 신고 카테고리 이동 로직
-            MainTab.REPORT -> {}
+            MainTab.REPORT -> navController.navigateToAllCategory(navOptions = mainNavOption)
 
             // 구현 예정 없는 화면
             MainTab.PREVENTION -> {}

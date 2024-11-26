@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.navigation.MainTabRoute
+import com.sopt.shinmungo.presentation.allcategory.navigation.AllCategory
 import com.sopt.shinmungo.presentation.home.navigation.Home
 
 enum class MainTab(
@@ -23,7 +24,7 @@ enum class MainTab(
         title = R.string.main_bottom_bar_report,
         selectedIconRes = R.drawable.ic_safety_filled_24,
         unselectedIconRes = R.drawable.ic_safety_24,
-        route = Report
+        route = AllCategory
     ),
     PREVENTION(
         title = R.string.main_bottom_bar_prevent,
