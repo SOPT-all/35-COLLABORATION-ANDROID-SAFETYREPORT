@@ -21,20 +21,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerIconButton
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
 import com.sopt.shinmungo.presentation.report.type.ReportSectionType
-import com.sopt.shinmungo.presentation.report.ReportViewModel
 
 @Composable
 fun ReportContentSection(
-    viewModel: ReportViewModel,
+    content: String,
+    isRecommendWord: Boolean,
+    onContentChange: (String) -> Unit,
+    onIsRecommendWordClicked:() -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column {
@@ -66,34 +66,42 @@ fun ReportContentSection(
 
         Spacer(modifier = Modifier.height(15.dp))
 
-        ReportContentTextField(viewModel)
+        ReportContentTextField(
+            content = content,
+            isRecommendWord = isRecommendWord,
+            onContentChange = { onContentChange(it) },
+            onIsRecommendWordClicked = onIsRecommendWordClicked
+        )
     }
 }
 
 @Composable
-fun ReportContentTextField(viewModel: ReportViewModel) {
-    val content = viewModel.content.collectAsStateWithLifecycle()
-    val isRecommendWord = viewModel.isRecommendWord.collectAsStateWithLifecycle()
-
+fun ReportContentTextField(
+    content: String,
+    isRecommendWord: Boolean,
+    onContentChange: (String) -> Unit,
+    onIsRecommendWordClicked: () -> Unit
+) {
     Column {
         Box(
             modifier = Modifier
                 .border(1.dp, ShinMunGoTheme.color.gray5, RoundedCornerShape(5.dp))
                 .background(
-                    color = if (content.value.isEmpty()) ShinMunGoTheme.color.gray3 else ShinMunGoTheme.color.gray1
+                    color = if (content.isEmpty()) ShinMunGoTheme.color.gray3 else ShinMunGoTheme.color.gray1
                 )
                 .padding(12.dp)
         ) {
             BasicTextField(
-                value = content.value,
-                onValueChange = { viewModel.updateContent(it) },
+                value = content,
+//                onValueChange = { viewModel.updateContent(it) },
+                onValueChange = { onContentChange(it) },
                 textStyle = ShinMunGoTheme.typography.body9,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(80.dp)
             )
 
-            if (content.value.isEmpty()) {
+            if (content.isEmpty()) {
                 Text(
                     text = stringResource(R.string.report_content_placeholder),
                     style = ShinMunGoTheme.typography.body9,
@@ -110,9 +118,10 @@ fun ReportContentTextField(viewModel: ReportViewModel) {
         ) {
             CheckButtonWithTextInfoIcon(
                 text = stringResource(R.string.report_recommend_word),
-                isChecked = isRecommendWord.value,
+                isChecked = isRecommendWord,
                 isIconApplied = false,
-                onButtonClick = { viewModel.updateIsRecommendWord() }
+//                onButtonClick = { viewModel.updateIsRecommendWord() }
+                onButtonClick = onIsRecommendWordClicked
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -136,14 +145,5 @@ fun ReportContentTextField(viewModel: ReportViewModel) {
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ReportContentSectionPreview(modifier: Modifier = Modifier) {
-    val viewModel = ReportViewModel()
-    ShinMunGoTheme {
-        ReportContentSection(viewModel)
     }
 }

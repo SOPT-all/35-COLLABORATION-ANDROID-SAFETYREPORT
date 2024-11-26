@@ -117,7 +117,12 @@ fun ReportScreen(
                         onLocationButtonClick = { viewModel.updateLocation(it) }
                     )
 
-                    ReportContentSection(viewModel = viewModel)
+                    ReportContentSection(
+                        content = content.value,
+                        isRecommendWord = isRecommendWord.value,
+                        onContentChange = { viewModel.updateContent(it) },
+                        onIsRecommendWordClicked = { viewModel.updateIsRecommendWord() }
+                    )
 
                     ReportPhoneNumberSection(viewModel = viewModel)
 
