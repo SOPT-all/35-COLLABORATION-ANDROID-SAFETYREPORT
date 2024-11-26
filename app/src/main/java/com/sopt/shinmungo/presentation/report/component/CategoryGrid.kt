@@ -10,14 +10,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
-import com.sopt.shinmungo.presentation.report.ReportViewModel
 
 @Composable
-fun CategoryGrid(viewModel: ReportViewModel, modifier: Modifier = Modifier) {
+fun CategoryGrid(
+    illegalParkingCategory: List<String>,
+    updateSelectedCategory: (String) -> Unit,
+    updateIsDropDownOpen: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier
@@ -26,15 +29,15 @@ fun CategoryGrid(viewModel: ReportViewModel, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        viewModel.illegalParkingCategory.forEach { category ->
+        illegalParkingCategory.forEach { category ->
             if (category == "기타") {
                 item(span = { GridItemSpan(2) }) {
                     CategoryButton(
                         category = category,
                         isClicked = false,
                         onCategoryButtonClick = { selectedCategory ->
-                            viewModel.updateSelectedCategory(selectedCategory)
-                            viewModel.updateIsDropdownOpen()
+                            updateSelectedCategory(selectedCategory)
+                            updateIsDropDownOpen()
                         },
                     )
                 }
@@ -54,12 +57,11 @@ fun CategoryGrid(viewModel: ReportViewModel, modifier: Modifier = Modifier) {
                         category = category,
                         isClicked = false,
                         onCategoryButtonClick = { selectedCategory ->
-                            viewModel.updateSelectedCategory(selectedCategory)
-                            viewModel.updateIsDropdownOpen()
+                            updateSelectedCategory(selectedCategory)
+                            updateIsDropDownOpen()
                         },
                     )
                 }
-
             }
         }
     }

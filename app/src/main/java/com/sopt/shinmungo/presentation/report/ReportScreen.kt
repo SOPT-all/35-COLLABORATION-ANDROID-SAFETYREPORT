@@ -42,11 +42,13 @@ import com.sopt.shinmungo.presentation.report.component.ReportPhotoSection
 
 @Composable
 fun ReportScreen(
-    viewModel: ReportViewModel,
+    viewModel: ReportViewModel = ReportViewModel(),
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val selectedCategory = viewModel.selectedCategory.collectAsStateWithLifecycle()
     val isCategorySelected = viewModel.isCategorySelected.collectAsStateWithLifecycle()
+    val isDropdownOpen = viewModel.isDropdownOpen.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -132,7 +134,11 @@ fun ReportScreen(
             }
 
             DropdownCategory(
-                viewModel = viewModel,
+                selectedCategory = selectedCategory.value,
+                isDropdownOpen = isDropdownOpen.value,
+                illegalParkingCategory = viewModel.illegalParkingCategory,
+                updateSelectedCategory = { viewModel.updateSelectedCategory(it) },
+                updateIsDropDownOpen = { viewModel.updateIsDropdownOpen() },
                 modifier = Modifier.noRippleClickable {
                     viewModel.updateIsDropdownOpen()
                 }
