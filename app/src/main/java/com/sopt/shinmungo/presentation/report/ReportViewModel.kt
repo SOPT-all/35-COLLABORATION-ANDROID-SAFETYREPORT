@@ -120,7 +120,9 @@ class ReportViewModel : ViewModel() {
     fun updateIsRecommendWord() {
         _isRecommendWord.value = !_isRecommendWord.value
         if (_isRecommendWord.value) {
-            _content.value += RECOMMEND_WORD_CONTEXT
+            _content.value = RECOMMEND_WORD_CONTEXT
+        } else {
+            _content.value = _content.value.replace(RECOMMEND_WORD_CONTEXT, "").toString()
         }
     }
 
