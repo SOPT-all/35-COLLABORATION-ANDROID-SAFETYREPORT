@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.sopt.shinmungo.core.navigation.MainTabRoute
+import com.sopt.shinmungo.presentation.home.HomeRoute
 import kotlinx.serialization.Serializable
 
 fun NavHostController.navigateToHome(navOptions: NavOptions? = null) = navigate(Home)
@@ -15,7 +16,11 @@ fun NavGraphBuilder.homeScreen(
     modifier: Modifier = Modifier
 ) {
     composable<Home> {
-
+        HomeRoute(
+            modifier = modifier,
+            navigateToCategory = {},
+            navigateToParkingReport = {}
+        )
     }
 }
 
