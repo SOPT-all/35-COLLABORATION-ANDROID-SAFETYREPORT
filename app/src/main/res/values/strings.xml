@@ -12,6 +12,13 @@
     <string name="check_button_content_description">체크 아이콘</string>
     <string name="icon_button_content_description">아이콘 버튼</string>
 
+    <!--AllCategory Screen-->
+    <string name="all_category_title">전체 메뉴</string>
+    <string name="all_category_info_description">정보 아이콘</string>
+    <string name="all_category_select_button">선택하기</string>
+    <string name="all_category_reportable_hint">아래의 경우 신고할 수 있는 유형입니다.</string>
+    <string name="back_button_description">뒤로가기</string>
+    <string name="info_icon_description">정보 아이콘</string>
     <!--Dialog Titles-->
     <string name="fire_truck_illegal_parking_title">소방차 전용구역 불법주차</string>
     <string name="media_selection_title">미디어 선택</string>
