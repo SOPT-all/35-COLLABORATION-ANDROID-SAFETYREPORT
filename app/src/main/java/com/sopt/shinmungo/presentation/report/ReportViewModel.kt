@@ -6,7 +6,10 @@ import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class ReportViewModel : ViewModel() {
@@ -57,6 +60,19 @@ class ReportViewModel : ViewModel() {
     private val _isCameraButtonActive = MutableStateFlow(true)
     val isCameraButtonActive: StateFlow<Boolean> get() = _isCameraButtonActive
     private var countdownJob: Job? = null
+
+    val isPostButtonActive: StateFlow<Boolean> = combine(
+        _photoList, _location, _content, _isReportSharingAgreed
+    ) { photoList, location, content, isReportSharingAgreed ->
+        photoList.isNotEmpty() &&
+                location.isNotEmpty() &&
+                content.length in MIN_LENGTH_OF_CONTENT..MAX_LENGTH_OF_CONTENT &&
+                isReportSharingAgreed
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = false
+    )
 
     fun startCameraCooldown(durationInSeconds: Int) {
         if (!_isCameraButtonActive.value) return
@@ -143,5 +159,7 @@ class ReportViewModel : ViewModel() {
         const val RECOMMEND_WORD_CONTEXT = "소방차 전용구역 불법주차 신고입니다."
         const val USER_PHONE_NUMBER = "010-1234-5678"
         const val DEFAULT_PHONE_NUMBER_MESSAGE = "전화번호를 입력해주세요"
+        const val MIN_LENGTH_OF_CONTENT = 5
+        const val MAX_LENGTH_OF_CONTENT = 200
     }
 }

@@ -59,6 +59,7 @@ fun ReportScreen(
     val isReportSharingAgreed = viewModel.isReportSharingAgreed.collectAsStateWithLifecycle()
     val cameraCooldownTime = viewModel.cameraCooldownTime.collectAsStateWithLifecycle()
     val isCameraButtonActive = viewModel.isCameraButtonActive.collectAsStateWithLifecycle()
+    val isPostButtonActive = viewModel.isPostButtonActive.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -151,9 +152,15 @@ fun ReportScreen(
                             text = "제출",
                             textStyle = ShinMunGoTheme.typography.heading1,
                             textColor = ShinMunGoTheme.color.gray1,
-                            backgroundColor = ShinMunGoTheme.color.primary,
+                            backgroundColor = if (isPostButtonActive.value) ShinMunGoTheme.color.primary else ShinMunGoTheme.color.primaryLight,
                             roundedCornerShape = RoundedCornerShape(10.dp),
-                            onButtonClick = { /* POST API */ },
+                            onButtonClick = {
+                                if (isPostButtonActive.value) {
+                                    //api
+                                } else {
+                                    /* 클릭 방지 */
+                                }
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(10.dp)
