@@ -55,6 +55,8 @@ fun ReportScreen(
     val content = viewModel.content.collectAsStateWithLifecycle()
     val isRecommendWord = viewModel.isRecommendWord.collectAsStateWithLifecycle()
     val phoneNumber = viewModel.phoneNumber.collectAsStateWithLifecycle()
+    val showPhoneNumber = viewModel.showPhoneNumber.collectAsStateWithLifecycle()
+    val isReportSharingAgreed = viewModel.isReportSharingAgreed.collectAsStateWithLifecycle()
     val cameraCooldownTime = viewModel.cameraCooldownTime.collectAsStateWithLifecycle()
     val isCameraButtonActive = viewModel.isCameraButtonActive.collectAsStateWithLifecycle()
 
@@ -124,7 +126,12 @@ fun ReportScreen(
                         onIsRecommendWordClicked = { viewModel.updateIsRecommendWord() }
                     )
 
-                    ReportPhoneNumberSection(viewModel = viewModel)
+                    ReportPhoneNumberSection(
+                        showPhoneNumber = showPhoneNumber.value,
+                        phoneNumber = phoneNumber.value,
+                        isReportSharingAgreed = isReportSharingAgreed.value,
+                        onReportSharingAgreedClicked = { viewModel.updateIsReportSharingAgreed() }
+                    )
 
                     Spacer(modifier = Modifier.height(50.dp))
                 }

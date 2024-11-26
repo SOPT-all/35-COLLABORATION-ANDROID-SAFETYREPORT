@@ -12,25 +12,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.report.type.ReportSectionType
-import com.sopt.shinmungo.presentation.report.ReportViewModel
 
 @Composable
 fun ReportPhoneNumberSection(
-    viewModel: ReportViewModel,
+    showPhoneNumber: Boolean,
+    phoneNumber: String,
+    isReportSharingAgreed: Boolean,
+    onReportSharingAgreedClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val showPhoneNumber = viewModel.showPhoneNumber.collectAsStateWithLifecycle()
-    val phoneNumber = viewModel.phoneNumber.collectAsStateWithLifecycle()
-    val isReportSharingAgreed = viewModel.isReportSharingAgreed.collectAsStateWithLifecycle()
-
     Column {
         ReportSectionTitle(
             text = ReportSectionType.PHONE_NUMBER.type,
@@ -49,9 +45,9 @@ fun ReportPhoneNumberSection(
                 .padding(14.dp)
         ) {
             Text(
-                text = phoneNumber.value,
+                text = phoneNumber,
                 style = ShinMunGoTheme.typography.body9,
-                color = if (showPhoneNumber.value) ShinMunGoTheme.color.gray13 else ShinMunGoTheme.color.opacityGray13Per40
+                color = if (showPhoneNumber) ShinMunGoTheme.color.gray13 else ShinMunGoTheme.color.opacityGray13Per40
             )
         }
 
@@ -59,9 +55,9 @@ fun ReportPhoneNumberSection(
 
         CheckButtonWithTextInfoIcon(
             text = stringResource(R.string.report_sharing_agreed),
-            isChecked = isReportSharingAgreed.value,
+            isChecked = isReportSharingAgreed,
             isIconApplied = true,
-            onButtonClick = { viewModel.updateIsReportSharingAgreed() }
+            onButtonClick = onReportSharingAgreedClicked
         )
     }
 }
