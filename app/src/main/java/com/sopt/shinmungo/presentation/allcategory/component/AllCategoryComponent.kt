@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -83,8 +82,7 @@ fun AllCategoryComponent(
                     roundedCornerShape = RoundedCornerShape(4.dp),
                     onButtonClick = { /* 신고하기 로직 */ },
                     modifier = Modifier
-                        .width(92.dp)
-                        .padding(vertical = 8.dp)
+                        .padding(horizontal = 20.dp, vertical = 8.dp)
                 )
             }
         }
