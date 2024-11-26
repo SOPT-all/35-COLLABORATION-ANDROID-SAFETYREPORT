@@ -22,38 +22,36 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
-import com.sopt.shinmungo.presentation.report.ReportViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun ShowPhotoList(
-    viewModel: ReportViewModel,
+    photoItems: List<ReportPhotoItem>,
+    showDeleteIcons: Map<Int, Boolean>,
+    onDelete: (ReportPhotoItem) -> Unit,
+    onClickShowDeleteIcon: (Int) -> Unit,
 ) {
-    val photoItems = viewModel.photoList.collectAsStateWithLifecycle()
-    val showDeleteIcons = viewModel.showDeleteIcons.collectAsStateWithLifecycle()
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(photoItems.value) { photoItem ->
-            val showDelete = showDeleteIcons.value[photoItem.photoId] == true
+        items(photoItems) { photoItem ->
+            val showDelete = showDeleteIcons[photoItem.photoId] == true
             PhotoItem(
                 photoItem = photoItem,
                 showDeleteIcon = showDelete,
                 onDelete = {
                     /* 다이얼로그 연결 */
-                    viewModel.deletePhotoFromList(it)
+                    onDelete(it)
                 },
                 onClick = {
-                    viewModel.showDeleteIconForPhoto(photoItem.photoId)
+                    onClickShowDeleteIcon(photoItem.photoId)
                 },
             )
         }
@@ -127,14 +125,5 @@ fun BoxWhenPhotoListEmpty() {
             style = ShinMunGoTheme.typography.body9,
             color = Color(0x66121212)
         )
-    }
-}
-
-@Preview
-@Composable
-fun ShowPhotoListPreview(modifier: Modifier = Modifier) {
-    val viewModel = ReportViewModel()
-    ShinMunGoTheme {
-        ShowPhotoList(viewModel)
     }
 }

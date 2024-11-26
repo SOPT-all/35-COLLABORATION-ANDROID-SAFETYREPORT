@@ -34,6 +34,7 @@ import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextBu
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
+import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.presentation.report.component.DropdownCategory
 import com.sopt.shinmungo.presentation.report.component.ReportContentSection
 import com.sopt.shinmungo.presentation.report.component.ReportLocationSection
@@ -46,9 +47,17 @@ fun ReportScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val selectedCategory = viewModel.selectedCategory.collectAsStateWithLifecycle()
     val isCategorySelected = viewModel.isCategorySelected.collectAsStateWithLifecycle()
+    val selectedCategory = viewModel.selectedCategory.collectAsStateWithLifecycle()
     val isDropdownOpen = viewModel.isDropdownOpen.collectAsStateWithLifecycle()
+    val photoList = viewModel.photoList.collectAsStateWithLifecycle()
+    val showDeleteIcons = viewModel.showDeleteIcons.collectAsStateWithLifecycle()
+    val location = viewModel.location.collectAsStateWithLifecycle()
+    val content = viewModel.content.collectAsStateWithLifecycle()
+    val isRecommendWord = viewModel.isRecommendWord.collectAsStateWithLifecycle()
+    val phoneNumber = viewModel.phoneNumber.collectAsStateWithLifecycle()
+    val cameraCooldownTime = viewModel.cameraCooldownTime.collectAsStateWithLifecycle()
+    val isCameraButtonActive = viewModel.isCameraButtonActive.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -83,7 +92,26 @@ fun ReportScreen(
                         .verticalScroll(rememberScrollState())
                         .padding(horizontal = 18.dp, vertical = 16.dp),
                 ) {
-                    ReportPhotoSection(viewModel = viewModel)
+                    ReportPhotoSection(
+                        photoItems = photoList.value,
+                        cameraCooldownTime = cameraCooldownTime.value,
+                        isCameraButtonActive = isCameraButtonActive.value,
+                        onCameraButtonClick = { viewModel.startCameraCooldown(300) },
+                        onGalleryButtonClick = {
+                            /* 갤러리 화면으로 이동 */
+                            val newPhotoList = arrayListOf(
+                                // 임시로 값 연결
+                                ReportPhotoItem(1, "https://via.placeholder.com/70"),
+                                ReportPhotoItem(2, "https://via.placeholder.com/70"),
+                                ReportPhotoItem(3, "https://via.placeholder.com/70"),
+                                ReportPhotoItem(4, "https://via.placeholder.com/70"),
+                            )
+                            viewModel.updatePhotoList(newPhotoList)
+                        },
+                        onDeleteButtonClick = { viewModel.deletePhotoFromList(it) },
+                        showDeleteIcons = showDeleteIcons.value,
+                        onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) }
+                    )
 
                     ReportLocationSection(viewModel = viewModel)
 
