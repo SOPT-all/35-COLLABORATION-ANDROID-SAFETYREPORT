@@ -129,7 +129,7 @@ class ReportViewModel : ViewModel() {
 
     fun updateContent(newContent: String) {
         _content.value = newContent
-        val value = _content.value.length >= 5
+        val value = _content.value.length >= MIN_LENGTH_OF_CONTENT
         updateShowPhoneNumber(value)
     }
 
