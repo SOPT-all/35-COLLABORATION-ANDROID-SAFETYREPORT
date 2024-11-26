@@ -19,4 +19,12 @@
     <string name="all_category_reportable_hint">아래의 경우 신고할 수 있는 유형입니다.</string>
     <string name="back_button_description">뒤로가기</string>
     <string name="info_icon_description">정보 아이콘</string>
+    <!--Address Input Screen-->
+    <string name="address_topbar_text">주소 입력</string>
+    <string name="back_screen_text">뒤로 가기</string>
+    <string name="address_map_img_description">지도 사진</string>
+    <string name="address_example_text">서울특별시 마포구 땡땡로12로 3</string>
+    <string name="address_keyword_search_text">키워드 검색</string>
+    <string name="address_search_text">주소 검색</string>
+    <string name="address_location_selection_text">위치 선택</string>
 </resources>
