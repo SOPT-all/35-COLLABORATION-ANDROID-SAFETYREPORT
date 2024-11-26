@@ -93,7 +93,6 @@ fun ReportContentTextField(
         ) {
             BasicTextField(
                 value = content,
-//                onValueChange = { viewModel.updateContent(it) },
                 onValueChange = { onContentChange(it) },
                 textStyle = ShinMunGoTheme.typography.body9,
                 modifier = Modifier
@@ -120,7 +119,6 @@ fun ReportContentTextField(
                 text = stringResource(R.string.report_recommend_word),
                 isChecked = isRecommendWord,
                 isIconApplied = false,
-//                onButtonClick = { viewModel.updateIsRecommendWord() }
                 onButtonClick = onIsRecommendWordClicked
             )
 

@@ -27,8 +27,6 @@ fun ReportLocationSection(
     onLocationButtonClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-//    val location = viewModel.location.collectAsStateWithLifecycle()
-
     Row(
         modifier = modifier.fillMaxWidth(),
     ) {
