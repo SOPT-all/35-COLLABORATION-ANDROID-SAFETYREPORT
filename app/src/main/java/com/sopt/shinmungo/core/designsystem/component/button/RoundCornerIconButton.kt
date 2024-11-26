@@ -55,7 +55,7 @@ fun RoundedCornerIconButton(
             imageVector = ImageVector.vectorResource(icon),
             contentDescription = stringResource(R.string.icon_button_content_description),
             tint = iconLineColor,
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(24.dp)
         )
     }
 }
