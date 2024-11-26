@@ -38,8 +38,8 @@ fun DropdownCategory(
         modifier = modifier
             .shadow(
                 elevation = 10.dp,
-                spotColor = Color(0x1A000000),
-                ambientColor = Color(0x1A000000)
+                spotColor = ShinMunGoTheme.color.shadowColor,
+                ambientColor = ShinMunGoTheme.color.shadowColor
             )
             .fillMaxWidth()
             .background(

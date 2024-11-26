@@ -32,6 +32,8 @@ val OpacityGray13_5 = Color(0x0D121212)
 val OpacityGray1_30 = Color(0x4DFFFFFF)
 val OpacityGray1_10 = Color(0x1AFFFFFF)
 
+//Shadow
+val ShadowColor = Color(0x1A000000)
 
 val LocalColorProvider = staticCompositionLocalOf<ShinMunGoColors> {
     error("No colors provided")
@@ -66,6 +68,9 @@ data class ShinMunGoColors(
     val opacityGray13Per5: Color,
     val opacityGray1Per30: Color,
     val opacityGray1Per10: Color,
+
+    //Shadow Colors : 디자인시스템에 없어서 임의로 변수명 설정
+    val shadowColor: Color,
 )
 
 val defaultShinMunGoColors = ShinMunGoColors(
@@ -90,5 +95,6 @@ val defaultShinMunGoColors = ShinMunGoColors(
     opacityGray13Per10 = OpacityGray13_10,
     opacityGray13Per5 = OpacityGray13_5,
     opacityGray1Per30 = OpacityGray1_30,
-    opacityGray1Per10 = OpacityGray1_10
+    opacityGray1Per10 = OpacityGray1_10,
+    shadowColor = ShadowColor,
 )
