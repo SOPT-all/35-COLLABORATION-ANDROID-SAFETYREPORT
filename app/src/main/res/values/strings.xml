@@ -8,6 +8,27 @@
     <string name="main_bottom_bar_news">안전뉴스</string>
     <string name="main_bottom_bar_my_page">마이페이지</string>
 
+    <!--Report-->
+    <string name="report_illegal_parking">불법주정차</string>
+    <string name="report_orange_star_content_description">별표 아이콘</string>
+    <string name="report_info_icon_content_description">정보 아이콘</string>
+    <string name="report_chevron_down_content_description">아래 화살표 아이콘</string>
+    <string name="report_copy_icon_content_description">복사 아이콘</string>
+    <string name="report_location_icon_content_description">위치 아이콘</string>
+    <string name="report_photo_image_content_description">사진 이미지</string>
+    <string name="report_delete_icon_content_description">삭제 아이콘</string>
+
+    <string name="report_select_report_type">신고 유형을 선택해주세요</string>
+    <string name="report_content_hint">추가/수정가능, 5~900자</string>
+    <string name="report_content_placeholder">내용을 입력해주세요</string>
+    <string name="report_recommend_word">추천 단어</string>
+    <string name="report_content_copy">내용 복사</string>
+    <string name="report_location_placeholder">지역을 입력해주세요</string>
+    <string name="report_sharing_agreed">신고 내용 공유 동의</string>
+    <string name="report_to_next_photo_apply">다음 사진 첨부까지 :</string>
+    <string name="report_add_photo_placeholder">사진을 추가해주세요</string>
+    <string name="report_phone_number_placeholder">전화번호를 입력해주세요</string>
+
     <!--Button Component-->
     <string name="check_button_content_description">체크 아이콘</string>
     <string name="icon_button_content_description">아이콘 버튼</string>
