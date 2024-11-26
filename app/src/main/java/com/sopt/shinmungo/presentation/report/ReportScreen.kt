@@ -112,7 +112,10 @@ fun ReportScreen(
                         onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) }
                     )
 
-                    ReportLocationSection(viewModel = viewModel)
+                    ReportLocationSection(
+                        location = location.value,
+                        onLocationButtonClick = { viewModel.updateLocation(it) }
+                    )
 
                     ReportContentSection(viewModel = viewModel)
 

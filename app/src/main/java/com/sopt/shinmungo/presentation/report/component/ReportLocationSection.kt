@@ -15,21 +15,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerIconButton
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.report.type.ReportSectionType
-import com.sopt.shinmungo.presentation.report.ReportViewModel
 
 @Composable
 fun ReportLocationSection(
-    viewModel: ReportViewModel,
+    location: String,
+    onLocationButtonClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val location = viewModel.location.collectAsStateWithLifecycle()
+//    val location = viewModel.location.collectAsStateWithLifecycle()
 
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -41,7 +39,7 @@ fun ReportLocationSection(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            LocationText(location = location.value)
+            LocationText(location = location)
         }
 
         Spacer(modifier = Modifier.weight(1f))
@@ -51,7 +49,7 @@ fun ReportLocationSection(
             isButtonActive = true,
             onButtonClick = {
                 /* 지도 페이지로 이동 */
-                viewModel.updateLocation("서울특별시 마포구 땡땡로12로 3")
+                onLocationButtonClick("서울특별시 마포구 땡땡로12로 3")
             }
         )
     }
@@ -86,14 +84,5 @@ fun LocationText(location: String) {
             style = ShinMunGoTheme.typography.body8,
             color = locationColor
         )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ReportLocationSectionPreview(modifier: Modifier = Modifier) {
-    val viewModel = ReportViewModel()
-    ShinMunGoTheme {
-        ReportLocationSection(viewModel)
     }
 }
