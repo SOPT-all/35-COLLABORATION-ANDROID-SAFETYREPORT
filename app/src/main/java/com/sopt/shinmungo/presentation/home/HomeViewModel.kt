@@ -1,45 +1,47 @@
 package com.sopt.shinmungo.presentation.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sopt.shinmungo.core.exception.EmptyThrowable
 import com.sopt.shinmungo.core.state.UiState
-import com.sopt.shinmungo.domain.entity.BannerImage
 import com.sopt.shinmungo.domain.entity.HomeInformation
+import com.sopt.shinmungo.domain.repository.HomeRepository
+import com.sopt.shinmungo.domain.repository.RepositoryPool
 import com.sopt.shinmungo.presentation.home.state.HomeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 
 class HomeViewModel : ViewModel() {
+    private val repository: HomeRepository = RepositoryPool.homeRepository
+
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState = _uiState.asStateFlow()
 
-    //TODO: 임시로 UiState를 초기화하는 함수 (삭제 예정)
-    fun initUiState() = _uiState.update { currentState ->
-        currentState.copy(
-            loadState = UiState.Success(
-                HomeInformation(
-                    userId = 1,
-                    name = "수민",
-                    yearReportCount = 7,
-                    monthReportCount = 25,
-                    mileage = "5000000",
-                    bannerImages = listOf(
-                        BannerImage(
-                            bannerId = 1,
-                            bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp"
-                        ),
-                        BannerImage(
-                            bannerId = 2,
-                            bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp"
-                        ),
-                        BannerImage(
-                            bannerId = 3,
-                            bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
-                        ),
-                    )
-                )
+    fun getHomeInformation() = viewModelScope.launch {
+        repository.getHomeInformation()
+            .onSuccess { homeInformation ->
+                updateLoadState(loadState = UiState.Success(homeInformation))
+            }
+            .onFailure { exception ->
+                if (exception.cause == EmptyThrowable()) {
+                    updateLoadState(loadState = UiState.Empty)
+                } else {
+                    updateLoadState(loadState = UiState.Error(ERROR_MESSAGE))
+                }
+            }
+    }
+
+    private fun updateLoadState(loadState: UiState<HomeInformation>) =
+        _uiState.update { currentState ->
+            currentState.copy(
+                loadState = loadState
             )
-        )
+        }
+
+    companion object {
+        private const val ERROR_MESSAGE = "에러가 발생했습니다."
     }
 }
