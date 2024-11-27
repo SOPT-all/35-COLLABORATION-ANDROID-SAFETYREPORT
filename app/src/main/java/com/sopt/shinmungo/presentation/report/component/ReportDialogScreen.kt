@@ -1,6 +1,7 @@
 package com.sopt.shinmungo.presentation.report.component
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import com.sopt.shinmungo.presentation.dialog.FireTruckIllegalParkingDialog
 import com.sopt.shinmungo.presentation.dialog.MediaSelectionDialog
 import com.sopt.shinmungo.presentation.dialog.PhotoDeleteConfirmationDialog
@@ -11,6 +12,8 @@ import com.sopt.shinmungo.presentation.dialog.SubmitCompleteDialog
 import com.sopt.shinmungo.presentation.dialog.SubmitConfirmDialog
 import com.sopt.shinmungo.presentation.report.state.ReportDialogState
 import com.sopt.shinmungo.presentation.report.type.ReportDialogType
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * 신고 화면에서 등장하는 다이얼로그들을 관리하기 위한 스크린 컴포넌트

@@ -117,7 +117,7 @@ class ReportViewModel : ViewModel() {
         }
     }
 
-    fun updatePhotoList(newPhotoList: ArrayList<ReportPhotoItem>) {
+    fun updatePhotoList(newPhotoList: List<ReportPhotoItem>) {
         _photoList.value = newPhotoList
     }
 

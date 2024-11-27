@@ -71,11 +71,11 @@ private fun MainNavHost(
         )
         addressInputScreen(
             navController = navController,
-            modifier = modifier
+            modifier = noScaffoldModifier
         )
         galleryScreen(
             navController = navController,
-            modifier = modifier
+            modifier = noScaffoldModifier
         )
     }
 }

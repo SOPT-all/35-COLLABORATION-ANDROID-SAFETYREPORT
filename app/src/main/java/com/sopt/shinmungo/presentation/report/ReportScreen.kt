@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -46,9 +47,14 @@ import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 
 @Composable
 fun ReportScreen(
-    viewModel: ReportViewModel = viewModel(),
+    onMoveToGalleryClick: () -> Unit,
+    onMoveToMapClick: () -> Unit,
+    onMoveToHomeClick: () -> Unit,
     onBackClick: () -> Unit,
+    selectedLocation: String,
+    selectedPhotoList: List<ReportPhotoItem>,
     modifier: Modifier = Modifier,
+    viewModel: ReportViewModel = viewModel(),
 ) {
     val isCategorySelected = viewModel.isCategorySelected.collectAsStateWithLifecycle()
     val selectedCategory = viewModel.selectedCategory.collectAsStateWithLifecycle()
@@ -66,6 +72,14 @@ fun ReportScreen(
     val isPostButtonActive = viewModel.isPostButtonActive.collectAsStateWithLifecycle()
 
     val dialogState by viewModel.dialogState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(selectedLocation) {
+        viewModel.updateLocation(selectedLocation)
+    }
+
+    LaunchedEffect(selectedPhotoList) {
+        viewModel.updatePhotoList(selectedPhotoList)
+    }
 
     Column(
         modifier = modifier
@@ -132,7 +146,10 @@ fun ReportScreen(
 
                     ReportLocationSection(
                         location = location.value,
-                        onLocationButtonClick = { viewModel.updateLocation(it) }
+                        onLocationButtonClick = {
+                            onMoveToMapClick()
+                            //viewModel.updateLocation(selectedLocation)
+                        }
                     )
 
                     ReportContentSection(
@@ -215,23 +232,16 @@ fun ReportScreen(
         onDismissRequest = viewModel::updateDialogVisibility,
         onResetReturnConfirm = onBackClick,
         onSubmitComplete = {
-            // TODO: Home 화면으로 돌아가는 로직 (스택에서 화면들 지우기)
+            onMoveToHomeClick()
         },
         onResetClick = {
-            // TODO: 모든 입력값들 지우기
+            // TODO: 모든 입력값들 지우는 로직
         },
         onPhotoDeleteConfirm = {
             viewModel.deletePhotoFromList()
         },
         onGallerySelectionConfirm = {
-            val newPhotoList = arrayListOf(
-                // 임시로 값 연결
-                ReportPhotoItem(1, "https://via.placeholder.com/70"),
-                ReportPhotoItem(2, "https://via.placeholder.com/70"),
-                ReportPhotoItem(3, "https://via.placeholder.com/70"),
-                ReportPhotoItem(4, "https://via.placeholder.com/70"),
-            )
-            viewModel.updatePhotoList(newPhotoList)
+            onMoveToGalleryClick()
         },
         onCameraSelectionConfirm = { viewModel.startCameraCooldown(300) },
         onSubmitConfirmClick = {
@@ -249,7 +259,12 @@ fun ReportScreenPreview(modifier: Modifier = Modifier) {
         ReportScreen(
             viewModel = viewModel,
             onBackClick = { },
-            modifier,
+            onMoveToMapClick = {},
+            onMoveToGalleryClick = {},
+            onMoveToHomeClick = {},
+            selectedPhotoList = emptyList(),
+            selectedLocation = "",
+            modifier = modifier,
         )
     }
 }
