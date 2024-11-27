@@ -27,6 +27,7 @@ import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.state.UiState
+import com.sopt.shinmungo.domain.entity.BannerImage
 import com.sopt.shinmungo.presentation.home.component.HomeFloatingActionButton
 import com.sopt.shinmungo.presentation.home.component.HomeImageBannerPager
 import com.sopt.shinmungo.presentation.home.component.HomeIssueExamplePager
@@ -116,7 +117,7 @@ private fun SuccessScreen(
     monthReportCount: String,
     userName: String,
     yearReportCount: String,
-    bannerUrls: List<String>,
+    bannerUrls: List<BannerImage>,
     reportExamplePairs: List<Pair<Int, Int>>,
     navigateToParkingReport: () -> Unit,
     navigateToCategory: () -> Unit,
@@ -234,9 +235,18 @@ private fun HomeSuccessScreenPreview() {
             userName = "수민",
             yearReportCount = "7",
             bannerUrls = listOf(
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
+                BannerImage(
+                    bannerId = 1,
+                    bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp"
+                ),
+                BannerImage(
+                    bannerId = 2,
+                    bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp"
+                ),
+                BannerImage(
+                    bannerId = 3,
+                    bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
+                ),
             ),
             reportExamplePairs = listOf(
                 Pair(

@@ -28,13 +28,14 @@ import coil.request.ImageRequest
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.indicator.PageIndicator
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
+import com.sopt.shinmungo.domain.entity.BannerImage
 import com.sopt.shinmungo.presentation.home.component.button.BannerIconButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeImageBannerPager(
-    imageUrls: List<String>,
+    imageUrls: List<BannerImage>,
     modifier: Modifier = Modifier,
     autoScrollDelay: Long = 5000,
     tweenSpec: Int = 300
@@ -74,7 +75,7 @@ fun HomeImageBannerPager(
                 ) {
                     AsyncImage(
                         model = ImageRequest.Builder(context)
-                            .data(imageUrls[page % imageUrls.size])
+                            .data(imageUrls[page % imageUrls.size].bannerImageUrl)
                             .build(),
                         contentDescription = null,
                         contentScale = ContentScale.FillBounds,
@@ -124,9 +125,18 @@ private fun HomeImageBannerPreview() {
     ShinMunGoTheme {
         HomeImageBannerPager(
             imageUrls = listOf(
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
-                "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
+                BannerImage(
+                    bannerId = 1,
+                    bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp"
+                ),
+                BannerImage(
+                    bannerId = 2,
+                    bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp"
+                ),
+                BannerImage(
+                    bannerId = 3,
+                    bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
+                ),
             ),
             autoScrollDelay = 2000,
             modifier = Modifier

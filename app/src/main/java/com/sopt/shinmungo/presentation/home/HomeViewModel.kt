@@ -2,6 +2,7 @@ package com.sopt.shinmungo.presentation.home
 
 import androidx.lifecycle.ViewModel
 import com.sopt.shinmungo.core.state.UiState
+import com.sopt.shinmungo.domain.entity.BannerImage
 import com.sopt.shinmungo.domain.entity.HomeInformation
 import com.sopt.shinmungo.presentation.home.state.HomeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,9 +25,18 @@ class HomeViewModel : ViewModel() {
                     monthReportCount = 25,
                     mileage = "5000000",
                     bannerUrls = listOf(
-                        "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp",
-                        "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp",
-                        "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
+                        BannerImage(
+                            bannerId = 1,
+                            bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp"
+                        ),
+                        BannerImage(
+                            bannerId = 2,
+                            bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1732149068770235113.webp"
+                        ),
+                        BannerImage(
+                            bannerId = 3,
+                            bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202410/1730192950897967795.webp"
+                        ),
                     )
                 )
             )
