@@ -19,6 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
@@ -36,15 +39,22 @@ import com.sopt.shinmungo.core.extension.noRippleClickable
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.presentation.report.component.DropdownCategory
 import com.sopt.shinmungo.presentation.report.component.ReportContentSection
+import com.sopt.shinmungo.presentation.report.component.ReportDialogScreen
 import com.sopt.shinmungo.presentation.report.component.ReportLocationSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhoneNumberSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhotoSection
+import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 
 @Composable
 fun ReportScreen(
-    viewModel: ReportViewModel = ReportViewModel(),
+    onMoveToGalleryClick: () -> Unit,
+    onMoveToMapClick: () -> Unit,
+    onMoveToHomeClick: () -> Unit,
     onBackClick: () -> Unit,
+    selectedLocation: String,
+    selectedPhotoList: List<ReportPhotoItem>,
     modifier: Modifier = Modifier,
+    viewModel: ReportViewModel = viewModel(),
 ) {
     val isCategorySelected = viewModel.isCategorySelected.collectAsStateWithLifecycle()
     val selectedCategory = viewModel.selectedCategory.collectAsStateWithLifecycle()
@@ -61,8 +71,18 @@ fun ReportScreen(
     val isCameraButtonActive = viewModel.isCameraButtonActive.collectAsStateWithLifecycle()
     val isPostButtonActive = viewModel.isPostButtonActive.collectAsStateWithLifecycle()
 
+    val dialogState by viewModel.dialogState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(selectedLocation) {
+        viewModel.updateLocation(selectedLocation)
+    }
+
+    LaunchedEffect(selectedPhotoList) {
+        viewModel.updatePhotoList(selectedPhotoList)
+    }
+
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
     ) {
         CommonTopBar(
@@ -70,7 +90,7 @@ fun ReportScreen(
             onLeftContent = {
                 IconButton(
                     modifier = Modifier.size(24.dp),
-                    onClick = onBackClick
+                    onClick = { viewModel.updateDialogVisibility(ReportDialogType.RESET) }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
@@ -84,7 +104,7 @@ fun ReportScreen(
 
         Box {
             Box(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxSize()
                     .padding(top = 50.dp)
             ) {
@@ -98,9 +118,13 @@ fun ReportScreen(
                         photoItems = photoList.value,
                         cameraCooldownTime = cameraCooldownTime.value,
                         isCameraButtonActive = isCameraButtonActive.value,
-                        onCameraButtonClick = { viewModel.startCameraCooldown(300) },
+                        onCameraButtonClick = {
+                            /*viewModel.startCameraCooldown(300)*/
+                            viewModel.updateDialogVisibility(ReportDialogType.CAMERA_SELECTION)
+                        },
                         onGalleryButtonClick = {
-                            /* 갤러리 화면으로 이동 */
+                            viewModel.updateDialogVisibility(ReportDialogType.GALLERY_SELECTION)
+                            /* 갤러리 화면으로 이동 *//*
                             val newPhotoList = arrayListOf(
                                 // 임시로 값 연결
                                 ReportPhotoItem(1, "https://via.placeholder.com/70"),
@@ -108,16 +132,24 @@ fun ReportScreen(
                                 ReportPhotoItem(3, "https://via.placeholder.com/70"),
                                 ReportPhotoItem(4, "https://via.placeholder.com/70"),
                             )
-                            viewModel.updatePhotoList(newPhotoList)
+                            viewModel.updatePhotoList(newPhotoList)*/
                         },
-                        onDeleteButtonClick = { viewModel.deletePhotoFromList(it) },
+                        onDeleteButtonClick = {
+                            viewModel.updateDeletePhoto(it)
+                            viewModel.updateDialogVisibility(ReportDialogType.PHOTO_DELETE)
+                            //viewModel.deletePhotoFromList(it)
+                        },
                         showDeleteIcons = showDeleteIcons.value,
-                        onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) }
+                        onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) },
+                        onInfoIconClick = { viewModel.updateDialogVisibility(it) }
                     )
 
                     ReportLocationSection(
                         location = location.value,
-                        onLocationButtonClick = { viewModel.updateLocation(it) }
+                        onLocationButtonClick = {
+                            onMoveToMapClick()
+                            //viewModel.updateLocation(selectedLocation)
+                        }
                     )
 
                     ReportContentSection(
@@ -156,7 +188,7 @@ fun ReportScreen(
                             roundedCornerShape = RoundedCornerShape(10.dp),
                             onButtonClick = {
                                 if (isPostButtonActive.value) {
-                                    //api
+                                    viewModel.updateDialogVisibility(ReportDialogType.SUBMIT_CONFIRM)
                                 } else {
                                     /* 클릭 방지 */
                                 }
@@ -194,6 +226,29 @@ fun ReportScreen(
             )
         }
     }
+
+    ReportDialogScreen(
+        dialogState = dialogState,
+        onDismissRequest = viewModel::updateDialogVisibility,
+        onResetReturnConfirm = onBackClick,
+        onSubmitComplete = {
+            onMoveToHomeClick()
+        },
+        onResetClick = {
+            // TODO: 모든 입력값들 지우는 로직
+        },
+        onPhotoDeleteConfirm = {
+            viewModel.deletePhotoFromList()
+        },
+        onGallerySelectionConfirm = {
+            onMoveToGalleryClick()
+        },
+        onCameraSelectionConfirm = { viewModel.startCameraCooldown(300) },
+        onSubmitConfirmClick = {
+            // TODO: api 통신 후 성공하면 다이얼로그 띄우기
+            viewModel.updateDialogVisibility(ReportDialogType.SUBMIT)
+        }
+    )
 }
 
 @Preview
@@ -204,7 +259,12 @@ fun ReportScreenPreview(modifier: Modifier = Modifier) {
         ReportScreen(
             viewModel = viewModel,
             onBackClick = { },
-            modifier,
+            onMoveToMapClick = {},
+            onMoveToGalleryClick = {},
+            onMoveToHomeClick = {},
+            selectedPhotoList = emptyList(),
+            selectedLocation = "",
+            modifier = modifier,
         )
     }
 }

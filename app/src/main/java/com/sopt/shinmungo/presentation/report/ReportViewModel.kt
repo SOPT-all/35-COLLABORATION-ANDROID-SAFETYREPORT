@@ -3,13 +3,17 @@ package com.sopt.shinmungo.presentation.report
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
+import com.sopt.shinmungo.presentation.report.state.ReportDialogState
+import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ReportViewModel : ViewModel() {
@@ -25,6 +29,12 @@ class ReportViewModel : ViewModel() {
         "소방차 전용구역",
         "친환경차 전용구역"
     )
+
+    private val _dialogState: MutableStateFlow<ReportDialogState> = MutableStateFlow(ReportDialogState())
+    val dialogState:StateFlow<ReportDialogState> = _dialogState.asStateFlow()
+
+    private val _deletePhoto: MutableStateFlow<ReportPhotoItem?> = MutableStateFlow(null)
+    val deletePhoto: StateFlow<ReportPhotoItem?> get() = _deletePhoto.asStateFlow()
 
     private val _isCategorySelected = MutableStateFlow<Boolean>(false)
     val isCategorySelected: StateFlow<Boolean> get() = _isCategorySelected
@@ -106,12 +116,15 @@ class ReportViewModel : ViewModel() {
         }
     }
 
-    fun updatePhotoList(newPhotoList: ArrayList<ReportPhotoItem>) {
+    fun updatePhotoList(newPhotoList: List<ReportPhotoItem>) {
         _photoList.value = newPhotoList
     }
 
-    fun deletePhotoFromList(deletePhoto: ReportPhotoItem) {
+    /*fun deletePhotoFromList(deletePhoto: ReportPhotoItem) {
         _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.photoId }
+    }*/
+    fun deletePhotoFromList() {
+        _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.value?.photoId }
     }
 
     fun showDeleteIconForPhoto(photoId: Int) {
@@ -153,6 +166,68 @@ class ReportViewModel : ViewModel() {
 
     fun updateIsReportSharingAgreed() {
         _isReportSharingAgreed.value = !_isReportSharingAgreed.value
+    }
+
+    fun updateDeletePhoto(deletePhoto: ReportPhotoItem) {
+       _deletePhoto.value = deletePhoto
+    }
+
+    fun updateDialogVisibility(type: ReportDialogType) {
+        when (type) {
+            ReportDialogType.ILLEGAL_PARKING -> {
+                _dialogState.update {
+                    it.copy(isIllegalParkingDialogVisible = !_dialogState.value.isIllegalParkingDialogVisible)
+                }
+            }
+
+            ReportDialogType.CAMERA_SELECTION -> {
+                _dialogState.update {
+                    it.copy(isCameraSelectionDialogVisible = !_dialogState.value.isCameraSelectionDialogVisible)
+                }
+            }
+
+            ReportDialogType.GALLERY_SELECTION -> {
+                _dialogState.update {
+                    it.copy(isGallerySelectionDialogVisible = !_dialogState.value.isGallerySelectionDialogVisible)
+                }
+            }
+
+            ReportDialogType.PHOTO_DELETE -> {
+                _dialogState.update {
+                    it.copy(isPhotoDeleteDialogVisible = !_dialogState.value.isPhotoDeleteDialogVisible)
+                }
+            }
+
+            ReportDialogType.PHOTO_SIZE_LIMIT -> {
+                _dialogState.update {
+                    it.copy(isPhotoSizeLimitDialogVisible = !_dialogState.value.isPhotoSizeLimitDialogVisible)
+                }
+            }
+
+            ReportDialogType.PHOTO_TIME_LIMIT -> {
+                _dialogState.update {
+                    it.copy(isPhotoTimeLimitDialogVisible = !_dialogState.value.isPhotoTimeLimitDialogVisible)
+                }
+            }
+
+            ReportDialogType.RESET -> {
+                _dialogState.update {
+                    it.copy(isResetConfirmationDialogVisible = !_dialogState.value.isResetConfirmationDialogVisible)
+                }
+            }
+
+            ReportDialogType.SUBMIT_CONFIRM -> {
+                _dialogState.update {
+                    it.copy(isSubmitConfirmDialogVisible = !_dialogState.value.isSubmitConfirmDialogVisible)
+                }
+            }
+
+            ReportDialogType.SUBMIT -> {
+                _dialogState.update {
+                    it.copy(isSubmitCompleteDialogVisible = !_dialogState.value.isSubmitCompleteDialogVisible)
+                }
+            }
+        }
     }
 
     companion object {

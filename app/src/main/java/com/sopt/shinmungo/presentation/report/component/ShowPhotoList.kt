@@ -24,10 +24,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
+import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import kotlinx.coroutines.delay
 
 @Composable

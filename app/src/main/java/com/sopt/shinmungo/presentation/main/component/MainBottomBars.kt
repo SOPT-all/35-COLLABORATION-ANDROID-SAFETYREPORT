@@ -10,17 +10,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -59,15 +56,15 @@ fun MainBottomBars(
 ) {
     Card(
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 10.dp),
-        shape = RectangleShape
+        shape = RectangleShape,
+        modifier = Modifier.showIf(visibility)
     ) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
                 .background(color = containerColor)
                 .navigationBarsPadding()
-                .padding(start = 37.dp, end = 37.dp, top = 8.dp, bottom = 31.dp)
-                .showIf(visibility),
+                .padding(start = 37.dp, end = 37.dp, top = 8.dp, bottom = 31.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             tabs.forEach { tab ->

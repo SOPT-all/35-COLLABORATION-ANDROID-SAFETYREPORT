@@ -3,7 +3,6 @@ package com.sopt.shinmungo.presentation.home.type
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.sopt.shinmungo.R
-import com.sopt.shinmungo.core.navigation.Route
 
 enum class FloatingActionType(
     @StringRes val title: Int,

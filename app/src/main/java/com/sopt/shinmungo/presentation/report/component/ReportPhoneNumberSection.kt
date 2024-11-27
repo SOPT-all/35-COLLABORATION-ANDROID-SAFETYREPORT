@@ -14,8 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
 import com.sopt.shinmungo.R
+import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.report.type.ReportSectionType
 

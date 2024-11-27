@@ -5,7 +5,9 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.navigation.MainTabRoute
+import com.sopt.shinmungo.presentation.allcategory.navigation.AllCategory
 import com.sopt.shinmungo.presentation.home.navigation.Home
+import kotlinx.serialization.Serializable
 
 enum class MainTab(
     @StringRes val title: Int,
@@ -23,7 +25,7 @@ enum class MainTab(
         title = R.string.main_bottom_bar_report,
         selectedIconRes = R.drawable.ic_safety_filled_24,
         unselectedIconRes = R.drawable.ic_safety_24,
-        route = Report
+        route = AllCategory
     ),
     PREVENTION(
         title = R.string.main_bottom_bar_prevent,
@@ -55,9 +57,11 @@ enum class MainTab(
 
 
         // TODO: 임시 바텀바 메뉴 루트 추가 (삭제 예정)
-        data object Report: MainTabRoute
+        @Serializable
         data object Prevent: MainTabRoute
+        @Serializable
         data object News: MainTabRoute
+        @Serializable
         data object MyPage: MainTabRoute
     }
 }

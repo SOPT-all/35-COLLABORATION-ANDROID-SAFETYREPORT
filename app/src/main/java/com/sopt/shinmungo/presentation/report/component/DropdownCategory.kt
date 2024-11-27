@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.TextWithInfoIcon
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
-import kotlin.String
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
