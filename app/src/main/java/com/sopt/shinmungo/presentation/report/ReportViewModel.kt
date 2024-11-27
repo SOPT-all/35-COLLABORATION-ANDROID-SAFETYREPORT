@@ -103,7 +103,6 @@ class ReportViewModel : ViewModel() {
     }
 
     fun updateSelectedCategory(newCategory: String) {
-        Timber.tag("ReportViewModel").d("updateSelectedCategory: $newCategory")
         _selectedCategory.value = newCategory
         updateIsCategorySelected()
     }

@@ -185,8 +185,6 @@ fun ReportScreen(
                 }
 
                 if (!isCategorySelected.value) {
-                    //TODO: LOG 삭제하기
-                    Timber.tag("ReportViewModel").d("ReportScreen: ${isCategorySelected.value}")
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
