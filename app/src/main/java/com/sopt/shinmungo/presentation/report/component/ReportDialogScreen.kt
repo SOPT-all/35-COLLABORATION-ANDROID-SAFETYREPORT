@@ -81,7 +81,7 @@ fun ReportDialogScreen(
         if (isResetConfirmationDialogVisible) {
             ResetConfirmationDialog(
                 onConfirmClick = {},
-                onDismissRequest = {}
+                onDismissRequest = { onDismissRequest(ReportDialogType.RESET)}
             )
         }
 

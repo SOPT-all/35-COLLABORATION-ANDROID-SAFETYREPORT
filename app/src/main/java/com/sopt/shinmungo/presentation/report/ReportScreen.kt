@@ -71,8 +71,10 @@ fun ReportScreen(
         dialogState = dialogState,
         onDismissRequest = viewModel::updateDialogVisibility,
         onSubmitComplete = {},
-        onResetClick = {},
-        onPhotoDeleteConfirm = {},
+        onResetClick = { onBackClick() },
+        onPhotoDeleteConfirm = {
+            viewModel.deletePhotoFromList()
+        },
         onNavigateToGallery = {
             val newPhotoList = arrayListOf(
                 // 임시로 값 연결
@@ -90,12 +92,16 @@ fun ReportScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
+
+        val str = "sdas"
+        str.removeSurrounding("\"")
+
         CommonTopBar(
             title = stringResource(R.string.report_illegal_parking),
             onLeftContent = {
                 IconButton(
                     modifier = Modifier.size(24.dp),
-                    onClick = onBackClick
+                    onClick = { viewModel.updateDialogVisibility(ReportDialogType.RESET) }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
@@ -139,7 +145,11 @@ fun ReportScreen(
                             )
                             viewModel.updatePhotoList(newPhotoList)*/
                         },
-                        onDeleteButtonClick = { viewModel.deletePhotoFromList(it) },
+                        onDeleteButtonClick = {
+                            viewModel.updateDeletePhoto(it)
+                            viewModel.updateDialogVisibility(ReportDialogType.PHOTO_DELETE)
+                            //viewModel.deletePhotoFromList(it)
+                        },
                         showDeleteIcons = showDeleteIcons.value,
                         onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) },
                         onInfoIconClick = { viewModel.updateDialogVisibility(it) }

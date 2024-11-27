@@ -31,8 +31,11 @@ class ReportViewModel : ViewModel() {
         "친환경차 전용구역"
     )
 
-    private val _dialogState = MutableStateFlow(ReportDialogState())
-    val dialogState = _dialogState.asStateFlow()
+    private val _dialogState: MutableStateFlow<ReportDialogState> = MutableStateFlow(ReportDialogState())
+    val dialogState:StateFlow<ReportDialogState> = _dialogState.asStateFlow()
+
+    private val _deletePhoto: MutableStateFlow<ReportPhotoItem?> = MutableStateFlow(null)
+    val deletePhoto: StateFlow<ReportPhotoItem?> get() = _deletePhoto.asStateFlow()
 
     private val _isCategorySelected = MutableStateFlow<Boolean>(false)
     val isCategorySelected: StateFlow<Boolean> get() = _isCategorySelected
@@ -118,8 +121,11 @@ class ReportViewModel : ViewModel() {
         _photoList.value = newPhotoList
     }
 
-    fun deletePhotoFromList(deletePhoto: ReportPhotoItem) {
+    /*fun deletePhotoFromList(deletePhoto: ReportPhotoItem) {
         _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.photoId }
+    }*/
+    fun deletePhotoFromList() {
+        _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.value?.photoId }
     }
 
     fun showDeleteIconForPhoto(photoId: Int) {
@@ -161,6 +167,10 @@ class ReportViewModel : ViewModel() {
 
     fun updateIsReportSharingAgreed() {
         _isReportSharingAgreed.value = !_isReportSharingAgreed.value
+    }
+
+    fun updateDeletePhoto(deletePhoto: ReportPhotoItem) {
+       _deletePhoto.value = deletePhoto
     }
 
     fun updateDialogVisibility(type: ReportDialogType) {
