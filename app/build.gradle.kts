@@ -26,11 +26,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        /*buildConfigField(
+        buildConfigField(
             "String",
             "BASE_URL",
             properties.getProperty("base.url")
-        )*/
+        )
     }
 
     buildTypes {

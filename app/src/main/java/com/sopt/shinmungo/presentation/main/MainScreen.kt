@@ -1,7 +1,9 @@
 package com.sopt.shinmungo.presentation.main
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,10 +12,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.navigation.Route
+import com.sopt.shinmungo.presentation.allcategory.navigation.allCategoryScreen
+import com.sopt.shinmungo.presentation.gallery.navigation.galleryScreen
 import com.sopt.shinmungo.presentation.home.navigation.homeScreen
 import com.sopt.shinmungo.presentation.main.component.MainBottomBars
-import com.sopt.shinmungo.presentation.map.AddressInputScreen
 import com.sopt.shinmungo.presentation.map.navigation.addressInputScreen
+import com.sopt.shinmungo.presentation.report.navigation.reportScreen
 
 @Composable
 fun MainScreen(
@@ -45,6 +49,8 @@ private fun MainNavHost(
     startDestination: Route,
     modifier: Modifier = Modifier
 ) {
+    val noScaffoldModifier = Modifier.systemBarsPadding()
+
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -53,9 +59,21 @@ private fun MainNavHost(
             navController = navController,
             modifier = modifier
         )
-        addressInputScreen(
+        allCategoryScreen(
             navController = navController,
             modifier = modifier
+        )
+        reportScreen(
+            navController = navController,
+            modifier = noScaffoldModifier
+        )
+        addressInputScreen(
+            navController = navController,
+            modifier = noScaffoldModifier
+        )
+        galleryScreen(
+            navController = navController,
+            modifier = noScaffoldModifier
         )
     }
 }
@@ -64,6 +82,14 @@ private fun MainNavHost(
 @Composable
 private fun MainScreenPreview() {
     ShinMunGoTheme {
-        MainScreen()
+        Column {
+            MainScreen()
+            MainBottomBars(
+                onTabSelect = {},
+                selectedTab = MainTab.HOME,
+                tabs = MainTab.entries,
+                visibility = true
+            )
+        }
     }
 }

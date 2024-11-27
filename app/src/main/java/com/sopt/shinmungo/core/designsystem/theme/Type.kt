@@ -67,7 +67,7 @@ val defaultShinMunGoTypography = ShinMunGoTypography(
     body2 = TextStyle(
         fontFamily = PretendardBold,
         fontSize = 16.sp,
-        lineHeight = 20.sp
+        //lineHeight = 20.sp
     ),
     body3 = TextStyle(
         fontFamily = PretendardSemiBold,

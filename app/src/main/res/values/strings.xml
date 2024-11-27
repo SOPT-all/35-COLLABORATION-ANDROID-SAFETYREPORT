@@ -2,11 +2,62 @@
     <string name="app_name">Shinmungo</string>
 
     <!--Main-->
+    <string name="main_top_bar_logo">안전신문고</string>
+    <string name="main_top_bar_button_chat">채팅</string>
+    <string name="main_top_bar_button_menu">메뉴</string>
+    <string name="main_title_my_report">올해 나의 신고</string>
+    <string name="main_title_mileage">마일리지: %s P</string>
+    <string name="main_year_report_title">나의 올해 신고</string>
+    <string name="main_year_report_report_text_1">총</string>
+    <string name="main_year_report_report_text_2">건</string>
+    <string name="main_year_report_report_description_1">생활안전 신고</string>
+    <string name="main_year_report_report_description_2">를 가장 많이 했어요</string>
+    <string name="main_year_report_progress_reply">답변완료</string>">
+    <string name="main_year_report_progress_total">진행</string>">
+    <string name="main_month_report_description_graph">그래프</string>
+    <string name="main_month_report_title">2024년 10월</string>
+    <string name="main_month_report_report_count">건</string>
+    <string name="main_month_report_username">%s 님의\n신고이력</string>
+    <string name="main_example_title">주요 처리 사례</string>
+    <string name="main_example_btn_more">더보기</string>
+    <string name="main_example_chip_before">전</string>
+    <string name="main_example_chip_after">후</string>
+
+    <string name="main_fab_report">신고하기</string>
+    <string name="main_fab_report_close">닫기</string>
+    <string name="main_fab_type_safety">안전</string>
+    <string name="main_fab_type_parking">불법주정차</string>
+    <string name="main_fab_type_traffic">자동차/교통위반</string>
+    <string name="main_fab_type_life">생활불편</string>
+    <string name="main_fab_type_menu">전체 메뉴 보기</string>
+    <string name="main_fab_type_camera">촬영하기</string>
+
     <string name="main_bottom_bar_home">홈</string>
     <string name="main_bottom_bar_report">안전신고</string>
     <string name="main_bottom_bar_prevent">범죄예방</string>
     <string name="main_bottom_bar_news">안전뉴스</string>
     <string name="main_bottom_bar_my_page">마이페이지</string>
+
+    <!--Report-->
+    <string name="report_illegal_parking">불법주정차</string>
+    <string name="report_orange_star_content_description">별표 아이콘</string>
+    <string name="report_info_icon_content_description">정보 아이콘</string>
+    <string name="report_chevron_down_content_description">아래 화살표 아이콘</string>
+    <string name="report_copy_icon_content_description">복사 아이콘</string>
+    <string name="report_location_icon_content_description">위치 아이콘</string>
+    <string name="report_photo_image_content_description">사진 이미지</string>
+    <string name="report_delete_icon_content_description">삭제 아이콘</string>
+
+    <string name="report_select_report_type">신고 유형을 선택해주세요</string>
+    <string name="report_content_hint">추가/수정가능, 5~900자</string>
+    <string name="report_content_placeholder">내용을 입력해주세요</string>
+    <string name="report_recommend_word">추천 단어</string>
+    <string name="report_content_copy">내용 복사</string>
+    <string name="report_location_placeholder">지역을 입력해주세요</string>
+    <string name="report_sharing_agreed">신고 내용 공유 동의</string>
+    <string name="report_to_next_photo_apply">다음 사진 첨부까지 :</string>
+    <string name="report_add_photo_placeholder">사진을 추가해주세요</string>
+    <string name="report_phone_number_placeholder">전화번호를 입력해주세요</string>
 
     <!--Button Component-->
     <string name="check_button_content_description">체크 아이콘</string>
@@ -33,6 +84,7 @@
     <string name="photo_time_limit_highlight">당일 촬영된 시차가 5분 이상</string>
     <string name="photo_time_limit_suffix">인 사진만 첨부할 수 있습니다.</string>
     <string name="reset_confirmation_message">신고 내용을 모두 초기화하고\n뒤로 가시겠습니까?</string>
+    <string name="submit_confirmation_message">신고 내용을 제출하시겠습니까?</string>
     <string name="submit_complete_message">신고 내용이 정상적으로 접수되었습니다.</string>
 
 
@@ -71,4 +123,15 @@
     <string name="address_keyword_search_text">키워드 검색</string>
     <string name="address_search_text">주소 검색</string>
     <string name="address_location_selection_text">위치 선택</string>
+
+    <!--Gallery Screen-->
+    <string name="gallery_use_button_text">사용</string>
+    <string name="gallery_alert_caption_text">촬영시간이 5분 이상인 사진을 2장 이상 첨부해주세요</string>
+    <string name="gallery_alert_text">경고</string>
+    <string name="gallery_topbar_title">안전신문고 갤러리</string>
+    <string name="gallery_img_tab">사진</string>
+    <string name="gallery_video_tab">동영상</string>
+    <string name="gallery_detail_topbar_title">상세보기</string>
+    <string name="gallery_detail_timestamp_prefix_text">촬영 일시     : %s</string>
+    <string name="gallery_detail_shinmungo">안전신문고</string>
 </resources>
