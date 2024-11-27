@@ -38,11 +38,11 @@ import com.sopt.shinmungo.core.extension.noRippleClickable
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import com.sopt.shinmungo.presentation.report.component.DropdownCategory
 import com.sopt.shinmungo.presentation.report.component.ReportContentSection
+import com.sopt.shinmungo.presentation.report.component.ReportDialogScreen
 import com.sopt.shinmungo.presentation.report.component.ReportLocationSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhoneNumberSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhotoSection
 import com.sopt.shinmungo.presentation.report.type.ReportDialogType
-import timber.log.Timber
 
 @Composable
 fun ReportScreen(
@@ -73,7 +73,17 @@ fun ReportScreen(
         onSubmitComplete = {},
         onResetClick = {},
         onPhotoDeleteConfirm = {},
-        onNavigateToGallery = {}
+        onNavigateToGallery = {
+            val newPhotoList = arrayListOf(
+                // 임시로 값 연결
+                ReportPhotoItem(1, "https://via.placeholder.com/70"),
+                ReportPhotoItem(2, "https://via.placeholder.com/70"),
+                ReportPhotoItem(3, "https://via.placeholder.com/70"),
+                ReportPhotoItem(4, "https://via.placeholder.com/70"),
+            )
+            viewModel.updatePhotoList(newPhotoList)
+        },
+        onCameraSelectionConfirm = { viewModel.startCameraCooldown(300) }
     )
 
     Column(
@@ -113,9 +123,13 @@ fun ReportScreen(
                         photoItems = photoList.value,
                         cameraCooldownTime = cameraCooldownTime.value,
                         isCameraButtonActive = isCameraButtonActive.value,
-                        onCameraButtonClick = { viewModel.startCameraCooldown(300) },
+                        onCameraButtonClick = {
+                            /*viewModel.startCameraCooldown(300)*/
+                            viewModel.updateDialogVisibility(ReportDialogType.CAMERA_SELECTION)
+                        },
                         onGalleryButtonClick = {
-                            /* 갤러리 화면으로 이동 */
+                            viewModel.updateDialogVisibility(ReportDialogType.GALLERY_SELECTION)
+                            /* 갤러리 화면으로 이동 *//*
                             val newPhotoList = arrayListOf(
                                 // 임시로 값 연결
                                 ReportPhotoItem(1, "https://via.placeholder.com/70"),
@@ -123,7 +137,7 @@ fun ReportScreen(
                                 ReportPhotoItem(3, "https://via.placeholder.com/70"),
                                 ReportPhotoItem(4, "https://via.placeholder.com/70"),
                             )
-                            viewModel.updatePhotoList(newPhotoList)
+                            viewModel.updatePhotoList(newPhotoList)*/
                         },
                         onDeleteButtonClick = { viewModel.deletePhotoFromList(it) },
                         showDeleteIcons = showDeleteIcons.value,

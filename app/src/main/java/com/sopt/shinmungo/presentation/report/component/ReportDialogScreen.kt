@@ -1,4 +1,4 @@
-package com.sopt.shinmungo.presentation.report
+package com.sopt.shinmungo.presentation.report.component
 
 import androidx.compose.runtime.Composable
 import com.sopt.shinmungo.presentation.dialog.FireTruckIllegalParkingDialog
@@ -29,6 +29,7 @@ fun ReportDialogScreen(
     onPhotoDeleteConfirm: () -> Unit,
     onSubmitComplete: () -> Unit,
     onResetClick: () -> Unit,
+    onCameraSelectionConfirm: () -> Unit
 ) {
     with(dialogState) {
         if (isIllegalParkingDialogVisible) {
@@ -39,7 +40,10 @@ fun ReportDialogScreen(
 
         if (isCameraSelectionDialogVisible) {
             MediaSelectionDialog(
-                onDismissRequest = { onDismissRequest(ReportDialogType.CAMERA_SELECTION) },
+                onDismissRequest = {
+                    onCameraSelectionConfirm()
+                    onDismissRequest(ReportDialogType.CAMERA_SELECTION)
+                },
             )
         }
 
