@@ -99,18 +99,60 @@ fun AllCategoryComponent(
                     .padding(horizontal = 10.dp, vertical = 9.dp)
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    // "신고할 수 있는 유형" 텍스트 표시
                     Text(
                         text = stringResource(id = R.string.all_category_reportable_hint),
-                        style = ShinMunGoTheme.typography.body3,
-                        color = ShinMunGoTheme.color.gray10
+                        style = ShinMunGoTheme.typography.caption3,
+                        color = ShinMunGoTheme.color.gray13
                     )
-                    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                        reportableItems.forEach { item ->
-                            Text(
-                                text = "• $item",
-                                style = ShinMunGoTheme.typography.body4,
-                                color = ShinMunGoTheme.color.gray10
-                            )
+
+                    if (category.title == "불법 주정차") {
+                        // 불법 주정차 항목 구분
+                        val rightAlignedItems = listOf("장애인 전용구역", "소방차 전용구역", "친환경차 전용구역")
+                        val leftAlignedItems = reportableItems.filterNot { it in rightAlignedItems }
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            // 왼쪽 항목
+                            Column(
+                                verticalArrangement = Arrangement.spacedBy(5.dp),
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                leftAlignedItems.forEach { item ->
+                                    Text(
+                                        text = "• $item",
+                                        style = ShinMunGoTheme.typography.caption3,
+                                        color = ShinMunGoTheme.color.gray13
+                                    )
+                                }
+                            }
+
+                            // 오른쪽 항목
+                            Column(
+                                verticalArrangement = Arrangement.spacedBy(5.dp),
+                                modifier = Modifier.weight(1f)
+                            ) {
+                                rightAlignedItems.forEach { item ->
+                                    Text(
+                                        text = "• $item",
+                                        style = ShinMunGoTheme.typography.caption3,
+                                        color = ShinMunGoTheme.color.gray13
+                                    )
+                                }
+                            }
+                        }
+                    } else {
+                        // 다른 카테고리는 기존 레이아웃 유지
+                        Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                            reportableItems.forEach { item ->
+                                Text(
+                                    text = "• $item",
+                                    style = ShinMunGoTheme.typography.caption3,
+                                    color = ShinMunGoTheme.color.gray13
+                                )
+                            }
                         }
                     }
                 }

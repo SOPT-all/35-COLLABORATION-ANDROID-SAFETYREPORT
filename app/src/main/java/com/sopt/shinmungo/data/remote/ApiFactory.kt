@@ -26,6 +26,10 @@ object ApiFactory {
             .build()
     }
 
-    inline fun <reified T> create(): T = retrofit.create(T::class.java)
+    inline fun <reified T> create(): T {
+        return retrofit.create(T::class.java)
+    }
 }
+
+
 
