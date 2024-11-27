@@ -59,15 +59,15 @@ fun MainBottomBars(
 ) {
     Card(
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 10.dp),
-        shape = RectangleShape
+        shape = RectangleShape,
+        modifier = Modifier.showIf(visibility)
     ) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
                 .background(color = containerColor)
                 .navigationBarsPadding()
-                .padding(start = 37.dp, end = 37.dp, top = 8.dp, bottom = 31.dp)
-                .showIf(visibility),
+                .padding(start = 37.dp, end = 37.dp, top = 8.dp, bottom = 31.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             tabs.forEach { tab ->

@@ -68,7 +68,7 @@ fun ReportScreen(
     val dialogState by viewModel.dialogState.collectAsStateWithLifecycle()
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
     ) {
         CommonTopBar(
@@ -90,7 +90,7 @@ fun ReportScreen(
 
         Box {
             Box(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxSize()
                     .padding(top = 50.dp)
             ) {
