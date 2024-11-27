@@ -6,5 +6,5 @@ data class HomeInformation(
     val yearReportCount: Int,
     val monthReportCount: Int,
     val mileage: String,
-    val bannerUrls: List<BannerImage>,
+    val bannerImages: List<BannerImage>,
 )

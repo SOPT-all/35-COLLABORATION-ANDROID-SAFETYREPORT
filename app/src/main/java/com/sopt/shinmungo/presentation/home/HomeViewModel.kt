@@ -24,7 +24,7 @@ class HomeViewModel : ViewModel() {
                     yearReportCount = 7,
                     monthReportCount = 25,
                     mileage = "5000000",
-                    bannerUrls = listOf(
+                    bannerImages = listOf(
                         BannerImage(
                             bannerId = 1,
                             bannerImageUrl = "https://image.wavve.com/v1/thumbnails/2480_1396_20_80/meta/image/202411/1731578316860877739.webp"

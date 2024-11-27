@@ -100,7 +100,7 @@ private fun HomeScreen(
                         monthReportCount = monthReportCount.toString(),
                         userName = name,
                         yearReportCount = yearReportCount.toString(),
-                        bannerUrls = bannerUrls,
+                        bannerUrls = bannerImages,
                         reportExamplePairs = reportExamplePairs,
                         navigateToCategory = navigateToCategory,
                         navigateToParkingReport = navigateToParkingReport,
