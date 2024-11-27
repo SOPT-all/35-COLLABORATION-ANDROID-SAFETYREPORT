@@ -20,7 +20,7 @@ data class HomeInformationResponse(
     data class HomeBannerResponse(
         @SerialName("bannerId")
         val bannerId: Long,
-        @SerialName("imageUrl")
-        val imageUrl: String
+        @SerialName("bannerUrl")
+        val bannerUrl: String
     )
 }

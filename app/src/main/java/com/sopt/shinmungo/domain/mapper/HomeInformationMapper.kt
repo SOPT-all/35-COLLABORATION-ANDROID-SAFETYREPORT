@@ -13,7 +13,7 @@ fun HomeInformationResponse.toHomeInformation(): HomeInformation = HomeInformati
     bannerImages = bannerList.map {
         BannerImage(
             bannerId = it.bannerId,
-            bannerImageUrl = it.imageUrl
+            bannerImageUrl = it.bannerUrl
         )
     }
 )

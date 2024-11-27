@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 class HomeViewModel : ViewModel() {
@@ -21,11 +22,14 @@ class HomeViewModel : ViewModel() {
     val uiState = _uiState.asStateFlow()
 
     fun getHomeInformation() = viewModelScope.launch {
+        Timber.tag("HomeViewModel").d("GetHomeInformation Called")
         repository.getHomeInformation()
             .onSuccess { homeInformation ->
+                Timber.tag("HomeViewModel").d("${homeInformation.mileage}, ${homeInformation.userId}")
                 updateLoadState(loadState = UiState.Success(homeInformation))
             }
             .onFailure { exception ->
+                Timber.tag("HomeViewModel").d("${exception.printStackTrace()}")
                 if (exception.cause == EmptyThrowable()) {
                     updateLoadState(loadState = UiState.Empty)
                 } else {
