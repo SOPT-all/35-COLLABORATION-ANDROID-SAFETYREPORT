@@ -82,15 +82,15 @@ private fun HomeScreen(
 
         when (uiState.loadState) {
             is UiState.Loading -> {
-                // 로딩 중 UI 표시
+                // 로딩 중 UI 표시 (구현 예정 X)
             }
 
             is UiState.Empty -> {
-                // 빈 UI 표시
+                // 빈 UI 표시 (구현 예정 X)
             }
 
             is UiState.Error -> {
-                // 에러 UI 표시
+                // 에러 UI 표시 (구현 예정 X)
             }
 
             is UiState.Success -> {
