@@ -1,9 +1,7 @@
 package com.sopt.shinmungo.presentation.gallery
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sopt.shinmungo.domain.entity.Photo
 import com.sopt.shinmungo.domain.repository.RepositoryPool
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -48,7 +46,6 @@ class GalleryViewModel : ViewModel() {
                     error = error.message ?: "알 수 없는 오류",
                     isLoading = false
                 )}
-                Log.d("GalleryViewModel", "loadPhotos: $error")
             }
     }
 
