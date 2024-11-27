@@ -1,7 +1,5 @@
 package com.sopt.shinmungo.presentation.report.navigation
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
@@ -16,7 +14,6 @@ import com.sopt.shinmungo.presentation.home.navigation.Home
 import com.sopt.shinmungo.presentation.map.navigation.navigateToAddressInput
 import com.sopt.shinmungo.presentation.report.ReportScreen
 import kotlinx.serialization.Serializable
-import timber.log.Timber
 
 fun NavHostController.navigateToReport(navOptions: NavOptions? = null) =
     navigate(

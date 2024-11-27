@@ -12,7 +12,6 @@ import com.sopt.shinmungo.core.navigation.Route
 import com.sopt.shinmungo.presentation.allcategory.navigation.navigateToAllCategory
 import com.sopt.shinmungo.presentation.home.navigation.Home
 import com.sopt.shinmungo.presentation.home.navigation.navigateToHome
-import com.sopt.shinmungo.presentation.report.navigation.Report
 
 class MainNavigator(
     val navController: NavHostController,

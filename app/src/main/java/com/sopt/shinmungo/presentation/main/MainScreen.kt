@@ -3,7 +3,6 @@ package com.sopt.shinmungo.presentation.main
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -17,7 +16,6 @@ import com.sopt.shinmungo.presentation.allcategory.navigation.allCategoryScreen
 import com.sopt.shinmungo.presentation.gallery.navigation.galleryScreen
 import com.sopt.shinmungo.presentation.home.navigation.homeScreen
 import com.sopt.shinmungo.presentation.main.component.MainBottomBars
-import com.sopt.shinmungo.presentation.map.AddressInputScreen
 import com.sopt.shinmungo.presentation.map.navigation.addressInputScreen
 import com.sopt.shinmungo.presentation.report.navigation.reportScreen
 

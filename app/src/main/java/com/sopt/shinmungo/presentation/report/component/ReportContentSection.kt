@@ -22,9 +22,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerIconButton
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.CheckButtonWithTextInfoIcon
+import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerIconButton
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
 import com.sopt.shinmungo.presentation.report.type.ReportSectionType
