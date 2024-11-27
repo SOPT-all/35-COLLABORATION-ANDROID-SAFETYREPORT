@@ -10,13 +10,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.sopt.shinmungo.core.navigation.Route
 import com.sopt.shinmungo.presentation.allcategory.navigation.navigateToAllCategory
-import com.sopt.shinmungo.presentation.home.navigation.Home
 import com.sopt.shinmungo.presentation.home.navigation.navigateToHome
+import com.sopt.shinmungo.presentation.report.navigation.Report
 
 class MainNavigator(
     val navController: NavHostController,
 ) {
-    val startDestination: Route = Home
+    val startDestination: Route = Report
 
     private val currentDestination: NavDestination?
         @Composable get() = navController
