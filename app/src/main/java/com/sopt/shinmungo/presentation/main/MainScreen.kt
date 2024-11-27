@@ -11,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.navigation.Route
+import com.sopt.shinmungo.presentation.gallery.navigation.galleryScreen
 import com.sopt.shinmungo.presentation.home.navigation.homeScreen
 import com.sopt.shinmungo.presentation.main.component.MainBottomBars
 import com.sopt.shinmungo.presentation.map.AddressInputScreen
@@ -55,6 +56,10 @@ private fun MainNavHost(
             modifier = modifier
         )
         addressInputScreen(
+            navController = navController,
+            modifier = modifier
+        )
+        galleryScreen(
             navController = navController,
             modifier = modifier
         )
