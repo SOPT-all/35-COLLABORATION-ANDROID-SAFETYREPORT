@@ -6,4 +6,9 @@ object RepositoryPool {
     val exampleRepository by lazy {
         ExampleRepository()
     }
+
+    /** GalleryRepository 레포지토리 객체 */
+    val galleryRepository by lazy {
+        GalleryRepository()
+    }
 }
