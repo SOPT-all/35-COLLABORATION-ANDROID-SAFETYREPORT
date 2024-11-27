@@ -35,9 +35,10 @@ import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.domain.entity.Photo
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+
+private val DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
 
 @Composable
 fun GalleryDetailScreen(
@@ -93,7 +94,10 @@ fun GalleryDetailScreen(
                     ){
                         Text(
                             modifier = Modifier.padding(4.dp),
-                            text = stringResource(R.string.gallery_detail_timestamp_prefix_text) + photo?.timestamp?.format(DateTimeFormatter.ofPattern("yyyy/MM/dd    HH:mm:ss")) ?: "",
+                            text = stringResource(
+                                id = R.string.gallery_detail_timestamp_prefix_text,
+                                photo?.timestamp?.format(DATE_TIME_FORMATTER) ?: "알 수 없음"
+                            ),
                             style = ShinMunGoTheme.typography.caption1,
                             color = ShinMunGoTheme.color.gray13
                         )

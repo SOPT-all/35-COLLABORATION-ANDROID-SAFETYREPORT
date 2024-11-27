@@ -1,5 +1,6 @@
 package com.sopt.shinmungo.presentation.gallery.component
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -20,7 +21,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 @Composable
 fun AlertMessageBox(
     message: String,
-    iconRes: Int,
+    @DrawableRes iconRes: Int,
     backgroundColor: Color,
     textColor: Color
 ) {

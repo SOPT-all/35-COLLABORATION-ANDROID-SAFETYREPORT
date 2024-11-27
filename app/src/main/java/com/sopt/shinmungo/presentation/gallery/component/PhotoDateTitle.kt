@@ -9,10 +9,12 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+private val DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
+
 @Composable
 fun PhotoDateTitle(date: LocalDate) {
     Text(
-        text = date.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")),
+        text = date.format(DATE_FORMATTER),
         style = ShinMunGoTheme.typography.body2,
         modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
     )

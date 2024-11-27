@@ -1,21 +1,11 @@
 package com.sopt.shinmungo.presentation.gallery
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.sopt.shinmungo.domain.entity.Photo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import java.time.LocalDate
 import java.time.LocalDateTime
-
-sealed class GalleryEvent {
-    object LoadPhotos : GalleryEvent()
-    data class SelectPhoto(val photoId: Int) : GalleryEvent()
-    data class DeselectPhoto(val photoId: Int) : GalleryEvent()
-    object DismissError : GalleryEvent()
-}
 
 class GalleryViewModel : ViewModel() {
 
@@ -75,4 +65,11 @@ class GalleryViewModel : ViewModel() {
         _state.update { it.copy(error = null) }
     }
 
+}
+
+sealed class GalleryEvent {
+    object LoadPhotos : GalleryEvent()
+    data class SelectPhoto(val photoId: Int) : GalleryEvent()
+    data class DeselectPhoto(val photoId: Int) : GalleryEvent()
+    object DismissError : GalleryEvent()
 }

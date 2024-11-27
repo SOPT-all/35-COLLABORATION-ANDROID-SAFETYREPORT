@@ -29,6 +29,6 @@
     <string name="gallery_img_tab">사진</string>
     <string name="gallery_video_tab">동영상</string>
     <string name="gallery_detail_topbar_title">상세보기</string>
-    <string name="gallery_detail_timestamp_prefix_text">"촬영일시:       "</string>
+    <string name="gallery_detail_timestamp_prefix_text">촬영 일시     : %s</string>
     <string name="gallery_detail_shinmungo">안전신문고</string>
 </resources>
