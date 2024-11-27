@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerTextButton
 import com.sopt.shinmungo.core.designsystem.component.topbar.CommonTopBar
@@ -39,10 +41,12 @@ import com.sopt.shinmungo.presentation.report.component.ReportContentSection
 import com.sopt.shinmungo.presentation.report.component.ReportLocationSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhoneNumberSection
 import com.sopt.shinmungo.presentation.report.component.ReportPhotoSection
+import com.sopt.shinmungo.presentation.report.type.ReportDialogType
+import timber.log.Timber
 
 @Composable
 fun ReportScreen(
-    viewModel: ReportViewModel = ReportViewModel(),
+    viewModel: ReportViewModel = viewModel(),
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -60,6 +64,17 @@ fun ReportScreen(
     val cameraCooldownTime = viewModel.cameraCooldownTime.collectAsStateWithLifecycle()
     val isCameraButtonActive = viewModel.isCameraButtonActive.collectAsStateWithLifecycle()
     val isPostButtonActive = viewModel.isPostButtonActive.collectAsStateWithLifecycle()
+
+    val dialogState by viewModel.dialogState.collectAsStateWithLifecycle()
+
+    ReportDialogScreen(
+        dialogState = dialogState,
+        onDismissRequest = viewModel::updateDialogVisibility,
+        onSubmitComplete = {},
+        onResetClick = {},
+        onPhotoDeleteConfirm = {},
+        onNavigateToGallery = {}
+    )
 
     Column(
         modifier = Modifier
@@ -112,7 +127,8 @@ fun ReportScreen(
                         },
                         onDeleteButtonClick = { viewModel.deletePhotoFromList(it) },
                         showDeleteIcons = showDeleteIcons.value,
-                        onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) }
+                        onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) },
+                        onInfoIconClick = { viewModel.updateDialogVisibility(it) }
                     )
 
                     ReportLocationSection(
@@ -169,6 +185,8 @@ fun ReportScreen(
                 }
 
                 if (!isCategorySelected.value) {
+                    //TODO: LOG 삭제하기
+                    Timber.tag("ReportViewModel").d("ReportScreen: ${isCategorySelected.value}")
                     Box(
                         modifier = Modifier
                             .fillMaxSize()

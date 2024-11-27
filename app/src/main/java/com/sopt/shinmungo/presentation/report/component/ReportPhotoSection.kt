@@ -16,6 +16,7 @@ import com.sopt.shinmungo.core.designsystem.component.button.RoundedCornerIconBu
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.R
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
+import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 import com.sopt.shinmungo.presentation.report.type.ReportSectionType
 
 @SuppressLint("StateFlowValueCalledInComposition")
@@ -29,6 +30,7 @@ fun ReportPhotoSection(
     showDeleteIcons: Map<Int, Boolean>,
     onDeleteButtonClick: (ReportPhotoItem) -> Unit,
     onClickShowDeleteIcon: (Int) -> Unit,
+    onInfoIconClick: (ReportDialogType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column {
@@ -38,7 +40,9 @@ fun ReportPhotoSection(
             Column {
                 ReportSectionTitle(
                     text = ReportSectionType.PHOTO.type,
-                    onInfoIconClick = { /* 관련 다이얼로그 연결 */ }
+                    onInfoIconClick = {
+                        onInfoIconClick(ReportDialogType.ILLEGAL_PARKING)
+                    }
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
