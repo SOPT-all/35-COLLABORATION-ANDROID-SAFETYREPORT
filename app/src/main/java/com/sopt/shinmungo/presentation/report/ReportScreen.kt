@@ -67,35 +67,10 @@ fun ReportScreen(
 
     val dialogState by viewModel.dialogState.collectAsStateWithLifecycle()
 
-    ReportDialogScreen(
-        dialogState = dialogState,
-        onDismissRequest = viewModel::updateDialogVisibility,
-        onSubmitComplete = {},
-        onResetClick = { onBackClick() },
-        onPhotoDeleteConfirm = {
-            viewModel.deletePhotoFromList()
-        },
-        onNavigateToGallery = {
-            val newPhotoList = arrayListOf(
-                // 임시로 값 연결
-                ReportPhotoItem(1, "https://via.placeholder.com/70"),
-                ReportPhotoItem(2, "https://via.placeholder.com/70"),
-                ReportPhotoItem(3, "https://via.placeholder.com/70"),
-                ReportPhotoItem(4, "https://via.placeholder.com/70"),
-            )
-            viewModel.updatePhotoList(newPhotoList)
-        },
-        onCameraSelectionConfirm = { viewModel.startCameraCooldown(300) }
-    )
-
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
-
-        val str = "sdas"
-        str.removeSurrounding("\"")
-
         CommonTopBar(
             title = stringResource(R.string.report_illegal_parking),
             onLeftContent = {
@@ -196,7 +171,7 @@ fun ReportScreen(
                             roundedCornerShape = RoundedCornerShape(10.dp),
                             onButtonClick = {
                                 if (isPostButtonActive.value) {
-                                    //api
+                                    viewModel.updateDialogVisibility(ReportDialogType.SUBMIT_CONFIRM)
                                 } else {
                                     /* 클릭 방지 */
                                 }
@@ -234,6 +209,36 @@ fun ReportScreen(
             )
         }
     }
+
+    ReportDialogScreen(
+        dialogState = dialogState,
+        onDismissRequest = viewModel::updateDialogVisibility,
+        onResetReturnConfirm = onBackClick,
+        onSubmitComplete = {
+            // TODO: Home 화면으로 돌아가는 로직 (스택에서 화면들 지우기)
+        },
+        onResetClick = {
+            // TODO: 모든 입력값들 지우기
+        },
+        onPhotoDeleteConfirm = {
+            viewModel.deletePhotoFromList()
+        },
+        onGallerySelectionConfirm = {
+            val newPhotoList = arrayListOf(
+                // 임시로 값 연결
+                ReportPhotoItem(1, "https://via.placeholder.com/70"),
+                ReportPhotoItem(2, "https://via.placeholder.com/70"),
+                ReportPhotoItem(3, "https://via.placeholder.com/70"),
+                ReportPhotoItem(4, "https://via.placeholder.com/70"),
+            )
+            viewModel.updatePhotoList(newPhotoList)
+        },
+        onCameraSelectionConfirm = { viewModel.startCameraCooldown(300) },
+        onSubmitConfirmClick = {
+            // TODO: api 통신 후 성공하면 다이얼로그 띄우기
+            viewModel.updateDialogVisibility(ReportDialogType.SUBMIT)
+        }
+    )
 }
 
 @Preview

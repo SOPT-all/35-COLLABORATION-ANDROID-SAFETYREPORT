@@ -8,6 +8,7 @@ import com.sopt.shinmungo.presentation.dialog.PhotoSizeLimitDialog
 import com.sopt.shinmungo.presentation.dialog.PhotoTimeLimitDialog
 import com.sopt.shinmungo.presentation.dialog.ResetConfirmationDialog
 import com.sopt.shinmungo.presentation.dialog.SubmitCompleteDialog
+import com.sopt.shinmungo.presentation.dialog.SubmitConfirmDialog
 import com.sopt.shinmungo.presentation.report.state.ReportDialogState
 import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 
@@ -16,20 +17,25 @@ import com.sopt.shinmungo.presentation.report.type.ReportDialogType
  *
  * @param dialogState 다이얼로그들의 가시성 관리를 위한 상태 클래스
  * @param onDismissRequest 확인/닫기/외부영역을 터치하면 발생하는 이벤트
+ * @param onCameraSelectionConfirm 사진 안내 다이얼로그의 확인 버튼을 누르면 발생하는 이벤트
+ * @param onGallerySelectionConfirm 갤러리 선택 다이얼로그의 확인 버튼을 누르면 발생하는 이벤트
+ * @param onResetReturnConfirm 뒤로 가기 다이얼로그의 확인 버튼을 누르면 발생하는 이벤트
  * @param onPhotoDeleteConfirm 사진 삭제 확인 버튼 클릭 시 호출되는 콜백
  * @param onSubmitComplete 신고 완료 후 "홈으로" 버튼 클릭 시 호출되는 콜백
- * @param onResetClick 신고 완료 후 닫기 클릭 시 호출되는 콜백
+ * @param onResetClick 신고 완료 후 닫기를 클릭하여 입력들을 초기화시키기 이벤트
  */
 
 @Composable
 fun ReportDialogScreen(
     dialogState: ReportDialogState,
     onDismissRequest: (ReportDialogType) -> Unit,
-    onNavigateToGallery: () -> Unit,
+    onCameraSelectionConfirm: () -> Unit,
+    onGallerySelectionConfirm: () -> Unit,
+    onResetReturnConfirm: () -> Unit,
     onPhotoDeleteConfirm: () -> Unit,
-    onSubmitComplete: () -> Unit,
     onResetClick: () -> Unit,
-    onCameraSelectionConfirm: () -> Unit
+    onSubmitConfirmClick: () -> Unit,
+    onSubmitComplete: () -> Unit,
 ) {
     with(dialogState) {
         if (isIllegalParkingDialogVisible) {
@@ -50,7 +56,7 @@ fun ReportDialogScreen(
         if (isGallerySelectionDialogVisible) {
             MediaSelectionDialog(
                 onDismissRequest = {
-                    onNavigateToGallery()
+                    onGallerySelectionConfirm()
                     onDismissRequest(ReportDialogType.GALLERY_SELECTION)
                 },
             )
@@ -80,16 +86,32 @@ fun ReportDialogScreen(
 
         if (isResetConfirmationDialogVisible) {
             ResetConfirmationDialog(
-                onConfirmClick = {},
-                onDismissRequest = { onDismissRequest(ReportDialogType.RESET)}
+                onConfirmClick = onResetReturnConfirm,
+                onDismissRequest = { onDismissRequest(ReportDialogType.RESET) }
+            )
+        }
+
+        if (isSubmitConfirmDialogVisible) {
+            SubmitConfirmDialog(
+                onDismissRequest = { onDismissRequest(ReportDialogType.SUBMIT_CONFIRM) },
+                onConfirmClick = {
+                    onDismissRequest(ReportDialogType.SUBMIT_CONFIRM)
+                    onSubmitConfirmClick()
+                }
             )
         }
 
         if (isSubmitCompleteDialogVisible) {
             SubmitCompleteDialog(
                 onHomeClick = onSubmitComplete,
-                onCloseClick = onResetClick,
-                onDismissRequest = onResetClick,
+                onCloseClick = {
+                    onDismissRequest(ReportDialogType.SUBMIT)
+                    onResetClick()
+                },
+                onDismissRequest = {
+                    onDismissRequest(ReportDialogType.SUBMIT)
+                    onResetClick()
+                }
             )
         }
     }

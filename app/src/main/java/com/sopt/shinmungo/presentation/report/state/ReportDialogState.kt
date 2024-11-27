@@ -8,5 +8,6 @@ data class ReportDialogState(
     val isPhotoSizeLimitDialogVisible: Boolean = false,
     val isPhotoTimeLimitDialogVisible: Boolean = false,
     val isResetConfirmationDialogVisible: Boolean = false,
+    val isSubmitConfirmDialogVisible: Boolean = false,
     val isSubmitCompleteDialogVisible: Boolean = false
 )

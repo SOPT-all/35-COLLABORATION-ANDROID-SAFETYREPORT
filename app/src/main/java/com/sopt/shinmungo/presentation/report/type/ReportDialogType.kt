@@ -8,5 +8,6 @@ enum class ReportDialogType {
     PHOTO_SIZE_LIMIT,
     PHOTO_TIME_LIMIT,
     RESET,
+    SUBMIT_CONFIRM,
     SUBMIT;
 }

@@ -217,6 +217,12 @@ class ReportViewModel : ViewModel() {
                 }
             }
 
+            ReportDialogType.SUBMIT_CONFIRM -> {
+                _dialogState.update {
+                    it.copy(isSubmitConfirmDialogVisible = !_dialogState.value.isSubmitConfirmDialogVisible)
+                }
+            }
+
             ReportDialogType.SUBMIT -> {
                 _dialogState.update {
                     it.copy(isSubmitCompleteDialogVisible = !_dialogState.value.isSubmitCompleteDialogVisible)
