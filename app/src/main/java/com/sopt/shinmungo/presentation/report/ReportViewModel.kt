@@ -2,7 +2,10 @@ package com.sopt.shinmungo.presentation.report
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sopt.shinmungo.data.dto.request.ReportRequest
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
+import com.sopt.shinmungo.domain.repository.ReportRepository
+import com.sopt.shinmungo.domain.repository.RepositoryPool
 import com.sopt.shinmungo.presentation.report.state.ReportDialogState
 import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 import kotlinx.coroutines.Job
@@ -17,6 +20,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ReportViewModel : ViewModel() {
+    private val repository: ReportRepository = RepositoryPool.reportRepository
+
     val illegalParkingCategory = listOf(
         "소화전",
         "교차로 모퉁이",
@@ -235,6 +240,23 @@ class ReportViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    fun postReport() = viewModelScope.launch {
+        val request = ReportRequest(
+            photoList = photoList.value,
+            address = location.value,
+            content = content.value,
+            phoneNumber = phoneNumber.value,
+            category = "PARKING"
+        )
+        repository.postReport(userId = 1, request = request)
+            .onSuccess { homeInformation ->
+                updateDialogVisibility(ReportDialogType.SUBMIT)
+            }
+            .onFailure { exception ->
+                exception.printStackTrace()
+            }
     }
 
     companion object {
