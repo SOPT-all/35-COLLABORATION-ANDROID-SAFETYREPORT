@@ -7,6 +7,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.sopt.shinmungo.core.navigation.MainTabRoute
 import com.sopt.shinmungo.presentation.allcategory.AllCategoryScreen
+import com.sopt.shinmungo.presentation.report.navigation.navigateToReport
 import kotlinx.serialization.Serializable
 
 fun NavHostController.navigateToAllCategory(navOptions: NavOptions? = null) =
@@ -22,10 +23,12 @@ fun NavGraphBuilder.allCategoryScreen(
     composable<AllCategory> {
         AllCategoryScreen(
             onNavigateBack = navController::navigateUp,
+            onNavigateToReport = { navController.navigateToReport() }, // ReportScreen으로 이동
             modifier = modifier
         )
     }
 }
+
 
 @Serializable
 data object AllCategory: MainTabRoute
