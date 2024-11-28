@@ -40,6 +40,7 @@ fun AllCategoryScreen(
         modifier = modifier
     ) {
         AllCategoryTopBar(onNavigateBack = onNavigateBack)
+        Spacer(modifier = Modifier.height(19.dp))
         if (categories.value.isEmpty()) {
             Box(
                 modifier = Modifier
