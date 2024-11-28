@@ -149,7 +149,7 @@ class ReportViewModel : ViewModel() {
     fun updateIsRecommendWord() {
         _isRecommendWord.value = !_isRecommendWord.value
         if (_isRecommendWord.value) {
-            _content.value = RECOMMEND_WORD_CONTEXT
+            updateContent(RECOMMEND_WORD_CONTEXT)
         } else {
             _content.value = _content.value.replace(RECOMMEND_WORD_CONTEXT, "").toString()
         }
@@ -264,6 +264,6 @@ class ReportViewModel : ViewModel() {
         const val USER_PHONE_NUMBER = "010-1234-5678"
         const val DEFAULT_PHONE_NUMBER_MESSAGE = "전화번호를 입력해주세요"
         const val MIN_LENGTH_OF_CONTENT = 5
-        const val MAX_LENGTH_OF_CONTENT = 200
+        const val MAX_LENGTH_OF_CONTENT = 900
     }
 }
