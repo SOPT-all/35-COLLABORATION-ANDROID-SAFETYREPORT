@@ -7,6 +7,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import androidx.navigation.navOptions
 import androidx.navigation.toRoute
 import com.sopt.shinmungo.presentation.gallery.GalleryDetailScreen
 import com.sopt.shinmungo.presentation.gallery.GalleryScreen
@@ -17,7 +18,12 @@ fun NavHostController.navigateToGallery(navOptions: NavOptions? = null) =
     navigate(route = Gallery, navOptions = navOptions)
 
 fun NavHostController.navigateToGalleryDetail(photoId: Int, navOptions: NavOptions? = null) =
-    navigate(route = GalleryDetail(photoId), navOptions = navOptions)
+    navigate(
+        route = GalleryDetail(photoId),
+        navOptions = navOptions ?: navOptions {
+            launchSingleTop = true
+        }
+    )
 
 fun NavGraphBuilder.galleryScreen(
     navController: NavHostController,
@@ -28,7 +34,7 @@ fun NavGraphBuilder.galleryScreen(
             modifier = modifier,
             onBackClick = { navController.popBackStack() },
             onPhotoClick = { photoId ->
-                navController.navigate(GalleryDetail(photoId))
+                navController.navigateToGalleryDetail(photoId)
             },
             onConfirmClick = { selectedPhotos ->
                 navController.previousBackStackEntry?.savedStateHandle?.set(
