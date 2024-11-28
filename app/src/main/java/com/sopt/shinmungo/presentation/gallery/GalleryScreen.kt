@@ -41,6 +41,7 @@ import com.sopt.shinmungo.presentation.gallery.component.AlertMessageBox
 import com.sopt.shinmungo.presentation.gallery.component.CustomTabRow
 import com.sopt.shinmungo.presentation.gallery.component.PhotoCard
 import com.sopt.shinmungo.presentation.gallery.component.PhotoDateTitle
+import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 
 @Composable
 fun GalleryScreen(
@@ -159,20 +160,19 @@ fun GalleryScreen(
             }
         }
 
-        Row(
+        Box(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .padding(top = 8.dp)
                 .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+                .padding(top = 8.dp, bottom = 32.dp)
         ) {
             RoundedCornerTextButton(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(10.dp),
                 text = stringResource(R.string.gallery_use_button_text),
-                textStyle = ShinMunGoTheme.typography.body4,
+                textStyle = ShinMunGoTheme.typography.heading1,
                 textColor = ShinMunGoTheme.color.gray1,
-                borderLineColor = null,
                 backgroundColor = ShinMunGoTheme.color.primary,
                 roundedCornerShape = RoundedCornerShape(10.dp),
                 onButtonClick = {
