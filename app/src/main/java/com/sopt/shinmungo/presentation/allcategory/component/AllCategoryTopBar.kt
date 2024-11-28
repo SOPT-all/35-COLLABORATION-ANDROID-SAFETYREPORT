@@ -23,7 +23,7 @@ fun AllCategoryTopBar(
         CommonTopBar(
             title = stringResource(id = R.string.all_category_title),
             onLeftContent = {
-                IconButton(onClick = onNavigateBack, modifier = Modifier.padding(start = 8.dp)) {
+                IconButton(onClick = onNavigateBack) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
                         contentDescription = stringResource(id = R.string.back_button_description),
