@@ -147,8 +147,7 @@ class ReportViewModel : ViewModel() {
 
     fun updateContent(newContent: String) {
         _content.value = newContent
-        val value = _content.value.length >= MIN_LENGTH_OF_CONTENT
-        updateShowPhoneNumber(value)
+        validateContentLength()
     }
 
     fun updateIsRecommendWord() {
@@ -157,6 +156,7 @@ class ReportViewModel : ViewModel() {
             updateContent(RECOMMEND_WORD_CONTEXT)
         } else {
             _content.value = _content.value.replace(RECOMMEND_WORD_CONTEXT, "").toString()
+            validateContentLength()
         }
     }
 
@@ -262,6 +262,11 @@ class ReportViewModel : ViewModel() {
             .onFailure { exception ->
                 exception.printStackTrace()
             }
+    }
+
+    private fun validateContentLength() {
+        val isValid = _content.value.length in MIN_LENGTH_OF_CONTENT..MAX_LENGTH_OF_CONTENT
+        updateShowPhoneNumber(isValid)
     }
 
     companion object {
