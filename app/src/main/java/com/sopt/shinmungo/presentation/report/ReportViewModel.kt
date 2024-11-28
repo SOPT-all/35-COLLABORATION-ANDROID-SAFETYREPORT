@@ -120,7 +120,12 @@ class ReportViewModel : ViewModel() {
     }
 
     fun updatePhotoList(newPhotoList: List<ReportPhotoItem>) {
-        _photoList.value = newPhotoList
+        if (newPhotoList.size<=10) {
+            _photoList.value = newPhotoList
+        } else {
+            updateDialogVisibility(ReportDialogType.PHOTO_SIZE_LIMIT)
+            _photoList.value = emptyList()
+        }
     }
 
     fun deletePhotoFromList() {
