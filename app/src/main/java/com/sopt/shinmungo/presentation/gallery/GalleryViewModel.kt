@@ -1,29 +1,21 @@
 package com.sopt.shinmungo.presentation.gallery
 
 import androidx.lifecycle.ViewModel
-import com.sopt.shinmungo.domain.entity.Photo
+import androidx.lifecycle.viewModelScope
+import com.sopt.shinmungo.domain.repository.RepositoryPool
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import java.time.LocalDateTime
+import kotlinx.coroutines.launch
+
 
 class GalleryViewModel : ViewModel() {
-
-    // Dummy Data 생성 - 삭제 예정
-    val dummyPhotos = (0..9).map { index ->
-        Photo(
-            id = index,
-            url = "https://picsum.photos/200/300?random=$index",
-            timestamp = if (index < 5) {
-                LocalDateTime.now()
-            } else {
-                LocalDateTime.now().minusDays(1L)
-            }
-        )
-    }
-
+    private val repository = RepositoryPool.galleryRepository
     private val _state = MutableStateFlow(GalleryState())
     val state = _state.asStateFlow()
+
+    private val _userId = MutableStateFlow(1L)
+    val userId = _userId.asStateFlow()
 
     init {
         loadPhotos()
@@ -38,15 +30,23 @@ class GalleryViewModel : ViewModel() {
         }
     }
 
-    private fun loadPhotos() {
+    private fun loadPhotos() = viewModelScope.launch {
         _state.update { it.copy(isLoading = true) }
 
-        val photosByDate = dummyPhotos.groupBy { it.timestamp.toLocalDate() }
-
-        _state.update { it.copy(
-            photos = photosByDate,
-            isLoading = false
-        )}
+        repository.getPhotos(userId.value)
+            .onSuccess { photos ->
+                val photosByDate = photos.groupBy { it.timestamp.toLocalDate() }
+                _state.update { it.copy(
+                    photos = photosByDate,
+                    isLoading = false
+                )}
+            }
+            .onFailure { error ->
+                _state.update { it.copy(
+                    error = error.message ?: "알 수 없는 오류",
+                    isLoading = false
+                )}
+            }
     }
 
     private fun selectPhoto(photoId: Int) {

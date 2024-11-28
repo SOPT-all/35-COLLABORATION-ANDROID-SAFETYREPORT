@@ -37,6 +37,7 @@ class MainNavigator(
         val mainNavOption = navOptions {
             popUpTo(navController.graph.startDestinationId) {
                 saveState = true
+                inclusive = true
             }
             launchSingleTop = true
             restoreState = true

@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -77,51 +78,60 @@ fun GalleryScreen(
             tabs = tabTitles,
             onTabSelected = { selectedTab = it }
         )
-
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-        ) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(3),
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 8.dp),
-                contentPadding = PaddingValues(1.dp),
-
+        if (uiState.isLoading) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
             ) {
-                item(span = { GridItemSpan(3) }) {
-                    AlertMessageBox(
-                        message = stringResource(R.string.gallery_alert_caption_text),
-                        iconRes = R.drawable.ic_alert_line_red_16,
-                        backgroundColor = ShinMunGoTheme.color.opacityGray13Per5,
-                        textColor = ShinMunGoTheme.color.primaryRed
-                    )
-                }
+                CircularProgressIndicator()
+            }
+        }
+        else {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+            ) {
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(3),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 16.dp)
+                        .padding(top = 8.dp),
+                    contentPadding = PaddingValues(1.dp),
 
-                uiState.photos.forEach { (date, photos) ->
+                    ) {
                     item(span = { GridItemSpan(3) }) {
-                        PhotoDateTitle(
-                            date = date
+                        AlertMessageBox(
+                            message = stringResource(R.string.gallery_alert_caption_text),
+                            iconRes = R.drawable.ic_alert_line_red_16,
+                            backgroundColor = ShinMunGoTheme.color.opacityGray13Per5,
+                            textColor = ShinMunGoTheme.color.primaryRed
                         )
                     }
 
-                    items(photos.size) { index ->
-                        val photo = photos[index]
-                        PhotoCard(
-                            photo = photo,
-                            isSelected = photo.id in uiState.selectedPhotos,
-                            onPhotoClick = { onPhotoClick(photo.id) },
-                            onCheckboxClick = {
-                                if (photo.id in uiState.selectedPhotos) {
-                                    viewModel.onEvent(GalleryEvent.DeselectPhoto(photo.id))
-                                } else {
-                                    viewModel.onEvent(GalleryEvent.SelectPhoto(photo.id))
+                    uiState.photos.forEach { (date, photos) ->
+                        item(span = { GridItemSpan(3) }) {
+                            PhotoDateTitle(
+                                date = date
+                            )
+                        }
+
+                        items(photos.size) { index ->
+                            val photo = photos[index]
+                            PhotoCard(
+                                photo = photo,
+                                isSelected = photo.id in uiState.selectedPhotos,
+                                onPhotoClick = { onPhotoClick(photo.id) },
+                                onCheckboxClick = {
+                                    if (photo.id in uiState.selectedPhotos) {
+                                        viewModel.onEvent(GalleryEvent.DeselectPhoto(photo.id))
+                                    } else {
+                                        viewModel.onEvent(GalleryEvent.SelectPhoto(photo.id))
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }
