@@ -47,7 +47,6 @@ fun ShowPhotoList(
                 photoItem = photoItem,
                 showDeleteIcon = showDelete,
                 onDelete = {
-                    /* 다이얼로그 연결 */
                     onDelete(it)
                 },
                 onClick = {

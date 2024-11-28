@@ -111,18 +111,12 @@ class ReportViewModel : ViewModel() {
 
     fun updateIsDropdownOpen() {
         _isDropdownOpen.value = !_isDropdownOpen.value
-//        if (_isDropdownOpen.value) {
-//            _selectedCategory.value = "불법 주정차 신고"
-//        }
     }
 
     fun updatePhotoList(newPhotoList: List<ReportPhotoItem>) {
         _photoList.value = newPhotoList
     }
 
-    /*fun deletePhotoFromList(deletePhoto: ReportPhotoItem) {
-        _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.photoId }
-    }*/
     fun deletePhotoFromList() {
         _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.value?.photoId }
     }
