@@ -9,4 +9,8 @@ object RepositoryPool {
     val galleryRepository by lazy {
         GalleryRepository()
     }
+
+    val homeRepository by lazy {
+        HomeRepository()
+    }
 }
