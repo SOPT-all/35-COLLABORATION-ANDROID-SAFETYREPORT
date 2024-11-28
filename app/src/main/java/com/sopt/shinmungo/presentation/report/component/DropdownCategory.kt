@@ -55,12 +55,12 @@ fun DropdownCategory(
         Column {
             Row {
                 val text =
-                    if (selectedCategory.isEmpty()) stringResource(R.string.report_select_report_type) else selectedCategory
-                val textStyle =
-                    if (selectedCategory.isEmpty()) ShinMunGoTheme.typography.body6 else ShinMunGoTheme.typography.body4
-                val textColor =
-                    if (selectedCategory.isEmpty()) ShinMunGoTheme.color.primary else ShinMunGoTheme.color.gray13
-                val spacerModifier = Modifier.width(if (selectedCategory.isEmpty()) 10.dp else 8.dp)
+                    if (isDropdownOpen) stringResource(R.string.report_reporting_illegal_parking)
+                    else selectedCategory.ifEmpty { stringResource(R.string.report_select_report_type) }
+                val isEmptyAndClosed = selectedCategory.isEmpty() && !isDropdownOpen
+                val textStyle = if (isEmptyAndClosed) ShinMunGoTheme.typography.body6 else ShinMunGoTheme.typography.body4
+                val textColor = if (isEmptyAndClosed) ShinMunGoTheme.color.primary else ShinMunGoTheme.color.gray13
+                val spacerModifier = Modifier.width(if (isEmptyAndClosed) 10.dp else 8.dp)
 
                 TextWithInfoIcon(
                     text = text,
@@ -81,6 +81,7 @@ fun DropdownCategory(
             if (isDropdownOpen) {
                 CategoryGrid(
                     illegalParkingCategory = illegalParkingCategory,
+                    selectedCategory = selectedCategory,
                     updateSelectedCategory = { updateSelectedCategory(it) },
                     updateIsDropDownOpen = updateIsDropDownOpen
                 )

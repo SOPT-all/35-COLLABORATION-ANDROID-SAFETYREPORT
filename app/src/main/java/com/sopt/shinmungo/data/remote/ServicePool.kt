@@ -3,6 +3,7 @@ package com.sopt.shinmungo.data.remote
 import com.sopt.shinmungo.data.service.HomeService
 import com.sopt.shinmungo.data.service.AllCategoryService
 import com.sopt.shinmungo.data.service.GalleryService
+import com.sopt.shinmungo.data.service.ReportService
 
 object ServicePool {
     val allCategoryService: AllCategoryService by lazy {
@@ -16,5 +17,9 @@ object ServicePool {
 
     val homeService by lazy {
         ApiFactory.create<HomeService>()
+    }
+
+    val reportService by lazy {
+        ApiFactory.create<ReportService>()
     }
 }

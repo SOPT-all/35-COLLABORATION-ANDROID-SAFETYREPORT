@@ -2,7 +2,10 @@ package com.sopt.shinmungo.presentation.report
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sopt.shinmungo.data.dto.request.ReportRequest
 import com.sopt.shinmungo.domain.entity.ReportPhotoItem
+import com.sopt.shinmungo.domain.repository.ReportRepository
+import com.sopt.shinmungo.domain.repository.RepositoryPool
 import com.sopt.shinmungo.presentation.report.state.ReportDialogState
 import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 import kotlinx.coroutines.Job
@@ -17,6 +20,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ReportViewModel : ViewModel() {
+    private val repository: ReportRepository = RepositoryPool.reportRepository
+
     val illegalParkingCategory = listOf(
         "소화전",
         "교차로 모퉁이",
@@ -30,8 +35,9 @@ class ReportViewModel : ViewModel() {
         "친환경차 전용구역"
     )
 
-    private val _dialogState: MutableStateFlow<ReportDialogState> = MutableStateFlow(ReportDialogState())
-    val dialogState:StateFlow<ReportDialogState> = _dialogState.asStateFlow()
+    private val _dialogState: MutableStateFlow<ReportDialogState> =
+        MutableStateFlow(ReportDialogState())
+    val dialogState: StateFlow<ReportDialogState> = _dialogState.asStateFlow()
 
     private val _deletePhoto: MutableStateFlow<ReportPhotoItem?> = MutableStateFlow(null)
     val deletePhoto: StateFlow<ReportPhotoItem?> get() = _deletePhoto.asStateFlow()
@@ -111,18 +117,12 @@ class ReportViewModel : ViewModel() {
 
     fun updateIsDropdownOpen() {
         _isDropdownOpen.value = !_isDropdownOpen.value
-        if (_isDropdownOpen.value) {
-            _selectedCategory.value = "불법 주정차 신고"
-        }
     }
 
     fun updatePhotoList(newPhotoList: List<ReportPhotoItem>) {
         _photoList.value = newPhotoList
     }
 
-    /*fun deletePhotoFromList(deletePhoto: ReportPhotoItem) {
-        _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.photoId }
-    }*/
     fun deletePhotoFromList() {
         _photoList.value = _photoList.value.filter { it.photoId != deletePhoto.value?.photoId }
     }
@@ -169,7 +169,19 @@ class ReportViewModel : ViewModel() {
     }
 
     fun updateDeletePhoto(deletePhoto: ReportPhotoItem) {
-       _deletePhoto.value = deletePhoto
+        _deletePhoto.value = deletePhoto
+    }
+
+    fun resetContent() {
+        _isCategorySelected.value = false
+        _selectedCategory.value = ""
+        _photoList.value = emptyList()
+        _location.value = ""
+        _content.value = ""
+        _isRecommendWord.value = false
+        _isReportSharingAgreed.value = false
+        _cameraCooldownTime.value = 0
+        _isCameraButtonActive.value = false
     }
 
     fun updateDialogVisibility(type: ReportDialogType) {
@@ -228,6 +240,23 @@ class ReportViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    fun postReport() = viewModelScope.launch {
+        val request = ReportRequest(
+            photoList = photoList.value,
+            address = location.value,
+            content = content.value,
+            phoneNumber = phoneNumber.value,
+            category = "PARKING"
+        )
+        repository.postReport(userId = 1, request = request)
+            .onSuccess { homeInformation ->
+                updateDialogVisibility(ReportDialogType.SUBMIT)
+            }
+            .onFailure { exception ->
+                exception.printStackTrace()
+            }
     }
 
     companion object {

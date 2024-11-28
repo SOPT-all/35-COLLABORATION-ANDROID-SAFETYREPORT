@@ -13,4 +13,8 @@ object RepositoryPool {
     val homeRepository by lazy {
         HomeRepository()
     }
+
+    val reportRepository by lazy {
+        ReportRepository()
+    }
 }

@@ -119,25 +119,14 @@ fun ReportScreen(
                         cameraCooldownTime = cameraCooldownTime.value,
                         isCameraButtonActive = isCameraButtonActive.value,
                         onCameraButtonClick = {
-                            /*viewModel.startCameraCooldown(300)*/
                             viewModel.updateDialogVisibility(ReportDialogType.CAMERA_SELECTION)
                         },
                         onGalleryButtonClick = {
                             viewModel.updateDialogVisibility(ReportDialogType.GALLERY_SELECTION)
-                            /* 갤러리 화면으로 이동 *//*
-                            val newPhotoList = arrayListOf(
-                                // 임시로 값 연결
-                                ReportPhotoItem(1, "https://via.placeholder.com/70"),
-                                ReportPhotoItem(2, "https://via.placeholder.com/70"),
-                                ReportPhotoItem(3, "https://via.placeholder.com/70"),
-                                ReportPhotoItem(4, "https://via.placeholder.com/70"),
-                            )
-                            viewModel.updatePhotoList(newPhotoList)*/
                         },
                         onDeleteButtonClick = {
                             viewModel.updateDeletePhoto(it)
                             viewModel.updateDialogVisibility(ReportDialogType.PHOTO_DELETE)
-                            //viewModel.deletePhotoFromList(it)
                         },
                         showDeleteIcons = showDeleteIcons.value,
                         onClickShowDeleteIcon = { viewModel.showDeleteIconForPhoto(it) },
@@ -148,7 +137,6 @@ fun ReportScreen(
                         location = location.value,
                         onLocationButtonClick = {
                             onMoveToMapClick()
-                            //viewModel.updateLocation(selectedLocation)
                         }
                     )
 
@@ -235,7 +223,7 @@ fun ReportScreen(
             onMoveToHomeClick()
         },
         onResetClick = {
-            // TODO: 모든 입력값들 지우는 로직
+            viewModel.resetContent()
         },
         onPhotoDeleteConfirm = {
             viewModel.deletePhotoFromList()
@@ -244,10 +232,7 @@ fun ReportScreen(
             onMoveToGalleryClick()
         },
         onCameraSelectionConfirm = { viewModel.startCameraCooldown(300) },
-        onSubmitConfirmClick = {
-            // TODO: api 통신 후 성공하면 다이얼로그 띄우기
-            viewModel.updateDialogVisibility(ReportDialogType.SUBMIT)
-        }
+        onSubmitConfirmClick = { viewModel.postReport() }
     )
 }
 

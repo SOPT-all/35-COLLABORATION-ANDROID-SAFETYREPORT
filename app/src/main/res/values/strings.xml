@@ -58,6 +58,7 @@
     <string name="report_to_next_photo_apply">다음 사진 첨부까지 :</string>
     <string name="report_add_photo_placeholder">사진을 추가해주세요</string>
     <string name="report_phone_number_placeholder">전화번호를 입력해주세요</string>
+    <string name="report_reporting_illegal_parking">불법 주정차 신고</string>
 
     <!--Button Component-->
     <string name="check_button_content_description">체크 아이콘</string>

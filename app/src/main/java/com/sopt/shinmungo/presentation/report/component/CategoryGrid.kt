@@ -17,6 +17,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 @Composable
 fun CategoryGrid(
     illegalParkingCategory: List<String>,
+    selectedCategory: String,
     updateSelectedCategory: (String) -> Unit,
     updateIsDropDownOpen: () -> Unit,
     modifier: Modifier = Modifier
@@ -34,9 +35,9 @@ fun CategoryGrid(
                 item(span = { GridItemSpan(2) }) {
                     CategoryButton(
                         category = category,
-                        isClicked = false,
-                        onCategoryButtonClick = { selectedCategory ->
-                            updateSelectedCategory(selectedCategory)
+                        isClicked = selectedCategory == category,
+                        onCategoryButtonClick = {
+                            updateSelectedCategory(category)
                             updateIsDropDownOpen()
                         },
                     )
@@ -55,9 +56,9 @@ fun CategoryGrid(
                 item {
                     CategoryButton(
                         category = category,
-                        isClicked = false,
-                        onCategoryButtonClick = { selectedCategory ->
-                            updateSelectedCategory(selectedCategory)
+                        isClicked = selectedCategory == category,
+                        onCategoryButtonClick = {
+                            updateSelectedCategory(category)
                             updateIsDropDownOpen()
                         },
                     )
