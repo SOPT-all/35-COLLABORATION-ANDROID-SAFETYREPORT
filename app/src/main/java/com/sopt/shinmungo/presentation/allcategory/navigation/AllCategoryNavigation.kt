@@ -22,8 +22,7 @@ fun NavGraphBuilder.allCategoryScreen(
     composable<AllCategory> {
         AllCategoryScreen(
             onNavigateBack = navController::navigateUp,
-            //TODO: AllCategoryScreen에 modifier 파라미터 추가
-            //modifier = modifier
+            modifier = modifier
         )
     }
 }

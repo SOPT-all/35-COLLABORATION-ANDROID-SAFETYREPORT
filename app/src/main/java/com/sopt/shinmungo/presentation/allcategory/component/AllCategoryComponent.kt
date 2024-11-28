@@ -28,11 +28,11 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.domain.entity.AllCategoryEntity
 
 /**
- * 카테고리 항목을 표시하는 컴포넌트입니다.
+ * 개별 카테고리를 화면에 표시하는 컴포저블 함수입니다.
  *
- * @param category 카테고리 정보를 포함한 데이터 엔티티입니다.
- * @param isExpanded 카테고리가 확장된 상태인지 여부를 나타냅니다.
- * @param reportableItems 신고 가능한 항목들의 리스트입니다.
+ * @param category 카테고리 정보를 포함하는 데이터 객체입니다.
+ * @param isExpanded 카테고리가 확장 상태인지 여부를 나타냅니다.
+ * @param reportableItems 해당 카테고리에서 신고 가능한 항목 리스트입니다.
  * @param onClick 카테고리를 클릭했을 때 호출되는 콜백 함수입니다.
  */
 
@@ -99,7 +99,6 @@ fun AllCategoryComponent(
                     .padding(horizontal = 10.dp, vertical = 9.dp)
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    // "신고할 수 있는 유형" 텍스트 표시
                     Text(
                         text = stringResource(id = R.string.all_category_reportable_hint),
                         style = ShinMunGoTheme.typography.caption3,
@@ -107,7 +106,6 @@ fun AllCategoryComponent(
                     )
 
                     if (category.title == "불법 주정차") {
-                        // 불법 주정차 항목 구분
                         val rightAlignedItems = listOf("장애인 전용구역", "소방차 전용구역", "친환경차 전용구역")
                         val leftAlignedItems = reportableItems.filterNot { it in rightAlignedItems }
 
@@ -115,7 +113,6 @@ fun AllCategoryComponent(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            // 왼쪽 항목
                             Column(
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
                                 modifier = Modifier.weight(1f)
@@ -128,8 +125,6 @@ fun AllCategoryComponent(
                                     )
                                 }
                             }
-
-                            // 오른쪽 항목
                             Column(
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
                                 modifier = Modifier.weight(1f)
@@ -144,7 +139,6 @@ fun AllCategoryComponent(
                             }
                         }
                     } else {
-                        // 다른 카테고리는 기존 레이아웃 유지
                         Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
                             reportableItems.forEach { item ->
                                 Text(

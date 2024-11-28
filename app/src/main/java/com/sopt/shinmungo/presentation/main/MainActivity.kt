@@ -13,10 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShinMunGoTheme {
-                // AllCategoryScreen을 바로 실행
-                AllCategoryScreen(
-                    onNavigateBack = { finish() } // 뒤로가기 버튼을 누르면 액티비티 종료
-                )
+                MainScreen()
             }
         }
     }

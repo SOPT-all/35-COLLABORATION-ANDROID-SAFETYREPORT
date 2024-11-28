@@ -6,12 +6,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CategoryDetailListResponse(
-    @SerialName("categoryDetailList") val categoryDetails: List<CategoryDetailResponse> // 카테고리 상세 목록
+    @SerialName("categoryDetailList") val categoryDetails: List<CategoryDetailResponse>
 ) {
     @Serializable
     data class CategoryDetailResponse(
-        @SerialName("categoryId") val id: Int, // 카테고리 ID
-        @SerialName("categoryName") val name: String, // 카테고리 이름
-        @SerialName("categoryDescription") val description: String // 카테고리 설명
+        @SerialName("categoryId") val id: Int,
+        @SerialName("categoryName") val name: String,
+        @SerialName("categoryDescription") val description: String
     )
 }

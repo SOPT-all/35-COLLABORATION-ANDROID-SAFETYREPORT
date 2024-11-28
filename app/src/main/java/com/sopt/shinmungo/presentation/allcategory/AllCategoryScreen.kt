@@ -19,26 +19,28 @@ import com.sopt.shinmungo.presentation.allcategory.viewmodel.AllCategoryViewMode
  * 전체 카테고리 화면을 표시하는 컴포저블 함수입니다.
  *
  * @param onNavigateBack 뒤로가기 버튼 클릭 시 호출되는 콜백 함수입니다.
+ * @param modifier 화면의 Modifier로, 기본값은 Modifier입니다.
  * @param viewModel 화면에 데이터를 제공하고 비즈니스 로직을 처리하는 ViewModel입니다.
  */
+
 @Composable
 fun AllCategoryScreen(
     onNavigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
     viewModel: AllCategoryViewModel = viewModel()
 ) {
     val categories = viewModel.categories.collectAsState()
     val expandedStates = viewModel.expandedStates.collectAsState()
 
-    // 화면이 처음 만들어질 때 서버에서 데이터를 가져옴
     LaunchedEffect(Unit) {
         viewModel.fetchCategories()
     }
 
-    Scaffold(
-        topBar = { AllCategoryTopBar(onNavigateBack = onNavigateBack) }
-    ) { innerPadding ->
+    Column(
+        modifier = modifier
+    ) {
+        AllCategoryTopBar(onNavigateBack = onNavigateBack)
         if (categories.value.isEmpty()) {
-            // 데이터가 없을 때 빈 화면 표시 (로딩 메시지 없음)
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -56,19 +58,18 @@ fun AllCategoryScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = 16.dp)
-                    .padding(top = 8.dp, bottom = 16.dp)
-                    .padding(innerPadding)
                     .background(ShinMunGoTheme.color.gray2),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(top = 8.dp, bottom = 16.dp)
             ) {
                 items(categories.value.size) { index ->
                     val reportableItems = categories.value[index].reportableItems
                     AllCategoryComponent(
-                        category = categories.value[index], // 카테고리 데이터 전달
-                        isExpanded = expandedStates.value[index], // 확장 상태 전달
-                        reportableItems = reportableItems, // 신고 가능한 항목 전달
+                        category = categories.value[index],
+                        isExpanded = expandedStates.value[index],
+                        reportableItems = reportableItems,
                         onClick = { viewModel.toggleCategoryExpanded(index) },
-                        )
+                    )
                 }
             }
         }
