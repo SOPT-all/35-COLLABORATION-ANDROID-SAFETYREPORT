@@ -1,5 +1,10 @@
 package com.sopt.shinmungo.presentation.main.component
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +29,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
@@ -54,38 +60,44 @@ fun MainBottomBars(
     selectedColor: Color = ShinMunGoTheme.color.primary,
     unselectedColor: Color = ShinMunGoTheme.color.gray6,
 ) {
-    Card(
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 10.dp),
-        shape = RectangleShape,
-        modifier = Modifier.showIf(visibility)
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn() + slideIn { IntOffset(0, 0) },
+        exit = fadeOut() + slideOut { IntOffset(0, 0) }
     ) {
-        Row(
+        Card(
+            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 10.dp),
+            shape = RectangleShape,
             modifier = modifier
-                .fillMaxWidth()
-                .background(color = containerColor)
-                .navigationBarsPadding()
-                .padding(start = 37.dp, end = 37.dp, top = 8.dp, bottom = 31.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            tabs.forEach { tab ->
-                val selected = tab == selectedTab
-                val color = if (selected) selectedColor else unselectedColor
-                val icon = if (selected) tab.selectedIconRes else tab.unselectedIconRes
-                Column(
-                    modifier = Modifier.noRippleClickable { onTabSelect(tab) },
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = icon),
-                        contentDescription = stringResource(id = tab.title),
-                        tint = color
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = stringResource(id = tab.title),
-                        style = ShinMunGoTheme.typography.caption6,
-                        color = color
-                    )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = containerColor)
+                    .navigationBarsPadding()
+                    .padding(start = 37.dp, end = 37.dp, top = 8.dp, bottom = 31.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                tabs.forEach { tab ->
+                    val selected = tab == selectedTab
+                    val color = if (selected) selectedColor else unselectedColor
+                    val icon = if (selected) tab.selectedIconRes else tab.unselectedIconRes
+                    Column(
+                        modifier = Modifier.noRippleClickable { onTabSelect(tab) },
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            imageVector = ImageVector.vectorResource(id = icon),
+                            contentDescription = stringResource(id = tab.title),
+                            tint = color
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = stringResource(id = tab.title),
+                            style = ShinMunGoTheme.typography.caption6,
+                            color = color
+                        )
+                    }
                 }
             }
         }
