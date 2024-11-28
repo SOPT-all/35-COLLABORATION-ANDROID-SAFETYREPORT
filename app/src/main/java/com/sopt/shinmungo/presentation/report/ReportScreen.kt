@@ -232,10 +232,7 @@ fun ReportScreen(
             onMoveToGalleryClick()
         },
         onCameraSelectionConfirm = { viewModel.startCameraCooldown(300) },
-        onSubmitConfirmClick = {
-            // TODO: api 통신 후 성공하면 다이얼로그 띄우기
-            viewModel.updateDialogVisibility(ReportDialogType.SUBMIT)
-        }
+        onSubmitConfirmClick = { viewModel.postReport() }
     )
 }
 
