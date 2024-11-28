@@ -223,7 +223,7 @@ fun ReportScreen(
             onMoveToHomeClick()
         },
         onResetClick = {
-            // TODO: 모든 입력값들 지우는 로직
+            viewModel.resetContent()
         },
         onPhotoDeleteConfirm = {
             viewModel.deletePhotoFromList()

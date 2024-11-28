@@ -30,8 +30,9 @@ class ReportViewModel : ViewModel() {
         "친환경차 전용구역"
     )
 
-    private val _dialogState: MutableStateFlow<ReportDialogState> = MutableStateFlow(ReportDialogState())
-    val dialogState:StateFlow<ReportDialogState> = _dialogState.asStateFlow()
+    private val _dialogState: MutableStateFlow<ReportDialogState> =
+        MutableStateFlow(ReportDialogState())
+    val dialogState: StateFlow<ReportDialogState> = _dialogState.asStateFlow()
 
     private val _deletePhoto: MutableStateFlow<ReportPhotoItem?> = MutableStateFlow(null)
     val deletePhoto: StateFlow<ReportPhotoItem?> get() = _deletePhoto.asStateFlow()
@@ -163,7 +164,19 @@ class ReportViewModel : ViewModel() {
     }
 
     fun updateDeletePhoto(deletePhoto: ReportPhotoItem) {
-       _deletePhoto.value = deletePhoto
+        _deletePhoto.value = deletePhoto
+    }
+
+    fun resetContent() {
+        _isCategorySelected.value = false
+        _selectedCategory.value = ""
+        _photoList.value = emptyList()
+        _location.value = ""
+        _content.value = ""
+        _isRecommendWord.value = false
+        _isReportSharingAgreed.value = false
+        _cameraCooldownTime.value = 0
+        _isCameraButtonActive.value = false
     }
 
     fun updateDialogVisibility(type: ReportDialogType) {
