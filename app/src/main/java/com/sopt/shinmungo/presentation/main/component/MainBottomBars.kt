@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.core.extension.noRippleClickable
-import com.sopt.shinmungo.core.extension.showIf
 import com.sopt.shinmungo.presentation.main.MainTab
 
 /**
