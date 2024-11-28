@@ -1,6 +1,5 @@
 package com.sopt.shinmungo.data.dto.response
 
-import com.sopt.shinmungo.domain.entity.ReportPhotoItem
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,7 +8,7 @@ data class ReportResponse(
     @SerialName("reportId")
     val reportId: Int,
     @SerialName("photoList")
-    val photoList: List<ReportPhotoItem>,
+    val photoList: List<PhotoDto>,
     @SerialName("address")
     val address: String,
     @SerialName("content")
