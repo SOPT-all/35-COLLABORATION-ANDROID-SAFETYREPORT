@@ -8,7 +8,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 import com.sopt.shinmungo.presentation.allcategory.component.AllCategoryComponent
@@ -26,6 +25,7 @@ import com.sopt.shinmungo.presentation.allcategory.viewmodel.AllCategoryViewMode
 @Composable
 fun AllCategoryScreen(
     onNavigateBack: () -> Unit,
+    onNavigateToReport: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AllCategoryViewModel = viewModel()
 ) {
@@ -40,6 +40,7 @@ fun AllCategoryScreen(
         modifier = modifier
     ) {
         AllCategoryTopBar(onNavigateBack = onNavigateBack)
+        Spacer(modifier = Modifier.height(19.dp))
         if (categories.value.isEmpty()) {
             Box(
                 modifier = Modifier
@@ -69,6 +70,7 @@ fun AllCategoryScreen(
                         isExpanded = expandedStates.value[index],
                         reportableItems = reportableItems,
                         onClick = { viewModel.toggleCategoryExpanded(index) },
+                        onNavigateToReport = onNavigateToReport
                     )
                 }
             }
@@ -76,13 +78,3 @@ fun AllCategoryScreen(
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewReportCategoryScreen() {
-    ShinMunGoTheme {
-        AllCategoryScreen(
-            onNavigateBack = { /* 뒤로가기 로직 */ },
-        )
-    }
-}

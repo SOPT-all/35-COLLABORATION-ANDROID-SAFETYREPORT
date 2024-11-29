@@ -120,7 +120,12 @@ class ReportViewModel : ViewModel() {
     }
 
     fun updatePhotoList(newPhotoList: List<ReportPhotoItem>) {
-        _photoList.value = newPhotoList
+        if (newPhotoList.size<=10) {
+            _photoList.value = newPhotoList
+        } else {
+            updateDialogVisibility(ReportDialogType.PHOTO_SIZE_LIMIT)
+            _photoList.value = emptyList()
+        }
     }
 
     fun deletePhotoFromList() {
@@ -142,16 +147,16 @@ class ReportViewModel : ViewModel() {
 
     fun updateContent(newContent: String) {
         _content.value = newContent
-        val value = _content.value.length >= MIN_LENGTH_OF_CONTENT
-        updateShowPhoneNumber(value)
+        validateContentLength()
     }
 
     fun updateIsRecommendWord() {
         _isRecommendWord.value = !_isRecommendWord.value
         if (_isRecommendWord.value) {
-            _content.value = RECOMMEND_WORD_CONTEXT
+            updateContent(RECOMMEND_WORD_CONTEXT)
         } else {
             _content.value = _content.value.replace(RECOMMEND_WORD_CONTEXT, "").toString()
+            validateContentLength()
         }
     }
 
@@ -259,11 +264,16 @@ class ReportViewModel : ViewModel() {
             }
     }
 
+    private fun validateContentLength() {
+        val isValid = _content.value.length in MIN_LENGTH_OF_CONTENT..MAX_LENGTH_OF_CONTENT
+        updateShowPhoneNumber(isValid)
+    }
+
     companion object {
         const val RECOMMEND_WORD_CONTEXT = "소방차 전용구역 불법주차 신고입니다."
         const val USER_PHONE_NUMBER = "010-1234-5678"
         const val DEFAULT_PHONE_NUMBER_MESSAGE = "전화번호를 입력해주세요"
         const val MIN_LENGTH_OF_CONTENT = 5
-        const val MAX_LENGTH_OF_CONTENT = 200
+        const val MAX_LENGTH_OF_CONTENT = 900
     }
 }

@@ -37,8 +37,10 @@ private const val EMPTY_DESCRIPTION = ""
 @Preview(showBackground = true)
 @Composable
 private fun BannerIconButtonPreview() {
-    BannerIconButton(
-        imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_right_24),
-        onClick = {}
-    )
+    ShinMunGoTheme {
+        BannerIconButton(
+            imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_right_24),
+            onClick = {}
+        )
+    }
 }

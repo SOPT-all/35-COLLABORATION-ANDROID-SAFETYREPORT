@@ -33,6 +33,7 @@ import com.sopt.shinmungo.core.designsystem.theme.ShinMunGoTheme
 
 @Composable
 fun MediaSelectionDialog(
+    onConfirmClick: () -> Unit,
     onDismissRequest: () -> Unit
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
@@ -128,7 +129,7 @@ fun MediaSelectionDialog(
                 borderLineColor = ShinMunGoTheme.color.gray5,
                 backgroundColor = ShinMunGoTheme.color.gray1,
                 roundedCornerShape = RoundedCornerShape(10.dp),
-                onButtonClick = onDismissRequest,
+                onButtonClick = onConfirmClick,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
@@ -143,6 +144,7 @@ fun MediaSelectionDialog(
 fun PreviewMediaSelectionDialog() {
     ShinMunGoTheme {
         MediaSelectionDialog(
+            onConfirmClick = { /* 확인 버튼 클릭 시 동작 */ },
             onDismissRequest = { /* 닫기 동작 */ }
         )
     }
