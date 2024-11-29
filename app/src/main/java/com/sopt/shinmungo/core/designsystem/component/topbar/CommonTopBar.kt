@@ -1,9 +1,11 @@
 package com.sopt.shinmungo.core.designsystem.component.topbar
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -12,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -37,34 +40,45 @@ fun CommonTopBar(
 ) {
     TopAppBar(
         modifier = Modifier.fillMaxWidth(),
-        windowInsets = WindowInsets(left = 8.dp, right = 8.dp),
+        windowInsets = WindowInsets(0.dp),
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = ShinMunGoTheme.color.primary,
             titleContentColor = Color.White,
             navigationIconContentColor = ShinMunGoTheme.color.gray1
         ),
         title = {
-            Text(
-                text = title,
-                style = ShinMunGoTheme.typography.heading2,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
-        },
-        navigationIcon = {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            Box(
+                modifier = Modifier
+                    .padding(end = 8.dp)
+                    .fillMaxWidth()
             ) {
-                onLeftContent()
+                Row(
+                    modifier = Modifier.align(Alignment.CenterStart),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    onLeftContent()
+                }
+
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Center),
+                    text = title,
+                    style = ShinMunGoTheme.typography.heading2,
+                    textAlign = TextAlign.Center
+                )
+
+                Row(
+                    modifier = Modifier.align(Alignment.CenterEnd),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    onRightContent()
+                }
             }
         },
-        actions = {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                onRightContent()
-            }
-        }
+        navigationIcon = { },
+        actions = { },
+
     )
 }
 
@@ -85,17 +99,6 @@ fun CommonTopBarPreview() {
                         tint = ShinMunGoTheme.color.gray1
                     )
                 }
-                IconButton(
-                    modifier = Modifier.size(24.dp),
-                    onClick = { }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow_left_line_white_24),
-                        contentDescription = "Back",
-                        modifier = Modifier.size(24.dp),
-                        tint = ShinMunGoTheme.color.gray1
-                    )
-                }
-
             },
             onRightContent = {
                 IconButton(

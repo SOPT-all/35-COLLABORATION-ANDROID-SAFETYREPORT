@@ -135,4 +135,5 @@
     <string name="gallery_detail_topbar_title">상세보기</string>
     <string name="gallery_detail_timestamp_prefix_text">촬영 일시     : %s</string>
     <string name="gallery_detail_shinmungo">안전신문고</string>
+    <string name="gallery_empty_video_text">동영상이 없습니다</string>
 </resources>

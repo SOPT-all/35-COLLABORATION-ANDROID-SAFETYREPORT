@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -15,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +41,7 @@ import com.sopt.shinmungo.presentation.gallery.component.AlertMessageBox
 import com.sopt.shinmungo.presentation.gallery.component.CustomTabRow
 import com.sopt.shinmungo.presentation.gallery.component.PhotoCard
 import com.sopt.shinmungo.presentation.gallery.component.PhotoDateTitle
+import com.sopt.shinmungo.presentation.report.type.ReportDialogType
 
 @Composable
 fun GalleryScreen(
@@ -58,15 +61,19 @@ fun GalleryScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(ShinMunGoTheme.color.gray1),
-        horizontalAlignment = Alignment.CenterHorizontally) {
+            .background(ShinMunGoTheme.color.gray1)
+    ) {
         CommonTopBar(
             title = stringResource(R.string.gallery_topbar_title),
             onLeftContent = {
-                IconButton(onClick = onBackClick) {
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    onClick = onBackClick
+                ) {
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left_line_white_24),
                         contentDescription = stringResource(R.string.back_screen_text),
+                        modifier = Modifier.size(24.dp),
                         tint = Color.White
                     )
                 }
@@ -92,44 +99,60 @@ fun GalleryScreen(
                     .weight(1f)
                     .fillMaxWidth()
             ) {
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(3),
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 16.dp)
-                        .padding(top = 8.dp),
-                    contentPadding = PaddingValues(1.dp),
+                when(selectedTab) {
+                    0 -> {
+                        LazyVerticalGrid(
+                            columns = GridCells.Fixed(3),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 16.dp)
+                                .padding(top = 8.dp),
+                            contentPadding = PaddingValues(1.dp),
 
-                    ) {
-                    item(span = { GridItemSpan(3) }) {
-                        AlertMessageBox(
-                            message = stringResource(R.string.gallery_alert_caption_text),
-                            iconRes = R.drawable.ic_alert_line_red_16,
-                            backgroundColor = ShinMunGoTheme.color.opacityGray13Per5,
-                            textColor = ShinMunGoTheme.color.primaryRed
-                        )
-                    }
+                            ) {
+                            item(span = { GridItemSpan(3) }) {
+                                AlertMessageBox(
+                                    message = stringResource(R.string.gallery_alert_caption_text),
+                                    iconRes = R.drawable.ic_alert_line_red_16,
+                                    backgroundColor = ShinMunGoTheme.color.opacityGray13Per5,
+                                    textColor = ShinMunGoTheme.color.primaryRed
+                                )
+                            }
 
-                    uiState.photos.forEach { (date, photos) ->
-                        item(span = { GridItemSpan(3) }) {
-                            PhotoDateTitle(
-                                date = date
-                            )
-                        }
-
-                        items(photos.size) { index ->
-                            val photo = photos[index]
-                            PhotoCard(
-                                photo = photo,
-                                isSelected = photo.id in uiState.selectedPhotos,
-                                onPhotoClick = { onPhotoClick(photo.id) },
-                                onCheckboxClick = {
-                                    if (photo.id in uiState.selectedPhotos) {
-                                        viewModel.onEvent(GalleryEvent.DeselectPhoto(photo.id))
-                                    } else {
-                                        viewModel.onEvent(GalleryEvent.SelectPhoto(photo.id))
-                                    }
+                            uiState.photos.forEach { (date, photos) ->
+                                item(span = { GridItemSpan(3) }) {
+                                    PhotoDateTitle(
+                                        date = date
+                                    )
                                 }
+
+                                items(photos.size) { index ->
+                                    val photo = photos[index]
+                                    PhotoCard(
+                                        photo = photo,
+                                        isSelected = photo.id in uiState.selectedPhotos,
+                                        onPhotoClick = { onPhotoClick(photo.id) },
+                                        onCheckboxClick = {
+                                            if (photo.id in uiState.selectedPhotos) {
+                                                viewModel.onEvent(GalleryEvent.DeselectPhoto(photo.id))
+                                            } else {
+                                                viewModel.onEvent(GalleryEvent.SelectPhoto(photo.id))
+                                            }
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    1 -> {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = stringResource(R.string.gallery_empty_video_text),
+                                style = ShinMunGoTheme.typography.body3,
+                                color = ShinMunGoTheme.color.gray6
                             )
                         }
                     }
@@ -137,20 +160,19 @@ fun GalleryScreen(
             }
         }
 
-        Row(
+        Box(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .padding(top = 8.dp)
                 .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+                .padding(top = 8.dp, bottom = 32.dp)
         ) {
             RoundedCornerTextButton(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(10.dp),
                 text = stringResource(R.string.gallery_use_button_text),
-                textStyle = ShinMunGoTheme.typography.body4,
+                textStyle = ShinMunGoTheme.typography.heading1,
                 textColor = ShinMunGoTheme.color.gray1,
-                borderLineColor = null,
                 backgroundColor = ShinMunGoTheme.color.primary,
                 roundedCornerShape = RoundedCornerShape(10.dp),
                 onButtonClick = {
