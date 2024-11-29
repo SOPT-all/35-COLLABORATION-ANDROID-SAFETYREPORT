@@ -58,7 +58,10 @@ fun GalleryDetailScreen(
         CommonTopBar(
             title = stringResource(R.string.gallery_detail_topbar_title),
             onLeftContent = {
-                IconButton(onClick = onBackClick) {
+                IconButton(
+                    modifier = Modifier.size(24.dp),
+                    onClick = onBackClick
+                ) {
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left_line_white_24),
                         contentDescription = stringResource(R.string.back_screen_text),
