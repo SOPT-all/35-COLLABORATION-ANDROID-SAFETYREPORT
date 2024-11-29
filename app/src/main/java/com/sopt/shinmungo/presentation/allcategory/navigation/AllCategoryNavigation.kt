@@ -1,5 +1,7 @@
 package com.sopt.shinmungo.presentation.allcategory.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -7,6 +9,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.sopt.shinmungo.core.navigation.MainTabRoute
 import com.sopt.shinmungo.presentation.allcategory.AllCategoryScreen
+import com.sopt.shinmungo.presentation.report.navigation.navigateToReport
 import kotlinx.serialization.Serializable
 
 fun NavHostController.navigateToAllCategory(navOptions: NavOptions? = null) =
@@ -19,13 +22,28 @@ fun NavGraphBuilder.allCategoryScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    composable<AllCategory> {
+    composable<AllCategory>(
+        exitTransition = {
+            ExitTransition.None
+        },
+        popEnterTransition = {
+            EnterTransition.None
+        },
+        enterTransition = {
+            EnterTransition.None
+        },
+        popExitTransition = {
+            ExitTransition.None
+        }
+    ) {
         AllCategoryScreen(
             onNavigateBack = navController::navigateUp,
+            onNavigateToReport = { navController.navigateToReport() }, // ReportScreen으로 이동
             modifier = modifier
         )
     }
 }
+
 
 @Serializable
 data object AllCategory: MainTabRoute
