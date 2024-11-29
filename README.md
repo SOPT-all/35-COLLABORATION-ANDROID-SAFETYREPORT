@@ -12,6 +12,17 @@
 
 <br>
 
+## 📱 구현 결과
+
+| 홈 | 카테고리 | 신고 - 이미지 | 갤러리 | 
+|:----------------:|:----------------:|:----------------:|:----------------:|
+| <img src="https://github.com/user-attachments/assets/64c6f2d5-b770-467e-b722-0c9bb94dd52e" width=150/> | <img src="https://github.com/user-attachments/assets/05f8e936-c9d0-46b7-828a-bbfcccc6919a" width=150/> | <img src="https://github.com/user-attachments/assets/b96afc39-86b6-44af-8c6e-34263fdb2c3d" width=150/> | <img src="https://github.com/user-attachments/assets/655fe326-8c25-4f0a-aa5c-9c7308007cf2" width=150/> |
+
+| 신고 - 이미지 삭제  | 맵 | 신고 제출 | 신고 뒤로가기 | 
+|:----------------:|:----------------:|:----------------:|:----------------:|
+| <img src="https://github.com/user-attachments/assets/3753e848-a8aa-47c5-9f86-abbe1e303057" width=150/> | <img src="https://github.com/user-attachments/assets/4f79d632-363f-4774-8d51-20b2b111de54" width=150/> | <img src="https://github.com/user-attachments/assets/8dd9643f-c967-4ad0-a600-85d4a52e831b" width="150"/> | <img src="https://github.com/user-attachments/assets/247eb2e2-e7e5-43b9-968d-e02e0b053cb0" width=150/> |
+
+
 ## 🧑‍🤝‍🧑 협업 방식
 ```
 소통의 경우,
