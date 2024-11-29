@@ -41,7 +41,8 @@ fun AllCategoryComponent(
     category: AllCategoryEntity,
     isExpanded: Boolean,
     reportableItems: List<String>,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onNavigateToReport: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -80,7 +81,11 @@ fun AllCategoryComponent(
                     textColor = ShinMunGoTheme.color.gray1,
                     backgroundColor = ShinMunGoTheme.color.primary,
                     roundedCornerShape = RoundedCornerShape(4.dp),
-                    onButtonClick = { /* 신고하기 로직 */ },
+                    onButtonClick = {
+                        if (category.title == "불법 주정차") {
+                            onNavigateToReport()
+                        }
+                    },
                     modifier = Modifier
                         .padding(horizontal = 20.dp, vertical = 8.dp)
                 )
@@ -168,24 +173,28 @@ fun PreviewAllCategoryComponent() {
         ) {
             AllCategoryComponent(
                 category = AllCategoryEntity(
+                    title = "불법 주정차",
+                    description = "불법 주정차 관련 신고 항목",
+                    reportableItems = listOf("소화전", "교차로 모퉁이", "횡단보도", "버스 정류소")
+                ),
+                isExpanded = true,
+                reportableItems = listOf("소화전", "교차로 모퉁이", "횡단보도", "버스 정류소"),
+                onClick = { println("불법 주정차 클릭") },
+                onNavigateToReport = { println("ReportScreen으로 이동") }
+            )
+            AllCategoryComponent(
+                category = AllCategoryEntity(
                     title = "안전",
-                    description = "가로등 점검사항, 도로/시설물 파손 및 고장 등.",
+                    description = "안전 관련 신고 항목",
                     reportableItems = listOf("가로등 고장", "도로 표지판 손상", "건물 외벽 위험 요소")
                 ),
                 isExpanded = false,
                 reportableItems = listOf("가로등 고장", "도로 표지판 손상", "건물 외벽 위험 요소"),
-                onClick = {}
-            )
-            AllCategoryComponent(
-                category = AllCategoryEntity(
-                    title = "생활불편",
-                    description = "쓰레기 무단투기, 불법 광고물 등.",
-                    reportableItems = listOf("무단 투기 쓰레기", "불법 광고물 게시", "공공장소 방치물")
-                ),
-                isExpanded = true,
-                reportableItems = listOf("무단 투기 쓰레기", "불법 광고물 게시", "공공장소 방치물"),
-                onClick = {}
+                onClick = { println("안전 카테고리 클릭") },
+                onNavigateToReport = { println("ReportScreen으로 이동") }
             )
         }
     }
 }
+
+
