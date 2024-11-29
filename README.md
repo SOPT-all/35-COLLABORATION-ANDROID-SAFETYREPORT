@@ -8,7 +8,7 @@
 | <img src="https://avatars.githubusercontent.com/u/101652649?v=4" width = "200"/> | <img src="https://avatars.githubusercontent.com/u/89915076?v=4" width = "200" /> | <img src="https://avatars.githubusercontent.com/u/63749140?v=4" width = "200"/> | <img src="https://avatars.githubusercontent.com/u/182846193?v=4" width = "200"/> | 
 |:-------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|
 |                      [이석준](https://github.com/boiledEgg-s)                      |                        [김채린](https://github.com/chrin05)                        |                       [이황근](https://github.com/yihwanggeun)                        |                       [장재원](https://github.com/jangsjw)                        |
-| `담당 기능` | `담당 기능` | `담당 기능` | `담당 기능` |
+| `홈화면` <br> `네비게이션` | `신고화면` | `갤러리화면` <br> `지도화면` | `카테고리 화면` <br> `다이얼로그` |
 
 <br>
 
@@ -16,11 +16,11 @@
 
 | 홈 | 카테고리 | 신고 - 이미지 | 갤러리 | 
 |:----------------:|:----------------:|:----------------:|:----------------:|
-| <img src="https://github.com/user-attachments/assets/64c6f2d5-b770-467e-b722-0c9bb94dd52e" width=150/> | <img src="https://github.com/user-attachments/assets/05f8e936-c9d0-46b7-828a-bbfcccc6919a" width=150/> | <img src="https://github.com/user-attachments/assets/b96afc39-86b6-44af-8c6e-34263fdb2c3d" width=150/> | <img src="https://github.com/user-attachments/assets/655fe326-8c25-4f0a-aa5c-9c7308007cf2" width=150/> |
+| <img src="https://github.com/user-attachments/assets/64c6f2d5-b770-467e-b722-0c9bb94dd52e" width="200"/> | <img src="https://github.com/user-attachments/assets/05f8e936-c9d0-46b7-828a-bbfcccc6919a" width="200"/> | <img src="https://github.com/user-attachments/assets/b96afc39-86b6-44af-8c6e-34263fdb2c3d" width="200"/> | <img src="https://github.com/user-attachments/assets/655fe326-8c25-4f0a-aa5c-9c7308007cf2" width="200"/> |
 
-| 신고 - 이미지 삭제  | 맵 | 신고 제출 | 신고 뒤로가기 | 
+| 신고 - 이미지 삭제  | 지도 | 신고 - 제출 | 신고 - 뒤로가기 | 
 |:----------------:|:----------------:|:----------------:|:----------------:|
-| <img src="https://github.com/user-attachments/assets/3753e848-a8aa-47c5-9f86-abbe1e303057" width=150/> | <img src="https://github.com/user-attachments/assets/4f79d632-363f-4774-8d51-20b2b111de54" width=150/> | <img src="https://github.com/user-attachments/assets/8dd9643f-c967-4ad0-a600-85d4a52e831b" width="150"/> | <img src="https://github.com/user-attachments/assets/247eb2e2-e7e5-43b9-968d-e02e0b053cb0" width=150/> |
+| <img src="https://github.com/user-attachments/assets/3753e848-a8aa-47c5-9f86-abbe1e303057" width="200"/> | <img src="https://github.com/user-attachments/assets/4f79d632-363f-4774-8d51-20b2b111de54" width="200"/> | <img src="https://github.com/user-attachments/assets/8dd9643f-c967-4ad0-a600-85d4a52e831b" width="200"/> | <img src="https://github.com/user-attachments/assets/247eb2e2-e7e5-43b9-968d-e02e0b053cb0" width="200"/> |
 
 
 ## 🧑‍🤝‍🧑 협업 방식
