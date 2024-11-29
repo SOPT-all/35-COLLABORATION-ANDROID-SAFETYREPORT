@@ -1,5 +1,7 @@
 package com.sopt.shinmungo.presentation.home.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -11,13 +13,28 @@ import com.sopt.shinmungo.presentation.home.HomeRoute
 import com.sopt.shinmungo.presentation.report.navigation.navigateToReport
 import kotlinx.serialization.Serializable
 
-fun NavHostController.navigateToHome(navOptions: NavOptions? = null) = navigate(Home)
+fun NavHostController.navigateToHome(navOptions: NavOptions? = null) =
+    navigate(route = Home, navOptions = navOptions)
 
 fun NavGraphBuilder.homeScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    composable<Home> {
+    composable<Home>(
+        exitTransition = {
+            ExitTransition.None
+        },
+        popEnterTransition = {
+            EnterTransition.None
+        },
+        enterTransition = {
+            EnterTransition.None
+        },
+        popExitTransition = {
+            ExitTransition.None
+        }
+    ) {
+
         HomeRoute(
             modifier = modifier,
             navigateToCategory = navController::navigateToAllCategory,
@@ -27,4 +44,4 @@ fun NavGraphBuilder.homeScreen(
 }
 
 @Serializable
-data object Home: MainTabRoute
+data object Home : MainTabRoute

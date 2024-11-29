@@ -35,9 +35,11 @@ class MainNavigator(
 
     fun navigate(tab: MainTab) {
         val mainNavOption = navOptions {
-            popUpTo(navController.graph.startDestinationId) {
-                saveState = true
-                inclusive = true
+            navController.currentDestination?.route?.let {
+                popUpTo(it) {
+                    saveState = true
+                    inclusive = true
+                }
             }
             launchSingleTop = true
             restoreState = true

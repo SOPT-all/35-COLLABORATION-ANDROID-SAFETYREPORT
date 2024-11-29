@@ -1,5 +1,7 @@
 package com.sopt.shinmungo.presentation.allcategory.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -20,7 +22,20 @@ fun NavGraphBuilder.allCategoryScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    composable<AllCategory> {
+    composable<AllCategory>(
+        exitTransition = {
+            ExitTransition.None
+        },
+        popEnterTransition = {
+            EnterTransition.None
+        },
+        enterTransition = {
+            EnterTransition.None
+        },
+        popExitTransition = {
+            ExitTransition.None
+        }
+    ) {
         AllCategoryScreen(
             onNavigateBack = navController::navigateUp,
             onNavigateToReport = { navController.navigateToReport() }, // ReportScreen으로 이동
