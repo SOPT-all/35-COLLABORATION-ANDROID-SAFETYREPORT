@@ -46,8 +46,11 @@ fun ReportDialogScreen(
 
         if (isCameraSelectionDialogVisible) {
             MediaSelectionDialog(
-                onDismissRequest = {
+                onConfirmClick = {
                     onCameraSelectionConfirm()
+                    onDismissRequest(ReportDialogType.CAMERA_SELECTION)
+                },
+                onDismissRequest = {
                     onDismissRequest(ReportDialogType.CAMERA_SELECTION)
                 },
             )
@@ -55,8 +58,11 @@ fun ReportDialogScreen(
 
         if (isGallerySelectionDialogVisible) {
             MediaSelectionDialog(
-                onDismissRequest = {
+                onConfirmClick = {
                     onGallerySelectionConfirm()
+                    onDismissRequest(ReportDialogType.GALLERY_SELECTION)
+                },
+                onDismissRequest = {
                     onDismissRequest(ReportDialogType.GALLERY_SELECTION)
                 },
             )
